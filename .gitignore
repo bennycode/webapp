@@ -12,3 +12,11 @@ nbdist/
 nbactions.xml
 build.xml
 build.properties
+
+### IntelliJ ###
+### http://devnet.jetbrains.com/docs/DOC-1186 ###
+/.idea/encodings.xml
+/.idea/tasks.xml
+/.idea/workspace.xml
+/.idea/inspectionProfiles/
+/.idea/temp/
