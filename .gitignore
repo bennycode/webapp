@@ -1,0 +1,14 @@
+### Builds ###
+/target/
+/deployments/**/*.*
+.dpl/
+
+### NetBeans ###
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+build.xml
+build.properties
