@@ -20,3 +20,4 @@ build.properties
 /.idea/workspace.xml
 /.idea/inspectionProfiles/
 /.idea/temp/
+/.idea/*.iws
