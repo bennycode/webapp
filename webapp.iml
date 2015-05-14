@@ -15,6 +15,16 @@
         </sourceRoots>
       </configuration>
     </facet>
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="WebContext" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/welovecoding/config/WebConfig.java</file>
+        </fileset>
+        <fileset id="fileset2" name="PersistenceContext" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/welovecoding/config/PersistenceConfig.java</file>
+        </fileset>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -91,5 +101,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.github.springtestdbunit:spring-test-dbunit:1.2.1" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.186" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-jpa:1.8.0.RELEASE" level="project" />
   </component>
 </module>
