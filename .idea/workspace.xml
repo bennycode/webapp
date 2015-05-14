@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7b41404-905f-48e8-a2c7-8dc31e833ff3" name="Default" comment="implemented base structure with example">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.html" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" />
+    <list default="true" id="d7b41404-905f-48e8-a2c7-8dc31e833ff3" name="Default" comment="fixed intelliJ settings">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="webapp.iws" />
@@ -1000,7 +999,7 @@
       <option name="number" value="Default" />
       <updated>1431616163469</updated>
       <workItem from="1431616165595" duration="1662000" />
-      <workItem from="1431618279285" duration="8432000" />
+      <workItem from="1431618279285" duration="8454000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1431619481673</created>
@@ -1014,11 +1013,17 @@
       <option name="project" value="LOCAL" />
       <updated>1431629016050</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed intelliJ settings">
+      <created>1431629938914</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1431629938914</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10094000" />
+    <option name="totallyTimeSpent" value="10116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="23" width="1640" height="1027" extended-state="6" />
@@ -1059,7 +1064,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="implemented base structure with example" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented base structure with example" />
+    <MESSAGE value="fixed intelliJ settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed intelliJ settings" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
