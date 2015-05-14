@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <ACCOUNT id="1" created="1970-01-01" lastModified="1970-01-01" username="username1" password="password1"/>
+  <NEWS id="1" created="1970-01-01" lastModified="1970-01-01" account_id="1" slug="slug1" title="title1"
+        description="description1" text="text1"/>
+</dataset>
