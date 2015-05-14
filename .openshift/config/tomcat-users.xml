@@ -16,27 +16,27 @@
   limitations under the License.
 -->
 <tomcat-users>
-<!--
-  NOTE:  By default, no user is included in the "manager-gui" role required
-  to operate the "/manager/html" web application.  If you wish to use this app,
-  you must define such a user - the username and password are arbitrary.
--->
-<!--
-  NOTE:  The sample user and role entries below are wrapped in a comment
-  and thus are ignored when reading this file. Do not forget to remove
-  <!.. ..> that surrounds them.
--->
-<!--
-If you wish to use the Manager Application to deploy and undeploy applications in a running Tomcat installation, you MUST add the "manager-gui" role to at least one username in your selected Realm implementation. This is because the manager web application itself uses a security constraint that requires role "manager-gui" to access ANY request URI within the HTML interface of that application.
+  <!--
+    NOTE:  By default, no user is included in the "manager-gui" role required
+    to operate the "/manager/html" web application.  If you wish to use this app,
+    you must define such a user - the username and password are arbitrary.
+  -->
+  <!--
+    NOTE:  The sample user and role entries below are wrapped in a comment
+    and thus are ignored when reading this file. Do not forget to remove
+    <!.. ..> that surrounds them.
+  -->
+  <!--
+  If you wish to use the Manager Application to deploy and undeploy applications in a running Tomcat installation, you MUST add the "manager-gui" role to at least one username in your selected Realm implementation. This is because the manager web application itself uses a security constraint that requires role "manager-gui" to access ANY request URI within the HTML interface of that application.
 
-For security reasons, no username in the default Realm (i.e. using conf/tomcat-users.xml is assigned the "manager-gui" role. Therefore, no one will be able to utilize the features of this application until the Tomcat administrator specifically assigns this role to one or more users.
--->
+  For security reasons, no username in the default Realm (i.e. using conf/tomcat-users.xml is assigned the "manager-gui" role. Therefore, no one will be able to utilize the features of this application until the Tomcat administrator specifically assigns this role to one or more users.
+  -->
 
-<!--
-  <role rolename="tomcat"/>
-  <role rolename="role1"/>
-  <user username="tomcat" password="tomcat" roles="tomcat"/>
-  <user username="both" password="tomcat" roles="tomcat,role1"/>
-  <user username="role1" password="tomcat" roles="role1"/>
--->
+  <!--
+    <role rolename="tomcat"/>
+    <role rolename="role1"/>
+    <user username="tomcat" password="tomcat" roles="tomcat"/>
+    <user username="both" password="tomcat" roles="tomcat,role1"/>
+    <user username="role1" password="tomcat" roles="role1"/>
+  -->
 </tomcat-users>

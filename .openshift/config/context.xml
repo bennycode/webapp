@@ -17,40 +17,40 @@
 -->
 <!-- The contents of this file will be loaded for each web application -->
 <Context>
-    <!-- Default set of monitored resources -->
-    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+  <!-- Default set of monitored resources -->
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
-    <!--
-    <Manager pathname="" />
-    -->
+  <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+  <!--
+  <Manager pathname="" />
+  -->
 
-    <!-- Uncomment this to enable Comet connection tacking (provides events
-         on session expiration as well as webapp lifecycle) -->
-    <!--
-    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
-    -->
+  <!-- Uncomment this to enable Comet connection tacking (provides events
+       on session expiration as well as webapp lifecycle) -->
+  <!--
+  <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+  -->
 
-    <Resource name="jdbc/MySQLDS"
-              url="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/${OPENSHIFT_APP_NAME}"
-              driverClassName="com.mysql.jdbc.Driver"
-              username="${OPENSHIFT_MYSQL_DB_USERNAME}"
-              password="${OPENSHIFT_MYSQL_DB_PASSWORD}"
-              auth="Container"
-              type="javax.sql.DataSource"
-              maxActive="20"
-              maxIdle="5"
-              maxWait="10000"
-              />
-               
-    <Resource name="jdbc/PostgreSQLDS"
-              url="jdbc:postgresql://${OPENSHIFT_POSTGRESQL_DB_HOST}:${OPENSHIFT_POSTGRESQL_DB_PORT}/${OPENSHIFT_APP_NAME}"
-              driverClassName="org.postgresql.Driver"
-              username="${OPENSHIFT_POSTGRESQL_DB_USERNAME}"
-              password="${OPENSHIFT_POSTGRESQL_DB_PASSWORD}"
-              auth="Container"
-              type="javax.sql.DataSource"
-              maxActive="20"
-              maxIdle="5"
-              maxWait="10000"/>
+  <Resource name="jdbc/MySQLDS"
+            url="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/${OPENSHIFT_APP_NAME}"
+            driverClassName="com.mysql.jdbc.Driver"
+            username="${OPENSHIFT_MYSQL_DB_USERNAME}"
+            password="${OPENSHIFT_MYSQL_DB_PASSWORD}"
+            auth="Container"
+            type="javax.sql.DataSource"
+            maxActive="20"
+            maxIdle="5"
+            maxWait="10000"
+    />
+
+  <Resource name="jdbc/PostgreSQLDS"
+            url="jdbc:postgresql://${OPENSHIFT_POSTGRESQL_DB_HOST}:${OPENSHIFT_POSTGRESQL_DB_PORT}/${OPENSHIFT_APP_NAME}"
+            driverClassName="org.postgresql.Driver"
+            username="${OPENSHIFT_POSTGRESQL_DB_USERNAME}"
+            password="${OPENSHIFT_POSTGRESQL_DB_PASSWORD}"
+            auth="Container"
+            type="javax.sql.DataSource"
+            maxActive="20"
+            maxIdle="5"
+            maxWait="10000"/>
 </Context>
