@@ -15,7 +15,7 @@ build.properties
 
 ### IntelliJ ###
 ### http://devnet.jetbrains.com/docs/DOC-1186 ###
-/.idea/libraries/*
+/.idea/libraries
 /.idea/encodings.xml
 /.idea/tasks.xml
 /.idea/workspace.xml
