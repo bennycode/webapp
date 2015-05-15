@@ -5,6 +5,7 @@ import com.welovecoding.data.base.BaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 
 @Entity
@@ -27,6 +28,13 @@ public class Author extends BaseEntity<Long> {
   public Author(String name) {
     this();
     this.setName(name);
+  }
+
+  Author(Long id, Date created, Date lastModified, String description, String website, String channelUrl) {
+    super(id, created, lastModified);
+    this.description = description;
+    this.website = website;
+    this.channelUrl = channelUrl;
   }
 
   public String getDescription() {

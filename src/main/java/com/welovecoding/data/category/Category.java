@@ -9,8 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Category extends BaseEntity<Long> {
@@ -21,16 +22,22 @@ public class Category extends BaseEntity<Long> {
   private String color;
 
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-  private List<Playlist> playlists;
+  private Set<Playlist> playlists;
 
   public Category() {
-    this.playlists = new ArrayList<>();
+    this.playlists = new HashSet<>();
     this.color = "#000000";
   }
 
   public Category(String color) {
     this();
     this.color = color;
+  }
+
+  Category(Long id, Date created, Date lastModified, String color, Set<Playlist> playlists) {
+    super(id, created, lastModified);
+    this.color = color;
+    this.playlists = playlists;
   }
 
   public String getColor() {
@@ -41,11 +48,11 @@ public class Category extends BaseEntity<Long> {
     this.color = color;
   }
 
-  public List<Playlist> getPlaylists() {
+  public Set<Playlist> getPlaylists() {
     return playlists;
   }
 
-  public void setPlaylists(List<Playlist> playlists) {
+  public void setPlaylists(Set<Playlist> playlists) {
     this.playlists = playlists;
   }
 }

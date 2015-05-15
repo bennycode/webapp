@@ -1,6 +1,8 @@
-package com.welovecoding.api.v1.account;
+package com.welovecoding.api.v1.category;
 
 
+import com.welovecoding.api.v1.account.AccountDTO;
+import com.welovecoding.api.v1.account.AccountMapper;
 import com.welovecoding.api.v1.news.NewsDTO;
 import com.welovecoding.data.account.Account;
 import com.welovecoding.data.account.AccountFactory;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
-public class AccountMapperTest {
+public class CategoryMapperTest {
 
   @Rule
   public TestName name = new TestName();
@@ -60,7 +62,7 @@ public class AccountMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 1;
     Account entity = AccountFactory.constructAccount(1, 3);
-    AccountDTO expResult = AccountDTOFactory.constructAccountDTO(1, resultDept);
+    AccountDTO expResult = CategoryDTOFactory.constructAccountDTO(1, resultDept);
 
     AccountDTO result = AccountMapper.entityToDto(entity, resultDept);
 
@@ -73,7 +75,7 @@ public class AccountMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 2;
     Account entity = AccountFactory.constructAccount(1, 3);
-    AccountDTO expResult = AccountDTOFactory.constructAccountDTO(1, resultDept);
+    AccountDTO expResult = CategoryDTOFactory.constructAccountDTO(1, resultDept);
 
     AccountDTO result = AccountMapper.entityToDto(entity, resultDept);
 
@@ -87,7 +89,7 @@ public class AccountMapperTest {
     System.out.println(name.getMethodName());
 
     Account entity = AccountFactory.constructAccountWithNullNews(1);
-    AccountDTO expResult = AccountDTOFactory.constructAccountDTO(1, 1);
+    AccountDTO expResult = CategoryDTOFactory.constructAccountDTO(1, 1);
 
     AccountDTO result = AccountMapper.entityToDto(entity, 2);
 

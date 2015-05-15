@@ -29,7 +29,15 @@ import java.util.Properties;
 @ComponentScan(value = "com.welovecoding",
   excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Configuration.class}))
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.welovecoding.data.news", "com.welovecoding.data.account", "com.welovecoding.data.author", "com.welovecoding.data.category", "com.welovecoding.data.playlist", "com.welovecoding.data.user", "com.welovecoding.data.video"})
+@EnableJpaRepositories(basePackages = {
+  "com.welovecoding.data.news",
+  "com.welovecoding.data.account",
+  "com.welovecoding.data.author",
+  "com.welovecoding.data.category",
+  "com.welovecoding.data.playlist",
+  "com.welovecoding.data.user",
+  "com.welovecoding.data.video"
+})
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
 
@@ -44,18 +52,6 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
 
     return dataSource;
   }
-
-//  @Bean
-//  public DataSource dataSource() {
-//    DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//
-//    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//    dataSource.setUrl("jdbc:mysql://localhost:3306/welovecoding");
-//    dataSource.setUsername("root");
-//    dataSource.setPassword("");
-//
-//    return dataSource;
-//  }
 
   /**
    * Prevents: WARN [org.dbunit.dataset.AbstractTableMetaData]
@@ -75,7 +71,6 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
   public DatabaseConfigBean dbUnitDatabaseConfig() {
     DatabaseConfigBean dbConfig = new com.github.springtestdbunit.bean.DatabaseConfigBean();
     dbConfig.setDatatypeFactory(new org.dbunit.ext.h2.H2DataTypeFactory());
-//    dbConfig.setDatatypeFactory(new org.dbunit.ext.mysql.MySqlDataTypeFactory());
     return dbConfig;
   }
 
@@ -91,11 +86,17 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
     LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
     em.setDataSource(dataSource());
     // scan for entities
-    em.setPackagesToScan(new String[]{"com.welovecoding.data.news", "com.welovecoding.data.account", "com.welovecoding.data.author", "com.welovecoding.data.category", "com.welovecoding.data.playlist", "com.welovecoding.data.user", "com.welovecoding.data.video"});
+    em.setPackagesToScan(
+      "com.welovecoding.data.news",
+      "com.welovecoding.data.account",
+      "com.welovecoding.data.author",
+      "com.welovecoding.data.category",
+      "com.welovecoding.data.playlist",
+      "com.welovecoding.data.user",
+      "com.welovecoding.data.video"
+    );
 
     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-//    JpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
-//    em.setLoadTimeWeaver(new SimpleLoadTimeWeaver());
     em.setJpaVendorAdapter(vendorAdapter);
     em.setJpaProperties(additionalProperties());
 
@@ -115,15 +116,13 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
   }
 
   Properties additionalProperties() {
-    Properties properties = new Properties();
-//	    properties.setProperty("hibernate.connection.username", "sa");
-//	    properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-//	    properties.setProperty("hibernate.connection.url", "jdbc:derby:testdb");
-//	    properties.setProperty("database.drop.url", "jdbc:derby:testdb;drop=true");
-    properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-    properties.setProperty("database.url", "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
-    properties.setProperty("hibernate.show_sql", "false");
-    properties.setProperty("hibernate.format_sql", "true");
-    return properties;
+    return new Properties() {
+      {
+        setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        setProperty("database.url", "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
+        setProperty("hibernate.show_sql", "false");
+        setProperty("hibernate.format_sql", "true");
+      }
+    };
   }
 }

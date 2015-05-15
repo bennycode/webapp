@@ -4,12 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.instrument.classloading.SimpleLoadTimeWeaver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -24,30 +23,24 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.welovecoding.data.news", "com.welovecoding.data.account", "com.welovecoding.data.author", "com.welovecoding.data.category", "com.welovecoding.data.playlist", "com.welovecoding.data.user", "com.welovecoding.data.video"})
+@EnableJpaRepositories(basePackages = {
+  "com.welovecoding.data.news",
+  "com.welovecoding.data.account",
+  "com.welovecoding.data.author",
+  "com.welovecoding.data.category",
+  "com.welovecoding.data.playlist",
+  "com.welovecoding.data.user",
+  "com.welovecoding.data.video"
+})
 public class PersistenceConfig {
-
-//  @Bean
-//  public DataSource dataSource() {
-//    DataSource dataSource = new EmbeddedDatabaseBuilder()
-//      .setType(EmbeddedDatabaseType.H2)
-//      .setScriptEncoding("UTF-8")
-//      .ignoreFailedDrops(true)
-//      .continueOnError(true)
-//      .build();
-//
-//    return dataSource;
-//  }
 
   @Bean
   public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
     dataSource.setDriverClassName("com.mysql.jdbc.Driver");
     dataSource.setUrl("jdbc:mysql://localhost:3306/welovecoding");
     dataSource.setUsername("root");
     dataSource.setPassword("");
-
     return dataSource;
   }
 
@@ -56,11 +49,17 @@ public class PersistenceConfig {
     LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
     em.setDataSource(dataSource());
     // scan for entities
-    em.setPackagesToScan(new String[]{"com.welovecoding.data.news", "com.welovecoding.data.account", "com.welovecoding.data.author", "com.welovecoding.data.category", "com.welovecoding.data.playlist", "com.welovecoding.data.user", "com.welovecoding.data.video"});
+    em.setPackagesToScan(
+      "com.welovecoding.data.news",
+      "com.welovecoding.data.account",
+      "com.welovecoding.data.author",
+      "com.welovecoding.data.category",
+      "com.welovecoding.data.playlist",
+      "com.welovecoding.data.user",
+      "com.welovecoding.data.video"
+    );
 
-//    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-    JpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
-    em.setLoadTimeWeaver(new SimpleLoadTimeWeaver());
+    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     em.setJpaVendorAdapter(vendorAdapter);
     em.setJpaProperties(additionalProperties());
 
@@ -80,9 +79,13 @@ public class PersistenceConfig {
   }
 
   Properties additionalProperties() {
-    Properties properties = new Properties();
-    properties.setProperty("hibernate.hbm2ddl.auto", "create");
-//	properties.setProperty("hibernate.dialect", "org.hibernate.dialect.DerbyDialect");
-    return properties;
+    return new Properties() {
+      {
+        setProperty("hibernate.hbm2ddl.auto", "update");
+        setProperty("hibernate.vendor", "MYSQL");
+        setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
+        setProperty("hibernate.globally_quoted_identifiers", "true");
+      }
+    };
   }
 }

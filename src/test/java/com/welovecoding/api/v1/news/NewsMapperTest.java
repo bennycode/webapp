@@ -1,6 +1,7 @@
 package com.welovecoding.api.v1.news;
 
 import com.welovecoding.data.news.News;
+import com.welovecoding.data.news.NewsFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -29,7 +30,7 @@ public class NewsMapperTest {
   public void testEntityToDtoDeptOne() {
     System.out.println(name.getMethodName());
     int dept = 1;
-    News entity = com.welovecoding.data.news.NewsFactory.constructNews(1, dept);
+    News entity = NewsFactory.constructNews(1, dept);
     NewsDTO expResult = NewsDTOFactory.constructNewsDTO(1, dept);
 
     NewsDTO result = NewsMapper.entityToDto(entity, dept);
@@ -41,7 +42,7 @@ public class NewsMapperTest {
   public void testEntityToDtoDeptTwo() {
     System.out.println(name.getMethodName());
     int dept = 2;
-    News entity = com.welovecoding.data.news.NewsFactory.constructNews(1, dept);
+    News entity = NewsFactory.constructNews(1, dept);
     NewsDTO expResult = NewsDTOFactory.constructNewsDTO(1, dept);
 
     NewsDTO result = NewsMapper.entityToDto(entity, dept);

@@ -6,6 +6,7 @@ import com.welovecoding.data.playlist.entity.Playlist;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -35,6 +36,16 @@ public class Video extends BaseEntity<Long> {
     this.code = code;
     this.setName(name);
     this.setDescription(description);
+  }
+
+  Video(Long id, Date created, Date lastModified, String code, String description, Playlist playlist, String previewImageUrl, String downloadUrl, String permalink) {
+    super(id, created, lastModified);
+    this.code = code;
+    this.description = description;
+    this.playlist = playlist;
+    this.previewImageUrl = previewImageUrl;
+    this.downloadUrl = downloadUrl;
+    this.permalink = permalink;
   }
 
   public String getCode() {

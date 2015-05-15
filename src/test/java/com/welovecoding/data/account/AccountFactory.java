@@ -1,6 +1,7 @@
 package com.welovecoding.data.account;
 
 import com.welovecoding.data.news.News;
+import com.welovecoding.data.news.NewsFactory;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -24,7 +25,7 @@ public class AccountFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new Account(longId, FIXED_DATE, FIXED_DATE, new HashSet<>(com.welovecoding.data.news.NewsFactory.constructNewsList(10, 1, dept)), "username" + id, "password" + id);
+      return new Account(longId, FIXED_DATE, FIXED_DATE, new HashSet<>(NewsFactory.constructNewsList(10, 1, dept)), "username" + id, "password" + id);
     }
     return null;
   }
@@ -46,7 +47,7 @@ public class AccountFactory {
       for (int i = 0 + startId; i < (size + startId); i++) {
         Set<News> news = null;
         if (dept > -1) {
-          news = new HashSet<>(com.welovecoding.data.news.NewsFactory.constructNewsList(10, 1, dept));
+          news = new HashSet<>(NewsFactory.constructNewsList(10, 1, dept));
         }
         newsList.add(new Account(new Long(i), FIXED_DATE, FIXED_DATE, news, "username" + i, "password" + i));
       }

@@ -1,5 +1,6 @@
 package com.welovecoding.api.v1.news;
 
+import com.welovecoding.data.news.NewsFactory;
 import com.welovecoding.data.news.NewsService;
 import org.junit.After;
 import org.junit.Before;
@@ -80,7 +81,7 @@ public class NewsResourceTest {
   @Test
   public void testFindOneNews() throws Exception {
     System.out.println(name.getMethodName());
-    when(newsService.findOneBySlug(Matchers.anyString())).thenReturn(com.welovecoding.data.news.NewsFactory.constructNews(1, 2));
+    when(newsService.findOneBySlug(Matchers.anyString())).thenReturn(NewsFactory.constructNews(1, 2));
 
     MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/news/slug1"))
       .andDo(print())
@@ -102,7 +103,7 @@ public class NewsResourceTest {
   @Test
   public void testFindAllNews() throws Exception {
     System.out.println(name.getMethodName());
-    when(newsService.findAll()).thenReturn(new ArrayList<>(com.welovecoding.data.news.NewsFactory.constructNewsList(10, 1, 2)));
+    when(newsService.findAll()).thenReturn(new ArrayList<>(NewsFactory.constructNewsList(10, 1, 2)));
 
     MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/news"))
       .andDo(print())

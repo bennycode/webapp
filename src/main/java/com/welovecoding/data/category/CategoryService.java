@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.welovecoding.ParameterValidator.isNull;
 import static com.welovecoding.ParameterValidator.notNull;
@@ -61,7 +62,7 @@ public class CategoryService {
     }
   }
 
-  public List<Category> findAllOrderedByName() {
+  public Set<Category> findAllOrderedByName() {
     return getRepository().findAllOrderedByName();
   }
 

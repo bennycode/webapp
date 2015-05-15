@@ -1,7 +1,8 @@
-package com.welovecoding.api.v1.account;
+package com.welovecoding.api.v1.category;
 
 import com.welovecoding.data.account.AccountFactory;
-import com.welovecoding.data.account.AccountService;
+import com.welovecoding.data.category.CategoryFactory;
+import com.welovecoding.data.category.CategoryService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -37,18 +38,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class)
 @WebAppConfiguration
-public class AccountResourceTest {
+public class CategoryResourceTest {
 
   @Configuration
   @EnableWebMvc
-  @ComponentScan(value = "com.welovecoding.api.v1.account",
+  @ComponentScan(value = "com.welovecoding.api.v1.category",
     excludeFilters = @Filter(type = FilterType.ANNOTATION, value = {Configuration.class}))
   @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
-  static class AccountResourceTestConfig extends WebMvcConfigurerAdapter {
+  static class CategoryResourceTestConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    public AccountService newsService() {
-      return Mockito.mock(AccountService.class);
+    public CategoryService categoryService() {
+      return Mockito.mock(CategoryService.class);
     }
   }
 
@@ -58,14 +59,14 @@ public class AccountResourceTest {
   private MockMvc mockMvc;
 
   @Autowired
-  private AccountService accountService;
+  private CategoryService categoryService;
 
   @Autowired
   private WebApplicationContext webApplicationContext;
 
   @Before
   public void setUp() {
-    Mockito.reset(accountService);
+    Mockito.reset(categoryService);
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
 
@@ -77,9 +78,9 @@ public class AccountResourceTest {
   @Test
   public void testFindAccountByUsername() throws Exception {
     System.out.println(name.getMethodName());
-    when(accountService.findOneByUsername(Matchers.anyString())).thenReturn(AccountFactory.constructAccount(1, 1));
+    when(categoryService.findOneByUsername(Matchers.anyString())).thenReturn(AccountFactory.constructAccount(1, 1));
 
-    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/account/username1"))
+    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/category/username1"))
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/hal+json"))
@@ -88,7 +89,25 @@ public class AccountResourceTest {
 
     String content = result.getResponse().getContentAsString();
 
-    verify(accountService, times(1)).findOneByUsername(Matchers.anyString());
-    verifyNoMoreInteractions(accountService);
+    verify(categoryService, times(1)).findOneByUsername(Matchers.anyString());
+    verifyNoMoreInteractions(categoryService);
+  }
+
+  @Test
+  public void testFindAllCategoriesOrderedByName() throws Exception {
+    System.out.println(name.getMethodName());
+    when(categoryService.findAllOrderedByName()).thenReturn(CategoryFactory.constructCategory(1, 1));
+
+    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/category/username1"))
+      .andDo(print())
+      .andExpect(status().isOk())
+      .andExpect(content().contentType("application/hal+json"))
+      .andExpect(jsonPath("username", is("username" + 1)))
+      .andReturn();
+
+    String content = result.getResponse().getContentAsString();
+
+    verify(categoryService, times(1)).findOneByUsername(Matchers.anyString());
+    verifyNoMoreInteractions(categoryService);
   }
 }
