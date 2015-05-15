@@ -30,11 +30,6 @@ public abstract class UserCredentials {
 //  @Column(name = CREDENTIAL_TYPE_COLUMN_NAME, insertable = false, updatable = false)
 private String credType;
 
-  public UserCredentials(String token, User user, String credType) {
-    this.token = token;
-    this.user = user;
-    this.credType = credType;
-  }
 
   public Long getId() {
     return id;
