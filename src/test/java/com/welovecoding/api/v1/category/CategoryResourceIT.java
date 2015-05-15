@@ -42,6 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class CategoryResourceIT {
 
+  private static final Logger LOG = Logger.getLogger(CategoryResourceIT.class.getName());
 
   @Rule
   public TestName name = new TestName();
@@ -57,9 +58,9 @@ public class CategoryResourceIT {
     try {
       SchemaDumper.dumpSchema("testdb", datasource.getConnection());
     } catch (SQLException ex) {
-      Logger.getLogger(CategoryResourceIT.class.getName()).log(Level.SEVERE, null, ex);
+      LOG.log(Level.SEVERE, null, ex);
     } catch (Exception ex) {
-      Logger.getLogger(CategoryResourceIT.class.getName()).log(Level.SEVERE, null, ex);
+      LOG.log(Level.SEVERE, null, ex);
     }
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
@@ -70,7 +71,7 @@ public class CategoryResourceIT {
 
   @Test
   @DatabaseSetup(value = "insert.xml")
-  public void testFindAccountByUsername() throws Exception {
+  public void testFindAllCategoriesOrderedByName() throws Exception {
     System.out.println(name.getMethodName());
     MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
       .andDo(print())

@@ -2,8 +2,8 @@ package com.welovecoding.api.v1.video;
 
 
 import com.welovecoding.api.v1.news.NewsDTO;
+import com.welovecoding.data.video.Video;
 import com.welovecoding.data.video.VideoFactory;
-import com.welovecoding.data.video.entity.Video;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;

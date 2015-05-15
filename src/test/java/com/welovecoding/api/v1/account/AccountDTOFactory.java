@@ -1,6 +1,8 @@
 package com.welovecoding.api.v1.account;
 
 
+import com.welovecoding.api.v1.news.NewsDTOFactory;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.logging.Level;
@@ -27,7 +29,7 @@ public class AccountDTOFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new AccountDTO(longId, FIXED_DATE, FIXED_DATE, new HashSet<>(com.welovecoding.api.v1.news.NewsDTOFactory.constructNewsDTOSet(10, 1, dept)), "username" + id);
+      return new AccountDTO(longId, FIXED_DATE, FIXED_DATE, new HashSet<>(NewsDTOFactory.constructNewsDTOSet(10, 1, dept)), "username" + id);
     }
     return null;
   }

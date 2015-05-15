@@ -34,6 +34,8 @@ import java.util.logging.Logger;
 //@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class PlaylistResourceIT {
 
+  private static final Logger LOG = Logger.getLogger(PlaylistResourceIT.class.getName());
+
   @Rule
   public TestName name = new TestName();
 
@@ -48,9 +50,9 @@ public class PlaylistResourceIT {
     try {
       SchemaDumper.dumpSchema("testdb", datasource.getConnection());
     } catch (SQLException ex) {
-      Logger.getLogger(PlaylistResourceIT.class.getName()).log(Level.SEVERE, null, ex);
+      LOG.log(Level.SEVERE, null, ex);
     } catch (Exception ex) {
-      Logger.getLogger(PlaylistResourceIT.class.getName()).log(Level.SEVERE, null, ex);
+      LOG.log(Level.SEVERE, null, ex);
     }
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
