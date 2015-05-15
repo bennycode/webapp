@@ -5,7 +5,7 @@ import com.welovecoding.api.v1.playlist.PlaylistDTO;
 import com.welovecoding.api.v1.playlist.PlaylistMapper;
 import com.welovecoding.data.category.Category;
 import com.welovecoding.data.playlist.entity.LanguageCode;
-import com.welovecoding.data.playlist.entity.Playlist;
+import com.welovecoding.data.playlist.Playlist;
 
 import java.util.*;
 

@@ -1,7 +1,7 @@
 package com.welovecoding.data.category;
 
 import com.welovecoding.data.base.BaseEntity;
-import com.welovecoding.data.playlist.entity.Playlist;
+import com.welovecoding.data.playlist.Playlist;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -34,7 +34,11 @@ public class Category extends BaseEntity<Long> {
     this.color = color;
   }
 
-  Category(Long id, Date created, Date lastModified, String color, Set<Playlist> playlists) {
+  Category(Long id,
+           Date created,
+           Date lastModified,
+           String color,
+           Set<Playlist> playlists) {
     super(id, created, lastModified);
     this.color = color;
     this.playlists = playlists;

@@ -17,6 +17,7 @@ build.properties
 ### http://devnet.jetbrains.com/docs/DOC-1186 ###
 /.idea/libraries
 /.idea/encodings.xml
+/.idea/uiDesigner.xml
 /.idea/tasks.xml
 /.idea/workspace.xml
 /.idea/inspectionProfiles/

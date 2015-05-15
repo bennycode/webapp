@@ -2,7 +2,7 @@ package com.welovecoding.api.v1.video;
 
 
 import com.welovecoding.data.category.Category;
-import com.welovecoding.data.playlist.entity.Playlist;
+import com.welovecoding.data.playlist.Playlist;
 import com.welovecoding.data.playlist.entity.Provider;
 import com.welovecoding.data.video.Video;
 

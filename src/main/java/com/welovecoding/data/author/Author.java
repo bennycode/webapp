@@ -30,7 +30,12 @@ public class Author extends BaseEntity<Long> {
     this.setName(name);
   }
 
-  Author(Long id, Date created, Date lastModified, String description, String website, String channelUrl) {
+  Author(Long id,
+         Date created,
+         Date lastModified,
+         String description,
+         String website,
+         String channelUrl) {
     super(id, created, lastModified);
     this.description = description;
     this.website = website;

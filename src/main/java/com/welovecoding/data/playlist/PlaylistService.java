@@ -2,7 +2,6 @@ package com.welovecoding.data.playlist;
 
 import com.welovecoding.data.base.exception.NoEntityToDeleteFoundException;
 import com.welovecoding.data.base.exception.NoEntityToUpdateFoundException;
-import com.welovecoding.data.playlist.entity.Playlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,10 @@
-package com.welovecoding.data.playlist.entity;
+package com.welovecoding.data.playlist;
 
 
 import com.welovecoding.data.author.Author;
 import com.welovecoding.data.base.BaseEntity;
 import com.welovecoding.data.category.Category;
+import com.welovecoding.data.playlist.entity.Provider;
 import com.welovecoding.data.video.Video;
 
 import javax.persistence.*;
@@ -57,7 +58,16 @@ public class Playlist extends BaseEntity<Long> {
     this.provider = Provider.YOUTUBE;
   }
 
-  Playlist(Long id, Date created, Date lastModified, Provider provider, Category category, Author author, Set<Video> videos, String code, String description, boolean enabled) {
+  Playlist(Long id,
+           Date created,
+           Date lastModified,
+           Provider provider,
+           Category category,
+           Author author,
+           Set<Video> videos,
+           String code,
+           String description,
+           boolean enabled) {
     super(id, created, lastModified);
     this.provider = provider;
     this.category = category;

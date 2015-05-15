@@ -1,7 +1,7 @@
 package com.welovecoding.data.video;
 
 import com.welovecoding.data.base.BaseEntity;
-import com.welovecoding.data.playlist.entity.Playlist;
+import com.welovecoding.data.playlist.Playlist;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

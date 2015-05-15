@@ -6,7 +6,7 @@ import com.welovecoding.api.v1.video.VideoDTO;
 import com.welovecoding.api.v1.video.VideoMapper;
 import com.welovecoding.data.author.Author;
 import com.welovecoding.data.playlist.entity.LanguageCode;
-import com.welovecoding.data.playlist.entity.Playlist;
+import com.welovecoding.data.playlist.Playlist;
 
 import java.util.HashSet;
 import java.util.Set;
