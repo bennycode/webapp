@@ -20,9 +20,9 @@ public class News extends BaseEntity<Long> {
   @ManyToOne//(fetch = FetchType.LAZY)
 //    @NotNull(message = "The account of the creator must be set.")
   private Account account;
-  @NotNull(message = "Failed to generate slug.")
-  @Column(unique = true)
-  private String slug;
+  //  @NotNull(message = "Failed to generate slug.")
+//  @Column(unique = true)
+//  private String slug;
   @NotNull(message = "The title must be set.")
   @Size(min = 1, max = 1024,
     message = "The title '${validatedValue}' must be between {min} and {max} characters long.")
@@ -41,18 +41,18 @@ public class News extends BaseEntity<Long> {
   public News() {
   }
 
-  public News(Account account, String slug, String title, String description, String text) {
+  public News(Account account/*, String slug*/, String title, String description, String text) {
     this.account = account;
-    this.slug = slug;
+//    this.slug = slug;
     this.title = title;
     this.text = text;
     this.description = description;
   }
 
-  News(Long id, Date created, Date lastModified, Account account, String slug, String title, String description, String text) {
+  News(Long id, Date created, Date lastModified, Account account/*, String slug*/, String title, String description, String text) {
     super(id, created, lastModified);
     this.account = account;
-    this.slug = slug;
+//    this.slug = slug;
     this.title = title;
     this.text = text;
     this.description = description;
@@ -74,12 +74,12 @@ public class News extends BaseEntity<Long> {
     return title;
   }
 
-  public String getSlug() {
-    return slug;
-  }
-
-  public void setSlug(String slug) {
-    this.slug = slug;
-  }
+//  public String getSlug() {
+//    return slug;
+//  }
+//
+//  public void setSlug(String slug) {
+//    this.slug = slug;
+//  }
 
 }

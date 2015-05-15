@@ -27,7 +27,7 @@ public class NewsFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new News(longId, FIXED_DATE, FIXED_DATE, AccountFactory.constructAccount(id, dept), "slug" + id, "title" + id, "description" + id, "text" + id);
+      return new News(longId, FIXED_DATE, FIXED_DATE, AccountFactory.constructAccount(id, dept)/*, "slug" + i*/, "title" + id, "description" + id, "text" + id);
     }
     return null;
   }
@@ -41,7 +41,7 @@ public class NewsFactory {
         if (dept > -1) {
           account = AccountFactory.constructAccount(i, dept);
         }
-        newsList.add(new News((long) i, FIXED_DATE, FIXED_DATE, account, "slug" + i, "title" + i, "description" + i, "text" + i));
+        newsList.add(new News((long) i, FIXED_DATE, FIXED_DATE, account/*, "slug" + i*/, "title" + i, "description" + i, "text" + i));
       }
     }
     return newsList;
@@ -50,7 +50,7 @@ public class NewsFactory {
   public static Collection<News> constructNewsListWithAccount(int size, int startId, Account account) {
     Collection<News> newsList = new ArrayList<>();
     for (int i = 0 + startId; i < (size + startId); i++) {
-      newsList.add(new News((long) i, FIXED_DATE, FIXED_DATE, account, "slug" + i, "title" + i, "description" + i, "text" + i));
+      newsList.add(new News((long) i, FIXED_DATE, FIXED_DATE, account/*, "slug" + i*/, "title" + i, "description" + i, "text" + i));
     }
     return newsList;
   }

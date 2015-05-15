@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.instrument.classloading.SimpleLoadTimeWeaver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -59,6 +60,7 @@ public class PersistenceConfig {
 
 //    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     JpaVendorAdapter vendorAdapter = new EclipseLinkJpaVendorAdapter();
+    em.setLoadTimeWeaver(new SimpleLoadTimeWeaver());
     em.setJpaVendorAdapter(vendorAdapter);
     em.setJpaProperties(additionalProperties());
 

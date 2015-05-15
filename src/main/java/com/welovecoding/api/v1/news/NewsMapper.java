@@ -47,7 +47,7 @@ public class NewsMapper {
     }
     News entity = new News(
       account,
-      dto.getSlug(),
+//      dto.getSlug(),
       dto.getTitle(),
       dto.getDescription(),
       dto.getText());

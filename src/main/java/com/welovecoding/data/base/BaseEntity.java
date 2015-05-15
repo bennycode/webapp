@@ -1,9 +1,9 @@
 package com.welovecoding.data.base;
 
+import com.welovecoding.data.user.entity.User;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,19 +12,14 @@ import java.util.Objects;
 @MappedSuperclass
 public abstract class BaseEntity<PK extends Serializable> extends AbstractPersistable<PK> {
 
-
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
-  private PK id;
-
-  @NotNull
+  //  @NotNull
   @Size(min = 1, max = 255)
-  @Basic(optional = false)
+//  @Basic(optional = false)
   private String name;
 
-  @NotNull
+  //  @NotNull
   @Size(min = 1, max = 255)
-  @Basic(optional = false)
+//  @Basic(optional = false)
   private String slug;
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date created;
@@ -32,11 +27,11 @@ public abstract class BaseEntity<PK extends Serializable> extends AbstractPersis
   @Temporal(value = TemporalType.TIMESTAMP)
   private Date lastModified;
 
-//  @ManyToOne(cascade = CascadeType.PERSIST)
-//  private User creator;
-//
-//  @ManyToOne(cascade = CascadeType.PERSIST)
-//  private User lastEditor;
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  private User creator;
+
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  private User lastEditor;
 
   protected BaseEntity() {
 
@@ -64,13 +59,6 @@ public abstract class BaseEntity<PK extends Serializable> extends AbstractPersis
     this.lastModified = lastModified;
   }
 
-  public PK getId() {
-    return id;
-  }
-
-  public void setId(PK id) {
-    this.id = id;
-  }
 
   public String getName() {
     return name;
@@ -89,26 +77,26 @@ public abstract class BaseEntity<PK extends Serializable> extends AbstractPersis
     this.slug = slug;
   }
 
-//  public User getCreator() {
-//    return creator;
-//  }
-//
-//  public void setCreator(User creator) {
-//    this.creator = creator;
-//  }
-//
-//  public User getLastEditor() {
-//    return lastEditor;
-//  }
-//
-//  public void setLastEditor(User lastEditor) {
-//    this.lastEditor = lastEditor;
-//  }
+  public User getCreator() {
+    return creator;
+  }
+
+  public void setCreator(User creator) {
+    this.creator = creator;
+  }
+
+  public User getLastEditor() {
+    return lastEditor;
+  }
+
+  public void setLastEditor(User lastEditor) {
+    this.lastEditor = lastEditor;
+  }
 
   @Override
   public int hashCode() {
     int hash = 7;
-    hash = 97 * hash + Objects.hashCode(this.id);
+    hash = 97 * hash + Objects.hashCode(this.getId());
     return hash;
   }
 
@@ -121,7 +109,7 @@ public abstract class BaseEntity<PK extends Serializable> extends AbstractPersis
       return false;
     }
     final BaseEntity other = (BaseEntity) obj;
-    return Objects.equals(this.id, other.id);
+    return Objects.equals(this.getId(), other.getId());
   }
 
   @Override
