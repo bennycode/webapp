@@ -48,9 +48,9 @@ public class VideoResourceIT {
     try {
       SchemaDumper.dumpSchema("testdb", datasource.getConnection());
     } catch (SQLException ex) {
-      Logger.getLogger(com.welovecoding.data.account.AccountServiceIT.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(VideoResourceIT.class.getName()).log(Level.SEVERE, null, ex);
     } catch (Exception ex) {
-      Logger.getLogger(com.welovecoding.data.account.AccountServiceIT.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(VideoResourceIT.class.getName()).log(Level.SEVERE, null, ex);
     }
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }

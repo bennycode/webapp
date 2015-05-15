@@ -1,6 +1,6 @@
 package com.welovecoding.api.v1.video;
 
-import com.welovecoding.data.playlist.PlaylistService;
+import com.welovecoding.data.video.VideoService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -33,14 +33,14 @@ public class VideoResourceTest {
 
   @Configuration
   @EnableWebMvc
-  @ComponentScan(value = "com.welovecoding.api.v1.playlist",
+  @ComponentScan(value = "com.welovecoding.api.v1.video",
     excludeFilters = @Filter(type = FilterType.ANNOTATION, value = {Configuration.class}))
   @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
-  static class PlaylistResourceTestConfig extends WebMvcConfigurerAdapter {
+  static class VideoResourceTestConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    public PlaylistService playlistService() {
-      return Mockito.mock(PlaylistService.class);
+    public VideoService videoService() {
+      return Mockito.mock(VideoService.class);
     }
   }
 
@@ -50,14 +50,14 @@ public class VideoResourceTest {
   private MockMvc mockMvc;
 
   @Autowired
-  private PlaylistService playlistService;
+  private VideoService videoService;
 
   @Autowired
   private WebApplicationContext webApplicationContext;
 
   @Before
   public void setUp() {
-    Mockito.reset(playlistService);
+    Mockito.reset(videoService);
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
 

@@ -1,6 +1,5 @@
 package com.welovecoding.api.v1.category;
 
-import com.welovecoding.data.account.AccountFactory;
 import com.welovecoding.data.category.CategoryFactory;
 import com.welovecoding.data.category.CategoryService;
 import org.junit.After;
@@ -9,7 +8,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
-import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +27,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.util.HashSet;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
@@ -75,30 +75,13 @@ public class CategoryResourceTest {
     validateMockitoUsage();
   }
 
-  @Test
-  public void testFindAccountByUsername() throws Exception {
-    System.out.println(name.getMethodName());
-    when(categoryService.findOneByUsername(Matchers.anyString())).thenReturn(AccountFactory.constructAccount(1, 1));
-
-    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/category/username1"))
-      .andDo(print())
-      .andExpect(status().isOk())
-      .andExpect(content().contentType("application/hal+json"))
-      .andExpect(jsonPath("username", is("username" + 1)))
-      .andReturn();
-
-    String content = result.getResponse().getContentAsString();
-
-    verify(categoryService, times(1)).findOneByUsername(Matchers.anyString());
-    verifyNoMoreInteractions(categoryService);
-  }
 
   @Test
   public void testFindAllCategoriesOrderedByName() throws Exception {
     System.out.println(name.getMethodName());
-    when(categoryService.findAllOrderedByName()).thenReturn(CategoryFactory.constructCategory(1, 1));
+    when(categoryService.findAllOrderedByName()).thenReturn(new HashSet<>(CategoryFactory.constructCategoryList(10, 1, 1)));
 
-    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/category/username1"))
+    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/hal+json"))
@@ -107,7 +90,7 @@ public class CategoryResourceTest {
 
     String content = result.getResponse().getContentAsString();
 
-    verify(categoryService, times(1)).findOneByUsername(Matchers.anyString());
+    verify(categoryService, times(1)).findAllOrderedByName();
     verifyNoMoreInteractions(categoryService);
   }
 }

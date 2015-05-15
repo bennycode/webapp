@@ -1,18 +1,13 @@
 package com.welovecoding.api.v1.category;
 
 
-import com.welovecoding.api.v1.account.AccountDTO;
-import com.welovecoding.api.v1.account.AccountMapper;
-import com.welovecoding.api.v1.news.NewsDTO;
-import com.welovecoding.data.account.Account;
-import com.welovecoding.data.account.AccountFactory;
+import com.welovecoding.data.category.Category;
+import com.welovecoding.data.category.CategoryFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
-
-import java.util.ArrayList;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -34,7 +29,7 @@ public class CategoryMapperTest {
   public void shouldReturnNullWhenEntityIsNull() {
     System.out.println(name.getMethodName());
 
-    AccountDTO result = AccountMapper.entityToDto(null, 1);
+    CategoryDTO result = CategoryMapper.entityToDto(null, 1);
 
     assertThat(null, equalTo(result));
   }
@@ -42,56 +37,56 @@ public class CategoryMapperTest {
   @Test(expected = IllegalArgumentException.class)
   public void shouldThrowExceptionWhenDeptIsNegative() {
     System.out.println(name.getMethodName());
-    Account entity = AccountFactory.constructAccount(1, 2);
+    Category entity = CategoryFactory.constructCategory(1, 2);
 
-    AccountDTO result = AccountMapper.entityToDto(entity, -1);
+    CategoryDTO result = CategoryMapper.entityToDto(entity, -1);
   }
 
   @Test
   public void shouldReturnNullWhenDeptIsZero() {
     System.out.println(name.getMethodName());
-    Account entity = AccountFactory.constructAccount(1, 1);
+    Category entity = CategoryFactory.constructCategory(1, 1);
 
-    AccountDTO result = AccountMapper.entityToDto(entity, 0);
+    CategoryDTO result = CategoryMapper.entityToDto(entity, 0);
 
     assertThat(result, nullValue());
   }
 
   @Test
-  public void shouldReturnFlatAccountWhenDeptIsOne() {
+  public void shouldReturnFlatCategoryWhenDeptIsOne() {
     System.out.println(name.getMethodName());
     int resultDept = 1;
-    Account entity = AccountFactory.constructAccount(1, 3);
-    AccountDTO expResult = CategoryDTOFactory.constructAccountDTO(1, resultDept);
+    Category entity = CategoryFactory.constructCategory(1, 3);
+    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, resultDept);
 
-    AccountDTO result = AccountMapper.entityToDto(entity, resultDept);
+    CategoryDTO result = CategoryMapper.entityToDto(entity, resultDept);
 
     assertThat(expResult, samePropertyValuesAs(result));
-    assertThat(result.getNews(), emptyCollectionOf(NewsDTO.class));
+//    assertThat(result.getNews(), emptyCollectionOf(NewsDTO.class));
   }
 
   @Test
-  public void shouldReturnAccountWithNewsWhenDeptIsTwo() {
+  public void shouldReturnCategoryWithNewsWhenDeptIsTwo() {
     System.out.println(name.getMethodName());
     int resultDept = 2;
-    Account entity = AccountFactory.constructAccount(1, 3);
-    AccountDTO expResult = CategoryDTOFactory.constructAccountDTO(1, resultDept);
+    Category entity = CategoryFactory.constructCategory(1, 3);
+    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, resultDept);
 
-    AccountDTO result = AccountMapper.entityToDto(entity, resultDept);
+    CategoryDTO result = CategoryMapper.entityToDto(entity, resultDept);
 
     assertThat(expResult, samePropertyValuesAs(result));
-    assertThat(result.getNews(), hasItem(instanceOf(NewsDTO.class)));
-    assertThat(new ArrayList<>(result.getNews()).get(0).getAccount(), nullValue());
+//    assertThat(result.getNews(), hasItem(instanceOf(NewsDTO.class)));
+//    assertThat(new ArrayList<>(result.getNews()).get(0).getCategory(), nullValue());
   }
 
   @Test
   public void testEntityToDtoWithNullNews() {
     System.out.println(name.getMethodName());
 
-    Account entity = AccountFactory.constructAccountWithNullNews(1);
-    AccountDTO expResult = CategoryDTOFactory.constructAccountDTO(1, 1);
+    Category entity = CategoryFactory.constructCategoryWithNullNews(1);
+    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 1);
 
-    AccountDTO result = AccountMapper.entityToDto(entity, 2);
+    CategoryDTO result = CategoryMapper.entityToDto(entity, 2);
 
     assertThat(expResult, samePropertyValuesAs(result));
   }

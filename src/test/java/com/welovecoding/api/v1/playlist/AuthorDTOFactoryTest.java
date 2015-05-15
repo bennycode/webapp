@@ -1,14 +1,12 @@
 package com.welovecoding.api.v1.playlist;
 
 
-import com.welovecoding.api.v1.category.CategoryDTO;
 import org.junit.*;
 import org.junit.rules.TestName;
 
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-*;
 
 public class AuthorDTOFactoryTest {
 
@@ -27,7 +25,7 @@ public class AuthorDTOFactoryTest {
   public void shouldReturnAccountWithNullIdWhenStartIdIsNull() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = AuthorDTOFactory.constructCategoryDTO(null, 1);
+    AuthorDTO dto = AuthorDTOFactory.constructAuthorDTO(null, 1);
 
     assertThat(dto.getId(), nullValue());
   }
@@ -36,14 +34,14 @@ public class AuthorDTOFactoryTest {
   public void shouldThrowExceptionWhenDeptIsNegative() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = AuthorDTOFactory.constructCategoryDTO(1, -1);
+    AuthorDTO dto = AuthorDTOFactory.constructAuthorDTO(1, -1);
   }
 
   @Test
   public void shouldReturnNullWhenDeptIsZero() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = AuthorDTOFactory.constructCategoryDTO(1, 0);
+    AuthorDTO dto = AuthorDTOFactory.constructAuthorDTO(1, 0);
 
     assertThat(dto, nullValue());
   }
@@ -53,7 +51,7 @@ public class AuthorDTOFactoryTest {
   public void shouldReturnFlatAccountWhenDeptIsOne() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = AuthorDTOFactory.constructCategoryDTO(1, 1);
+    AuthorDTO dto = AuthorDTOFactory.constructAuthorDTO(1, 1);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(dto.getNews(), emptyCollectionOf(NewsDTO.class));
@@ -64,7 +62,7 @@ public class AuthorDTOFactoryTest {
   public void shouldReturnAccountWithNewsWhenDeptIsTwo() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = AuthorDTOFactory.constructCategoryDTO(1, 2);
+    AuthorDTO dto = AuthorDTOFactory.constructAuthorDTO(1, 2);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(dto.getNews(), hasItem(instanceOf(NewsDTO.class)));
@@ -76,7 +74,7 @@ public class AuthorDTOFactoryTest {
   public void shouldReturnAccountWithNewsWithAccountWhenDeptIsThree() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = AuthorDTOFactory.constructCategoryDTO(1, 3);
+    AuthorDTO dto = AuthorDTOFactory.constructAuthorDTO(1, 3);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(new ArrayList<>(dto.getNews()).get(0).getAccount(), notNullValue());
