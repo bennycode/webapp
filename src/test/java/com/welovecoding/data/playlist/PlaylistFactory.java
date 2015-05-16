@@ -44,6 +44,25 @@ public class PlaylistFactory {
     return null;
   }
 
+  public static Playlist constructPlaylistWithNullValues(Integer id) {
+    LOG.log(Level.FINE, "Constructing Playlist With Null Values");
+    Long longId = null;
+    if (id != null) {
+      longId = new Long(id);
+    }
+    return new Playlist(longId,
+      FIXED_DATE,
+      FIXED_DATE,
+      Provider.YOUTUBE,
+      null,
+      new Author("John Doe"),
+      new HashSet<Video>(),
+      null,
+      "...",
+      true
+    );
+  }
+
   public static Collection<Playlist> constructPlaylistList(int size, int startId, int dept) {
     LOG.log(Level.FINE, "Constructing Playlist List");
     Collection<Playlist> playlists = new ArrayList<>();

@@ -1,7 +1,6 @@
 package com.welovecoding.api.v1.playlist;
 
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +26,7 @@ public class AuthorDTOFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new AuthorDTO(longId, "Author", "color", 1, Arrays.asList(new String[]{"lang"}));
+      return new AuthorDTO("authorName", "websiteLink", "description");
     }
     return null;
   }

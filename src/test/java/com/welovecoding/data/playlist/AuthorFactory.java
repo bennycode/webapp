@@ -27,19 +27,11 @@ public class AuthorFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new Author(longId, FIXED_DATE, FIXED_DATE, new HashSet<>(NewsFactory.constructNewsList(10, 1, dept)), "username" + id, "password" + id);
+      return new Author("authorname" + id);
     }
     return null;
   }
 
-  public static Author constructAuthorWithNullNews(Integer id) {
-    LOG.log(Level.FINE, "Constructing Author With Null News");
-    Long longId = null;
-    if (id != null) {
-      longId = new Long(id);
-    }
-    return new Author(longId, FIXED_DATE, FIXED_DATE, null, "username" + id, "password" + id);
-  }
 
   public static Collection<Author> constructAuthorList(int size, int startId, int dept) {
     LOG.log(Level.FINE, "Constructing Author List");
@@ -51,7 +43,7 @@ public class AuthorFactory {
         if (dept > -1) {
           news = new HashSet<>(NewsFactory.constructNewsList(10, 1, dept));
         }
-        newsList.add(new Author(new Long(i), FIXED_DATE, FIXED_DATE, news, "username" + i, "password" + i));
+        newsList.add(new Author("authorname" + i));
       }
     }
     return newsList;

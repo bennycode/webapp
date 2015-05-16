@@ -43,6 +43,16 @@ public abstract class BaseEntity<PK extends Serializable> extends AbstractPersis
     this.lastModified = lastModified;
   }
 
+  public BaseEntity(PK id, String name, String slug, Date created, Date lastModified, User creator, User lastEditor) {
+    this.setId(id);
+    this.name = name;
+    this.slug = slug;
+    this.created = created;
+    this.lastModified = lastModified;
+    this.creator = creator;
+    this.lastEditor = lastEditor;
+  }
+
   public Date getCreated() {
     return created;
   }

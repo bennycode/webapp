@@ -5,8 +5,8 @@ import com.welovecoding.api.v1.video.StatusDTO;
 import com.welovecoding.api.v1.video.VideoDTO;
 import com.welovecoding.api.v1.video.VideoMapper;
 import com.welovecoding.data.author.Author;
-import com.welovecoding.data.playlist.entity.LanguageCode;
 import com.welovecoding.data.playlist.Playlist;
+import com.welovecoding.data.playlist.entity.LanguageCode;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,8 +31,11 @@ public class PlaylistMapper {
     dto.setId(entity.getId());
     dto.setName(entity.getName());
 //    dto.setLanguage(mapLanguage(entity.getLanguageCode()));
+    if (entity.getCategory() != null)
     dto.setCategoryName(entity.getCategory().getName());
+    if (entity.getProvider() != null)
     dto.setProviderName(entity.getProvider().toString());
+    if (entity.getVideos() != null)
     dto.setNumberOfVideos(entity.getVideos().size());
     dto.setDescription(entity.getDescription());
     dto.setOwner(mapAuthor(entity.getAuthor()));

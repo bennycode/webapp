@@ -1,7 +1,8 @@
 package com.welovecoding.api.v1.video;
 
 
-import java.util.Arrays;
+import com.welovecoding.api.v1.playlist.PlaylistDTOFactory;
+
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,7 @@ public class VideoDTOFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new VideoDTO(longId, "Video", "color", 1, Arrays.asList(new String[]{"lang"}));
+      return new VideoDTO(longId, "videoName", "description", "code", "prevUrl", "downloadUrl", "permaLink", PlaylistDTOFactory.constructPlaylistDTO(1, 1));
     }
     return null;
   }

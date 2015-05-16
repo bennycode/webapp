@@ -1,7 +1,8 @@
 package com.welovecoding.api.v1.playlist;
 
 
-import java.util.Arrays;
+import com.welovecoding.api.v1.video.StatusDTOFactory;
+
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,7 @@ public class PlaylistDTOFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new PlaylistDTO(longId, "Playlist", "color", 1, Arrays.asList(new String[]{"lang"}));
+      return new PlaylistDTO(longId, "playlistName", "de", "categoryName", "providerName", 1, "description", AuthorDTOFactory.constructAuthorDTO(1, 1), StatusDTOFactory.constructStatusDTO(1, 1));
     }
     return null;
   }

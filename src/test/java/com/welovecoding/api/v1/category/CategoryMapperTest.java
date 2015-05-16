@@ -57,7 +57,7 @@ public class CategoryMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 1;
     Category entity = CategoryFactory.constructCategory(1, 3);
-    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, resultDept);
+    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 10, resultDept);
 
     CategoryDTO result = CategoryMapper.entityToDto(entity, resultDept);
 
@@ -66,11 +66,11 @@ public class CategoryMapperTest {
   }
 
   @Test
-  public void shouldReturnCategoryWithNewsWhenDeptIsTwo() {
+  public void shouldReturnCategoryWithPlaylistsWhenDeptIsTwo() {
     System.out.println(name.getMethodName());
     int resultDept = 2;
     Category entity = CategoryFactory.constructCategory(1, 3);
-    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, resultDept);
+    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 10, resultDept);
 
     CategoryDTO result = CategoryMapper.entityToDto(entity, resultDept);
 
@@ -80,11 +80,11 @@ public class CategoryMapperTest {
   }
 
   @Test
-  public void testEntityToDtoWithNullNews() {
+  public void testEntityToDtoWithNullValues() {
     System.out.println(name.getMethodName());
 
-    Category entity = CategoryFactory.constructCategoryWithNullNews(1);
-    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 1);
+    Category entity = CategoryFactory.constructCategoryWithNullValues(1);
+    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 0, 1);
 
     CategoryDTO result = CategoryMapper.entityToDto(entity, 2);
 

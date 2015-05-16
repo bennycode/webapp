@@ -31,6 +31,18 @@ public class PlaylistDTO {
   public PlaylistDTO() {
   }
 
+  PlaylistDTO(long id, String name, String language, String categoryName, String providerName, int numberOfVideos, String description, AuthorDTO owner, StatusDTO status) {
+    this.id = id;
+    this.name = name;
+    this.language = language;
+    this.categoryName = categoryName;
+    this.providerName = providerName;
+    this.numberOfVideos = numberOfVideos;
+    this.description = description;
+    this.owner = owner;
+    this.status = status;
+  }
+
   public long getId() {
     return id;
   }

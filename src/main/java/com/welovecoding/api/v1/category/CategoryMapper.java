@@ -4,8 +4,8 @@ package com.welovecoding.api.v1.category;
 import com.welovecoding.api.v1.playlist.PlaylistDTO;
 import com.welovecoding.api.v1.playlist.PlaylistMapper;
 import com.welovecoding.data.category.Category;
-import com.welovecoding.data.playlist.entity.LanguageCode;
 import com.welovecoding.data.playlist.Playlist;
+import com.welovecoding.data.playlist.entity.LanguageCode;
 
 import java.util.*;
 
@@ -34,6 +34,7 @@ public class CategoryMapper {
     List<String> availableLanguages = new ArrayList<>();
     int numberOfVideos = 0;
 
+    if (entity.getPlaylists() != null)
     if (entity.getPlaylists().size() > 0) {
       for (Playlist playlist : entity.getPlaylists()) {
         numberOfVideos += playlist.getVideos().size();

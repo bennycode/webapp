@@ -3,6 +3,7 @@ package com.welovecoding.data.video;
 
 import com.welovecoding.data.news.News;
 import com.welovecoding.data.news.NewsFactory;
+import com.welovecoding.data.playlist.PlaylistFactory;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -26,18 +27,18 @@ public class VideoFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new Video(longId, FIXED_DATE, FIXED_DATE, new HashSet<>(NewsFactory.constructNewsList(10, 1, dept)), "username" + id, "password" + id);
+      return new Video(longId, FIXED_DATE, FIXED_DATE, "code", "description", PlaylistFactory.constructPlaylist(id, dept), "preview/url", "downloadUrl", "perma/link");
     }
     return null;
   }
 
-  public static Video constructVideoWithNullNews(Integer id) {
-    LOG.log(Level.FINE, "Constructing Video With Null News");
+  public static Video constructVideoWithNullValues(Integer id) {
+    LOG.log(Level.FINE, "Constructing Video With Null Values");
     Long longId = null;
     if (id != null) {
       longId = new Long(id);
     }
-    return new Video(longId, FIXED_DATE, FIXED_DATE, null, "username" + id, "password" + id);
+    return new Video(longId, FIXED_DATE, FIXED_DATE, "code", "description", null, "preview/url", "downloadUrl", "perma/link");
   }
 
   public static Collection<Video> constructVideoList(int size, int startId, int dept) {
@@ -50,7 +51,7 @@ public class VideoFactory {
         if (dept > -1) {
           news = new HashSet<>(NewsFactory.constructNewsList(10, 1, dept));
         }
-        newsList.add(new Video(new Long(i), FIXED_DATE, FIXED_DATE, news, "username" + i, "password" + i));
+        newsList.add(new Video(new Long(i), FIXED_DATE, FIXED_DATE, "code", "description", PlaylistFactory.constructPlaylist(i, dept), "preview/url", "downloadUrl", "perma/link"));
       }
     }
     return newsList;

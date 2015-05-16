@@ -24,7 +24,7 @@ public class CategoryDTOFactoryTest {
   public void shouldReturnAccountWithNullIdWhenStartIdIsNull() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(null, 1);
+    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(null, 10, 1);
 
     assertThat(dto.getId(), nullValue());
   }
@@ -33,14 +33,14 @@ public class CategoryDTOFactoryTest {
   public void shouldThrowExceptionWhenDeptIsNegative() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, -1);
+    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 10, -1);
   }
 
   @Test
   public void shouldReturnNullWhenDeptIsZero() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 0);
+    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 10, 0);
 
     assertThat(dto, nullValue());
   }
@@ -50,7 +50,7 @@ public class CategoryDTOFactoryTest {
   public void shouldReturnFlatAccountWhenDeptIsOne() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 1);
+    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 10, 1);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(dto.getNews(), emptyCollectionOf(NewsDTO.class));
@@ -61,7 +61,7 @@ public class CategoryDTOFactoryTest {
   public void shouldReturnAccountWithNewsWhenDeptIsTwo() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 2);
+    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 10, 2);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(dto.getNews(), hasItem(instanceOf(NewsDTO.class)));
@@ -73,7 +73,7 @@ public class CategoryDTOFactoryTest {
   public void shouldReturnAccountWithNewsWithAccountWhenDeptIsThree() {
     System.out.println(name.getMethodName());
 
-    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 3);
+    CategoryDTO dto = CategoryDTOFactory.constructCategoryDTO(1, 10, 3);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(new ArrayList<>(dto.getNews()).get(0).getAccount(), notNullValue());

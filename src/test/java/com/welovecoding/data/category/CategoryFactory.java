@@ -1,8 +1,8 @@
 package com.welovecoding.data.category;
 
 
-import com.welovecoding.data.playlist.PlaylistFactory;
 import com.welovecoding.data.playlist.Playlist;
+import com.welovecoding.data.playlist.PlaylistFactory;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -28,9 +28,18 @@ public class CategoryFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new Category(longId, FIXED_DATE, FIXED_DATE, "#EF9608", new HashSet<>(PlaylistFactory.constructPlaylistList(10, 1, dept)));
+      return new Category(longId, "categoryName", "categorySlug", FIXED_DATE, FIXED_DATE, null, null, "#EF9608", new HashSet<>(PlaylistFactory.constructPlaylistList(10, 1, dept)));
     }
     return null;
+  }
+
+  public static Category constructCategoryWithNullValues(Integer id) {
+    LOG.log(Level.FINE, "Constructing Video With Null Values");
+    Long longId = null;
+    if (id != null) {
+      longId = new Long(id);
+    }
+    return new Category(longId, "categoryName", "categorySlug", FIXED_DATE, FIXED_DATE, null, null, "#EF9608", null);
   }
 
   public static Collection<Category> constructCategoryList(int size, int startId, int dept) {
@@ -43,7 +52,7 @@ public class CategoryFactory {
         if (dept > -1) {
           playlists = new HashSet<>(PlaylistFactory.constructPlaylistList(10, 1, dept));
         }
-        categories.add(new Category(new Long(i), FIXED_DATE, FIXED_DATE, "#EF9608", playlists));
+        categories.add(new Category(new Long(i), "categoryName" + i, "categorySlug" + i, FIXED_DATE, FIXED_DATE, null, null, "#EF9608", new HashSet<>(PlaylistFactory.constructPlaylistList(10, 1, dept))));
       }
     }
     return categories;

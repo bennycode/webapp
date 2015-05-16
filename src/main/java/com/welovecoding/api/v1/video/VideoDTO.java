@@ -28,6 +28,17 @@ public class VideoDTO {
   public VideoDTO() {
   }
 
+  VideoDTO(long id, String name, String description, String code, String previewImageUrl, String downloadUrl, String permalink, PlaylistDTO playlist) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.code = code;
+    this.previewImageUrl = previewImageUrl;
+    this.downloadUrl = downloadUrl;
+    this.permalink = permalink;
+    this.playlist = playlist;
+  }
+
   public long getId() {
     return id;
   }

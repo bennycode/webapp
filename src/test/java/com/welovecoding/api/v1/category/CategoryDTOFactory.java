@@ -16,7 +16,7 @@ public class CategoryDTOFactory {
     LOG.setLevel(Level.INFO);
   }
 
-  public static CategoryDTO constructCategoryDTO(Integer id, int dept) {
+  public static CategoryDTO constructCategoryDTO(Integer id, int numberOfVideos, int dept) {
     if (dept < 0) {
       throw new IllegalArgumentException("Depts smaller than 0 are not allowed!");
     }
@@ -27,7 +27,7 @@ public class CategoryDTOFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new CategoryDTO(longId, "category", "color", 1, Arrays.asList(new String[]{"lang"}));
+      return new CategoryDTO(longId, "categoryName", "#EF9608", numberOfVideos, Arrays.asList(new String[]{}));
     }
     return null;
   }

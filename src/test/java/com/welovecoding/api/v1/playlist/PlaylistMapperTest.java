@@ -1,16 +1,13 @@
 package com.welovecoding.api.v1.playlist;
 
 
-import com.welovecoding.api.v1.news.NewsDTO;
+import com.welovecoding.data.playlist.Playlist;
 import com.welovecoding.data.playlist.PlaylistFactory;
-import com.welovecoding.data.playlist.entity.Playlist;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
-
-import java.util.ArrayList;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
@@ -65,7 +62,7 @@ public class PlaylistMapperTest {
     PlaylistDTO result = PlaylistMapper.entityToDto(entity, resultDept);
 
     assertThat(expResult, samePropertyValuesAs(result));
-    assertThat(result.getNews(), emptyCollectionOf(NewsDTO.class));
+//    assertThat(result.getNews(), emptyCollectionOf(NewsDTO.class));
   }
 
   @Test
@@ -78,15 +75,15 @@ public class PlaylistMapperTest {
     PlaylistDTO result = PlaylistMapper.entityToDto(entity, resultDept);
 
     assertThat(expResult, samePropertyValuesAs(result));
-    assertThat(result.getNews(), hasItem(instanceOf(NewsDTO.class)));
-    assertThat(new ArrayList<>(result.getNews()).get(0).getPlaylist(), nullValue());
+//    assertThat(result.getNews(), hasItem(instanceOf(NewsDTO.class)));
+//    assertThat(new ArrayList<>(result.getNews()).get(0).getPlaylist(), nullValue());
   }
 
   @Test
   public void testEntityToDtoWithNullNews() {
     System.out.println(name.getMethodName());
 
-    Playlist entity = PlaylistFactory.constructPlaylistWithNullNews(1);
+    Playlist entity = PlaylistFactory.constructPlaylistWithNullValues(1);
     PlaylistDTO expResult = PlaylistDTOFactory.constructPlaylistDTO(1, 1);
 
     PlaylistDTO result = PlaylistMapper.entityToDto(entity, 2);
