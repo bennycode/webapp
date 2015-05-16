@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <USER ID="1"
+        CREATED="1970-01-01 01:00:01.0"
+        LASTMODIFIED="1970-01-01 01:00:01.0"
+        EMAIL="mail1"
+        ADMIN="true"/>
+  <USERCREDENTIALS TOKEN="token"
+                   USER_ID="1"
+                   CRED_TYPE="GOOGLE"/>
+  <AUTHOR ID="1"
+          CREATED="1970-01-01 01:00:01.0"
+          LASTMODIFIED="1970-01-01 01:00:01.0"
+          DESCRIPTION="description"
+          WEBSITE="websiteUrl"
+          CHANNELURL="channelUrl"/>
+  <CATEGORY ID="1"
+            NAME="name1"
+            SLUG="slug1"
+            CREATED="1970-01-01 01:00:01.0"
+            LASTMODIFIED="1970-01-01 01:00:01.0"
+            CREATOR_ID="1"
+            LASTEDITOR_ID="1"
+            COLOR="#EF9608"/>
+  <PLAYLIST ID="1"
+            NAME="playlistName"
+            SLUG="playlistSlug"
+            CREATED="1970-01-01 01:00:01.0"
+            LASTMODIFIED="1970-01-01 01:00:01.0"
+            CREATOR_ID="1"
+            LASTEDITOR_ID="1"
+            CATEGORY_ID="1"
+            AUTHOR_ID="1"
+            CODE="playlistCode"
+            DESCRIPTION="description"
+            ENABLED="1"/>
+
+  <VIDEO/>
+</dataset>
