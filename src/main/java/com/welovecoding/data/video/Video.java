@@ -2,6 +2,7 @@ package com.welovecoding.data.video;
 
 import com.welovecoding.data.base.BaseEntity;
 import com.welovecoding.data.playlist.Playlist;
+import com.welovecoding.data.user.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -38,8 +39,8 @@ public class Video extends BaseEntity<Long> {
     this.setDescription(description);
   }
 
-  Video(Long id, Date created, Date lastModified, String code, String description, Playlist playlist, String previewImageUrl, String downloadUrl, String permalink) {
-    super(id, created, lastModified);
+  Video(Long id, String name, String slug, Date created, Date lastModified, User creator, User lastEditor, String code, String description, Playlist playlist, String previewImageUrl, String downloadUrl, String permalink) {
+    super(id, name, slug, created, lastModified, creator, lastEditor);
     this.code = code;
     this.description = description;
     this.playlist = playlist;

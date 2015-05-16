@@ -13,7 +13,7 @@ import java.util.List;
 })
 public class CategoryDTO {
 
-  private long id;
+  private Long id;
   private String name;
   private String color;
   private int numberOfVideos;
@@ -22,7 +22,7 @@ public class CategoryDTO {
   public CategoryDTO() {
   }
 
-  CategoryDTO(long id, String name, String color, int numberOfVideos, List<String> availableLanguages) {
+  CategoryDTO(Long id, String name, String color, int numberOfVideos, List<String> availableLanguages) {
     this.id = id;
     this.name = name;
     this.color = color;
@@ -30,11 +30,11 @@ public class CategoryDTO {
     this.availableLanguages = availableLanguages;
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

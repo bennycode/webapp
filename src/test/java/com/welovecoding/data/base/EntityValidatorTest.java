@@ -1,6 +1,7 @@
 package com.welovecoding.data.base;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
@@ -17,6 +18,7 @@ public class EntityValidatorTest {
   }
 
   @Test
+  @Ignore
   public void testValidateEntity() {
     System.out.println(name.getMethodName());
     fail("Not tested yet!");

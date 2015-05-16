@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.ws.rs.Produces;
 import java.util.Set;
 
 import static com.welovecoding.api.v1.category.CategoryMapper.entitySetToDtoSet;
@@ -16,6 +17,7 @@ import static com.welovecoding.api.v1.category.CategoryMapper.entityToDto;
 
 @RestController
 @RequestMapping("/api/v1/categories")
+@Produces("application/json")
 public class CategoryResource {
 
   private final CategoryService categoryService;

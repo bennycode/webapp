@@ -28,7 +28,7 @@ public class VideoDTOFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new VideoDTO(longId, "videoName", "description", "code", "prevUrl", "downloadUrl", "permaLink", PlaylistDTOFactory.constructPlaylistDTO(1, 1));
+      return new VideoDTO(longId, "videoName", "description", "code", "prevUrl", "downloadUrl", "http://www.welovecoding.com/tutorials/categorySlug/null?video=1", PlaylistDTOFactory.constructPlaylistDTO(1, 10, 1));
     }
     return null;
   }

@@ -57,7 +57,7 @@ public class CategoryMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 1;
     Category entity = CategoryFactory.constructCategory(1, 3);
-    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 10, resultDept);
+    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 100, resultDept);
 
     CategoryDTO result = CategoryMapper.entityToDto(entity, resultDept);
 
@@ -70,7 +70,7 @@ public class CategoryMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 2;
     Category entity = CategoryFactory.constructCategory(1, 3);
-    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 10, resultDept);
+    CategoryDTO expResult = CategoryDTOFactory.constructCategoryDTO(1, 100, resultDept);
 
     CategoryDTO result = CategoryMapper.entityToDto(entity, resultDept);
 

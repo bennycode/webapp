@@ -57,7 +57,7 @@ public class VideoMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 1;
     Video entity = VideoFactory.constructVideo(1, 3);
-    VideoDTO expResult = com.welovecoding.api.v1.video.VideoDTOFactory.constructVideoDTO(1, resultDept);
+    VideoDTO expResult = VideoDTOFactory.constructVideoDTO(1, resultDept);
 
     VideoDTO result = VideoMapper.entityToDto(entity, resultDept);
 
@@ -70,7 +70,7 @@ public class VideoMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 2;
     Video entity = VideoFactory.constructVideo(1, 3);
-    VideoDTO expResult = com.welovecoding.api.v1.video.VideoDTOFactory.constructVideoDTO(1, resultDept);
+    VideoDTO expResult = VideoDTOFactory.constructVideoDTO(1, resultDept);
 
     VideoDTO result = VideoMapper.entityToDto(entity, resultDept);
 

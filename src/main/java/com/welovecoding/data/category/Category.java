@@ -4,10 +4,7 @@ import com.welovecoding.data.base.BaseEntity;
 import com.welovecoding.data.playlist.Playlist;
 import com.welovecoding.data.user.entity.User;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -22,7 +19,7 @@ public class Category extends BaseEntity<Long> {
   @Basic(optional = false)
   private String color;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "category")
   private Set<Playlist> playlists;
 
   public Category() {

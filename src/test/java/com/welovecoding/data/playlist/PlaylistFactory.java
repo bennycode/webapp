@@ -1,7 +1,7 @@
 package com.welovecoding.data.playlist;
 
 
-import com.welovecoding.data.author.Author;
+import com.welovecoding.data.category.CategoryFactory;
 import com.welovecoding.data.playlist.entity.Provider;
 import com.welovecoding.data.video.Video;
 import com.welovecoding.data.video.VideoFactory;
@@ -30,14 +30,18 @@ public class PlaylistFactory {
         longId = new Long(id);
       }
       return new Playlist(longId,
+        "playlistName",
+        "playlistSlug",
         FIXED_DATE,
         FIXED_DATE,
+        null,
+        null,
         Provider.YOUTUBE,
-        null,
-        new Author("John Doe"),
-        new HashSet<Video>(),
-        null,
-        "...",
+        CategoryFactory.constructCategory(1, 1),
+        AuthorFactory.constructAuthor(1, 1),
+        new HashSet<>(VideoFactory.constructVideoList(10, 1, 1)),
+        "code",
+        "description",
         true
       );
     }
@@ -51,14 +55,18 @@ public class PlaylistFactory {
       longId = new Long(id);
     }
     return new Playlist(longId,
+      "playlistName",
+      "playlistSlug",
       FIXED_DATE,
       FIXED_DATE,
-      Provider.YOUTUBE,
       null,
-      new Author("John Doe"),
-      new HashSet<Video>(),
       null,
-      "...",
+      null,
+      null,
+      null,
+      null,
+      "code",
+      "description",
       true
     );
   }
@@ -73,17 +81,21 @@ public class PlaylistFactory {
         if (dept > -1) {
           videos = new HashSet<>(VideoFactory.constructVideoList(10, 1, dept));
         }
-        playlists.add(new Playlist(
-          new Long(i),
+        playlists.add(new Playlist(new Long(i),
+          "playlistName",
+          "playlistSlug",
           FIXED_DATE,
           FIXED_DATE,
+          null,
+          null,
           Provider.YOUTUBE,
-          null,
-          new Author("John Doe"),
-          new HashSet<Video>(Arrays.asList(new Video(), new Video())),
-          null,
-          "...",
-          true));
+          CategoryFactory.constructCategory(1, 1),
+          AuthorFactory.constructAuthor(1, 1),
+          new HashSet<>(VideoFactory.constructVideoList(10, 1, 1)),
+          "code",
+          "description",
+          true
+        ));
       }
     }
     return playlists;

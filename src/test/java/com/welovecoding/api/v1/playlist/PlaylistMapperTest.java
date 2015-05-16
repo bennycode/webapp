@@ -57,7 +57,7 @@ public class PlaylistMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 1;
     Playlist entity = PlaylistFactory.constructPlaylist(1, 3);
-    PlaylistDTO expResult = PlaylistDTOFactory.constructPlaylistDTO(1, resultDept);
+    PlaylistDTO expResult = PlaylistDTOFactory.constructPlaylistDTO(1, 10, resultDept);
 
     PlaylistDTO result = PlaylistMapper.entityToDto(entity, resultDept);
 
@@ -70,7 +70,7 @@ public class PlaylistMapperTest {
     System.out.println(name.getMethodName());
     int resultDept = 2;
     Playlist entity = PlaylistFactory.constructPlaylist(1, 3);
-    PlaylistDTO expResult = PlaylistDTOFactory.constructPlaylistDTO(1, resultDept);
+    PlaylistDTO expResult = PlaylistDTOFactory.constructPlaylistDTO(1, 10, resultDept);
 
     PlaylistDTO result = PlaylistMapper.entityToDto(entity, resultDept);
 
@@ -84,7 +84,7 @@ public class PlaylistMapperTest {
     System.out.println(name.getMethodName());
 
     Playlist entity = PlaylistFactory.constructPlaylistWithNullValues(1);
-    PlaylistDTO expResult = PlaylistDTOFactory.constructPlaylistDTO(1, 1);
+    PlaylistDTO expResult = PlaylistDTOFactory.constructPlaylistDTO(1, 10, 1);
 
     PlaylistDTO result = PlaylistMapper.entityToDto(entity, 2);
 

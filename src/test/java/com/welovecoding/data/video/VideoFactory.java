@@ -1,11 +1,11 @@
 package com.welovecoding.data.video;
 
 
-import com.welovecoding.data.news.News;
-import com.welovecoding.data.news.NewsFactory;
 import com.welovecoding.data.playlist.PlaylistFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,7 +27,7 @@ public class VideoFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new Video(longId, FIXED_DATE, FIXED_DATE, "code", "description", PlaylistFactory.constructPlaylist(id, dept), "preview/url", "downloadUrl", "perma/link");
+      return new Video(longId, "videoName", "slug", FIXED_DATE, FIXED_DATE, null, null, "code", "description", PlaylistFactory.constructPlaylist(id, dept), "preview/url", "downloadUrl", "permaLink");
     }
     return null;
   }
@@ -38,23 +38,19 @@ public class VideoFactory {
     if (id != null) {
       longId = new Long(id);
     }
-    return new Video(longId, FIXED_DATE, FIXED_DATE, "code", "description", null, "preview/url", "downloadUrl", "perma/link");
+    return new Video(longId, "videoName", "slug", FIXED_DATE, FIXED_DATE, null, null, "code", "description", null, "preview/url", "downloadUrl", "perma/link");
   }
 
   public static Collection<Video> constructVideoList(int size, int startId, int dept) {
     LOG.log(Level.FINE, "Constructing Video List");
-    Collection<Video> newsList = new ArrayList<>();
+    Collection<Video> list = new ArrayList<>();
     dept--;
     if (dept > -1) {
       for (int i = 0 + startId; i < (size + startId); i++) {
-        Set<News> news = null;
-        if (dept > -1) {
-          news = new HashSet<>(NewsFactory.constructNewsList(10, 1, dept));
-        }
-        newsList.add(new Video(new Long(i), FIXED_DATE, FIXED_DATE, "code", "description", PlaylistFactory.constructPlaylist(i, dept), "preview/url", "downloadUrl", "perma/link"));
+        list.add(new Video(new Long(i), "videoName", "slug", FIXED_DATE, FIXED_DATE, null, null, "code", "description", PlaylistFactory.constructPlaylist(i, dept), "preview/url", "downloadUrl", "permaLink"));
       }
     }
-    return newsList;
+    return list;
   }
 
 }

@@ -28,7 +28,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -39,7 +39,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestExecutionListeners({
   DependencyInjectionTestExecutionListener.class,
   DbUnitTestExecutionListener.class})
-//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class CategoryResourceIT {
 
   private static final Logger LOG = Logger.getLogger(CategoryResourceIT.class.getName());
@@ -76,8 +75,8 @@ public class CategoryResourceIT {
     MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
       .andDo(print())
       .andExpect(status().isOk())
-      .andExpect(content().contentType("application/hal+json"))
-      .andExpect(jsonPath("username", is("username" + 1)))
+      .andExpect(content().contentType("application/json;charset=UTF-8"))
+      .andExpect(jsonPath("$", hasSize(1)))
       .andReturn();
 
     String content = result.getResponse().getContentAsString();

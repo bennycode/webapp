@@ -15,7 +15,7 @@ import org.codehaus.jackson.annotate.JsonPropertyOrder;
 })
 public class VideoDTO {
 
-  private long id;
+  private Long id;
   private String name;
   private String description;
   private String code;
@@ -28,7 +28,7 @@ public class VideoDTO {
   public VideoDTO() {
   }
 
-  VideoDTO(long id, String name, String description, String code, String previewImageUrl, String downloadUrl, String permalink, PlaylistDTO playlist) {
+  VideoDTO(Long id, String name, String description, String code, String previewImageUrl, String downloadUrl, String permalink, PlaylistDTO playlist) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -39,11 +39,11 @@ public class VideoDTO {
     this.playlist = playlist;
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

@@ -30,7 +30,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import java.util.HashSet;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -84,8 +84,8 @@ public class CategoryResourceTest {
     MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
       .andDo(print())
       .andExpect(status().isOk())
-      .andExpect(content().contentType("application/hal+json"))
-      .andExpect(jsonPath("username", is("username" + 1)))
+      .andExpect(content().contentType("application/json;charset=UTF-8"))
+      .andExpect(jsonPath("$", hasSize(10)))
       .andReturn();
 
     String content = result.getResponse().getContentAsString();

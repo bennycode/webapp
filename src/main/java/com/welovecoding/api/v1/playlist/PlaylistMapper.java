@@ -32,11 +32,11 @@ public class PlaylistMapper {
     dto.setName(entity.getName());
 //    dto.setLanguage(mapLanguage(entity.getLanguageCode()));
     if (entity.getCategory() != null)
-    dto.setCategoryName(entity.getCategory().getName());
+      dto.setCategoryName(entity.getCategory().getName());
     if (entity.getProvider() != null)
-    dto.setProviderName(entity.getProvider().toString());
+      dto.setProviderName(entity.getProvider().toString());
     if (entity.getVideos() != null)
-    dto.setNumberOfVideos(entity.getVideos().size());
+      dto.setNumberOfVideos(entity.getVideos().size());
     dto.setDescription(entity.getDescription());
     dto.setOwner(mapAuthor(entity.getAuthor()));
     dto.setStatus(new StatusDTO());
@@ -73,13 +73,14 @@ public class PlaylistMapper {
     return dtoLanguage;
   }
 
+  
   public static AuthorDTO mapAuthor(Author entity) {
     AuthorDTO dto = new AuthorDTO();
-
-    dto.setDescription(entity.getDescription());
-    dto.setName(entity.getName());
-    dto.setWebsite(entity.getWebsite());
-
+    if (entity != null) {
+      dto.setDescription(entity.getDescription());
+      dto.setName(entity.getName());
+      dto.setWebsite(entity.getWebsite());
+    }
     return dto;
   }
 

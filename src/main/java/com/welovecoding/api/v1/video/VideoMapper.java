@@ -27,14 +27,19 @@ public class VideoMapper {
     dto.setCode(entity.getCode());
     dto.setDownloadUrl(entity.getDownloadUrl());
     Playlist playlist = entity.getPlaylist();
-    Category category = playlist.getCategory();
+    if (playlist != null) {
+      Category category = playlist.getCategory();
 
-    if (playlist.getProvider() == Provider.YOUTUBE) {
-      dto.setPreviewImageUrl(String.format("http://img.youtube.com/vi/%s/1.jpg", entity.getCode()));
+      if (playlist.getProvider() == Provider.YOUTUBE) {
+        dto.setPreviewImageUrl(String.format("http://img.youtube.com/vi/%s/1.jpg", entity.getCode()));
+      }
+      if (category != null) {
+        String permalink = String.format("http://www.welovecoding.com/tutorials/%s/%s?video=%s", category.getSlug(), playlist.getSlug(), entity.getId());
+        dto.setPermalink(permalink);
+      }
     }
 
-    String permalink = String.format("http://www.welovecoding.com/tutorials/%s/%s?video=%s", category.getSlug(), playlist.getSlug(), entity.getId());
-    dto.setPermalink(permalink);
+
     return dto;
   }
 

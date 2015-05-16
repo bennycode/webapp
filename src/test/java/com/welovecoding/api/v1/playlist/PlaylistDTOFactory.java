@@ -17,7 +17,7 @@ public class PlaylistDTOFactory {
     LOG.setLevel(Level.INFO);
   }
 
-  public static PlaylistDTO constructPlaylistDTO(Integer id, int dept) {
+  public static PlaylistDTO constructPlaylistDTO(Integer id, int numberOfVideos, int dept) {
     if (dept < 0) {
       throw new IllegalArgumentException("Depts smaller than 0 are not allowed!");
     }
@@ -28,7 +28,7 @@ public class PlaylistDTOFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new PlaylistDTO(longId, "playlistName", "de", "categoryName", "providerName", 1, "description", AuthorDTOFactory.constructAuthorDTO(1, 1), StatusDTOFactory.constructStatusDTO(1, 1));
+      return new PlaylistDTO(longId, "playlistName", null, "categoryName", "providerName", numberOfVideos, "description", AuthorDTOFactory.constructAuthorDTO(1, 1), StatusDTOFactory.constructStatusDTO(1, 1));
     }
     return null;
   }

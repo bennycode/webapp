@@ -31,7 +31,6 @@ import java.util.logging.Logger;
 @TestExecutionListeners({
   DependencyInjectionTestExecutionListener.class,
   DbUnitTestExecutionListener.class})
-//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class PlaylistResourceIT {
 
   private static final Logger LOG = Logger.getLogger(PlaylistResourceIT.class.getName());

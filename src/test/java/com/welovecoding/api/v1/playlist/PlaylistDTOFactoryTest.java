@@ -24,7 +24,7 @@ public class PlaylistDTOFactoryTest {
   public void shouldReturnAccountWithNullIdWhenStartIdIsNull() {
     System.out.println(name.getMethodName());
 
-    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(null, 1);
+    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(null, 10, 1);
 
     assertThat(dto.getId(), nullValue());
   }
@@ -33,14 +33,14 @@ public class PlaylistDTOFactoryTest {
   public void shouldThrowExceptionWhenDeptIsNegative() {
     System.out.println(name.getMethodName());
 
-    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, -1);
+    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 10, -1);
   }
 
   @Test
   public void shouldReturnNullWhenDeptIsZero() {
     System.out.println(name.getMethodName());
 
-    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 0);
+    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 10, 0);
 
     assertThat(dto, nullValue());
   }
@@ -50,7 +50,7 @@ public class PlaylistDTOFactoryTest {
   public void shouldReturnFlatAccountWhenDeptIsOne() {
     System.out.println(name.getMethodName());
 
-    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 1);
+    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 10, 1);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(dto.getNews(), emptyCollectionOf(NewsDTO.class));
@@ -61,7 +61,7 @@ public class PlaylistDTOFactoryTest {
   public void shouldReturnAccountWithNewsWhenDeptIsTwo() {
     System.out.println(name.getMethodName());
 
-    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 2);
+    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 10, 2);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(dto.getNews(), hasItem(instanceOf(NewsDTO.class)));
@@ -73,7 +73,7 @@ public class PlaylistDTOFactoryTest {
   public void shouldReturnAccountWithNewsWithAccountWhenDeptIsThree() {
     System.out.println(name.getMethodName());
 
-    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 3);
+    PlaylistDTO dto = PlaylistDTOFactory.constructPlaylistDTO(1, 10, 3);
 
 //    assertThat(dto.getNews(), notNullValue());
 //    assertThat(new ArrayList<>(dto.getNews()).get(0).getAccount(), notNullValue());
