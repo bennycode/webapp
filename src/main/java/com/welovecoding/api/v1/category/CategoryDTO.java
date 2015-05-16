@@ -76,4 +76,28 @@ public class CategoryDTO {
     this.availableLanguages = availableLanguages;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    CategoryDTO that = (CategoryDTO) o;
+
+    if (numberOfVideos != that.numberOfVideos) return false;
+    if (id != null ? !id.equals(that.id) : that.id != null) return false;
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    if (color != null ? !color.equals(that.color) : that.color != null) return false;
+    return !(availableLanguages != null ? !availableLanguages.equals(that.availableLanguages) : that.availableLanguages != null);
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (color != null ? color.hashCode() : 0);
+    result = 31 * result + numberOfVideos;
+    result = 31 * result + (availableLanguages != null ? availableLanguages.hashCode() : 0);
+    return result;
+  }
 }

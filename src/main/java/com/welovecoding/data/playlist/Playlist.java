@@ -36,7 +36,7 @@ public class Playlist extends BaseEntity<Long> {
   @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   private Author author;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "playlist", orphanRemoval = true)
   @OrderColumn(name = "ORDERING")
   @Valid
   private Set<Video> videos;

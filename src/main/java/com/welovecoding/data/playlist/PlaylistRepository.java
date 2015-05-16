@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface PlaylistRepository extends BaseRepository<Playlist, Long>/*, PagingAndSortingRepository<Account, Long> */ {
@@ -20,6 +20,6 @@ public interface PlaylistRepository extends BaseRepository<Playlist, Long>/*, Pa
   Playlist findByCategoryAndSlug(@Param("categoryid") Long categoryid, @Param("playlistslug") String slug);
 
   @Query("SELECT p FROM Playlist p WHERE p.category.id = :categoryid")
-  List<Playlist> findAllInCategory(@Param("categoryid") Long categoryid);
+  Set<Playlist> findAllInCategory(@Param("categoryid") Long categoryid);
 
 }

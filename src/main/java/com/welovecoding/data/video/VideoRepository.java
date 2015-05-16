@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface VideoRepository extends BaseRepository<Video, Long>/*, PagingAndSortingRepository<Account, Long> */ {
@@ -23,7 +24,7 @@ public interface VideoRepository extends BaseRepository<Video, Long>/*, PagingAn
   List<Video> findAllInPlaylist(@Param("playlistid") Long playlistid);
 
   @Query("SELECT v FROM Video v WHERE v.playlist.category.id = :categoryid AND v.playlist.id = :playlistid")
-  List<Video> findAllInCategoryAndPlaylist(@Param("categoryid") Long categoryid, @Param("playlistid") Long playlistid);
+  Set<Video> findAllInCategoryAndPlaylist(@Param("categoryid") Long categoryid, @Param("playlistid") Long playlistid);
 
   @Query("SELECT v FROM Video v WHERE v.id = :videoid AND v.playlist.category.id = :categoryid")
   Video findInCategory(@Param("categoryid") Long categoryid, @Param("videoid") Long videoid);

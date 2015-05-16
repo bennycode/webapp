@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.welovecoding.ParameterValidator.isNull;
 import static com.welovecoding.ParameterValidator.notNull;
@@ -96,7 +97,7 @@ public class VideoService {
     return getRepository().findAllInPlaylist(playlistid);
   }
 
-  public List<Video> findAllInCategoryAndPlaylist(Long categoryid, Long playlistid) {
+  public Set<Video> findAllInCategoryAndPlaylist(Long categoryid, Long playlistid) {
     return getRepository().findAllInCategoryAndPlaylist(categoryid, playlistid);
   }
 

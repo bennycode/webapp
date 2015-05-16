@@ -62,7 +62,7 @@ public class PlaylistFactory {
       null,
       null,
       null,
-      null,
+      CategoryFactory.constructCategory(1, 1),
       null,
       null,
       "code",

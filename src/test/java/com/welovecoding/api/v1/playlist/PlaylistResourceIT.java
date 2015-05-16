@@ -1,12 +1,14 @@
 package com.welovecoding.api.v1.playlist;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.welovecoding.IntegrationTestConfiguration;
 import com.welovecoding.SchemaDumper;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,18 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.context.web.AnnotationConfigWebContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigWebContextLoader.class, classes = {
@@ -58,6 +66,20 @@ public class PlaylistResourceIT {
 
   @After
   public void tearDown() {
+  }
+
+  @Test
+  @DatabaseSetup(value = "insert.xml")
+  public void testFindAllInCategory() throws Exception {
+    System.out.println(name.getMethodName());
+    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/category/1"))
+      .andDo(print())
+      .andExpect(status().isOk())
+      .andExpect(content().contentType("application/json;charset=UTF-8"))
+      .andExpect(jsonPath("$", hasSize(1)))
+      .andReturn();
+
+    String content = result.getResponse().getContentAsString();
   }
 
 

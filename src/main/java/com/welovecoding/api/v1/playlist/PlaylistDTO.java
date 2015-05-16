@@ -137,4 +137,38 @@ public class PlaylistDTO {
 //  public void setDifficulty(String difficulty) {
 //    this.difficulty = difficulty;
 //  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    PlaylistDTO that = (PlaylistDTO) o;
+
+    if (numberOfVideos != that.numberOfVideos) return false;
+    if (id != null ? !id.equals(that.id) : that.id != null) return false;
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    if (language != null ? !language.equals(that.language) : that.language != null) return false;
+    if (categoryName != null ? !categoryName.equals(that.categoryName) : that.categoryName != null) return false;
+    if (providerName != null ? !providerName.equals(that.providerName) : that.providerName != null) return false;
+    if (description != null ? !description.equals(that.description) : that.description != null) return false;
+    if (owner != null ? !owner.equals(that.owner) : that.owner != null) return false;
+    return !(status != null ? !status.equals(that.status) : that.status != null);
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (language != null ? language.hashCode() : 0);
+    result = 31 * result + (categoryName != null ? categoryName.hashCode() : 0);
+    result = 31 * result + (providerName != null ? providerName.hashCode() : 0);
+    result = 31 * result + numberOfVideos;
+    result = 31 * result + (description != null ? description.hashCode() : 0);
+    result = 31 * result + (owner != null ? owner.hashCode() : 0);
+    result = 31 * result + (status != null ? status.hashCode() : 0);
+    return result;
+  }
 }

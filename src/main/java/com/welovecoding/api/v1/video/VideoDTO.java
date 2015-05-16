@@ -121,4 +121,35 @@ public class VideoDTO {
     this.playlist = playlist;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    VideoDTO videoDTO = (VideoDTO) o;
+
+    if (id != null ? !id.equals(videoDTO.id) : videoDTO.id != null) return false;
+    if (name != null ? !name.equals(videoDTO.name) : videoDTO.name != null) return false;
+    if (description != null ? !description.equals(videoDTO.description) : videoDTO.description != null) return false;
+    if (code != null ? !code.equals(videoDTO.code) : videoDTO.code != null) return false;
+    if (previewImageUrl != null ? !previewImageUrl.equals(videoDTO.previewImageUrl) : videoDTO.previewImageUrl != null)
+      return false;
+    if (downloadUrl != null ? !downloadUrl.equals(videoDTO.downloadUrl) : videoDTO.downloadUrl != null) return false;
+    if (permalink != null ? !permalink.equals(videoDTO.permalink) : videoDTO.permalink != null) return false;
+    return !(playlist != null ? !playlist.equals(videoDTO.playlist) : videoDTO.playlist != null);
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    result = 31 * result + (description != null ? description.hashCode() : 0);
+    result = 31 * result + (code != null ? code.hashCode() : 0);
+    result = 31 * result + (previewImageUrl != null ? previewImageUrl.hashCode() : 0);
+    result = 31 * result + (downloadUrl != null ? downloadUrl.hashCode() : 0);
+    result = 31 * result + (permalink != null ? permalink.hashCode() : 0);
+    result = 31 * result + (playlist != null ? playlist.hashCode() : 0);
+    return result;
+  }
 }

@@ -56,4 +56,26 @@ public class StatusDTO implements Serializable {
   public void setIsPlayable(boolean isPlayable) {
     this.isPlayable = isPlayable;
   }
+
+  @Override
+  public boolean equals(Object o) {
+
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    StatusDTO statusDTO = (StatusDTO) o;
+
+    if (isErrorless != statusDTO.isErrorless) return false;
+    if (isEmbeddable != statusDTO.isEmbeddable) return false;
+    return isPlayable == statusDTO.isPlayable;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = (isErrorless ? 1 : 0);
+    result = 31 * result + (isEmbeddable ? 1 : 0);
+    result = 31 * result + (isPlayable ? 1 : 0);
+    return result;
+  }
 }
