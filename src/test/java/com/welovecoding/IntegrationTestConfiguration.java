@@ -30,8 +30,6 @@ import java.util.Properties;
   excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Configuration.class}))
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {
-  "com.welovecoding.data.news",
-  "com.welovecoding.data.account",
   "com.welovecoding.data.author",
   "com.welovecoding.data.category",
   "com.welovecoding.data.playlist",
@@ -87,8 +85,6 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
     em.setDataSource(dataSource());
     // scan for entities
     em.setPackagesToScan(
-      "com.welovecoding.data.news",
-      "com.welovecoding.data.account",
       "com.welovecoding.data.author",
       "com.welovecoding.data.category",
       "com.welovecoding.data.playlist",
@@ -98,7 +94,14 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
 
     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     em.setJpaVendorAdapter(vendorAdapter);
-    em.setJpaProperties(additionalProperties());
+    em.setJpaProperties(new Properties() {
+      {
+        setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        setProperty("database.url", "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
+        setProperty("hibernate.show_sql", "false");
+        setProperty("hibernate.format_sql", "true");
+      }
+    });
 
     return em;
   }
@@ -113,16 +116,5 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
   @Bean
   public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
     return new PersistenceExceptionTranslationPostProcessor();
-  }
-
-  Properties additionalProperties() {
-    return new Properties() {
-      {
-        setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        setProperty("database.url", "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
-        setProperty("hibernate.show_sql", "false");
-        setProperty("hibernate.format_sql", "true");
-      }
-    };
   }
 }

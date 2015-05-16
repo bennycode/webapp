@@ -51,6 +51,7 @@ public class CategoryResourceIT {
   @Autowired
   private WebApplicationContext webApplicationContext;
 
+
   @Before
   public void setUp() {
     DatabaseDataSourceConnection datasource = (DatabaseDataSourceConnection) webApplicationContext.getBean("dbUnitDatabaseConnection");
