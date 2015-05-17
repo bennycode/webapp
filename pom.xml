@@ -310,7 +310,7 @@
                 <echo>wlc.database.driver.classname........: ${wlc.database.driver.classname}</echo>
                 <echo>wlc.database.url.....................: ${wlc.database.url}</echo>
                 <echo>wlc.database.username................: ${wlc.database.username}</echo>
-                <echo>jdbc.password........................: ${wlc.database.password}</echo>
+                <echo>wlc.database.password................: ${wlc.database.password}</echo>
                 <echo/>
 
               </target>

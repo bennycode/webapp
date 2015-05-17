@@ -88,7 +88,7 @@ public class PersistenceConfig {
 
     em.setJpaProperties(new Properties() {
       {
-        setProperty("hibernate.hbm2ddl.auto", "update");
+        setProperty("hibernate.hbm2ddl.auto", "create-drop");
         setProperty("hibernate.vendor", "MYSQL");
         setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5InnoDBDialect");
         setProperty("hibernate.globally_quoted_identifiers", "true");
