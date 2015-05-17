@@ -3,7 +3,6 @@ package com.welovecoding.api.v1.video;
 
 import com.welovecoding.data.category.Category;
 import com.welovecoding.data.playlist.Playlist;
-import com.welovecoding.data.playlist.entity.Provider;
 import com.welovecoding.data.video.Video;
 
 import java.util.HashSet;
@@ -30,7 +29,7 @@ public class VideoMapper {
     if (playlist != null) {
       Category category = playlist.getCategory();
 
-      if (playlist.getProvider() == Provider.YOUTUBE) {
+      if (playlist.getProvider().equals("YOUTUBE")) {
         dto.setPreviewImageUrl(String.format("http://img.youtube.com/vi/%s/1.jpg", entity.getCode()));
       }
       if (category != null) {
