@@ -25,7 +25,7 @@ install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dwlc.database.driver.classname=$JDBC_DRIVER_CLASSNAME -Dwlc.database.url=$JDBC_URL -Dwlc.database.username=$DB_USERNAME -Dwlc.database.password=$DB_PASSWORD -B -V
   
 script:
-  - mvn --global-settings /var/lib/openshift/5554a7054382ec1915000095/app-root/runtime/repo//.openshift/config/settings.rhcloud.xml clean package -Popenshift -DskipTests -Dmaven.javadoc.skip=true -Dwlc.database.driver.classname=$JDBC_DRIVER_CLASSNAME -Dwlc.database.url=$JDBC_URL -Dwlc.database.username=$DB_USERNAME -Dwlc.database.password=$DB_PASSWORD
+  - mvn clean package -Popenshift -DskipTests -Dmaven.javadoc.skip=true -Dwlc.database.driver.classname=$JDBC_DRIVER_CLASSNAME -Dwlc.database.url=$JDBC_URL -Dwlc.database.username=$DB_USERNAME -Dwlc.database.password=$DB_PASSWORD
 
 # http://docs.travis-ci.com/user/notifications/
 notifications:
