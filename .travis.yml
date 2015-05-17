@@ -10,20 +10,20 @@ env:
   # DB_USERNAME
   - secure: Dm0jxJ+UgXnG+inOzGqbn/A8qomQtBxph0ru3V6i5u1UgwZ4xR6BGun/QiBJsmvbwrbLvyG2Gy6nBa03l9tIuYWEFfV/cUjZ1oMXxevvFTrnwsy5APhwAb5IzgA4S0GHRiT663TeaJnM+XQ0tdI8a001W6aqfAOyjr2oGEitt6a9SP/SBh4TDffnhG3ig4g6BVUAeS/NYF4Xdz/IgDHN2funoehhL4k+SPcDwI7QMQ/9mw7vakoQwXbPwLZ4K+FLqgji66SvW3zOVkhm1bSi6skHWp5jBVH4rFxhHUBmdtkKQi8TEWu2kxKGIs/2LobroaCo6kDJx8DtKLDNwtbg+7W5Xox7n2/LMbFWIpbSYPZ4+31nNp3UYdrxW1/0ETZprIid632N/Hk4Rcp9wQTdGumtDbwPctbAwk3LqlKnFHOh87Rx8CJnCuLftIBDKfm4i4zkKsWSAO2U6J1yvCRVxH4pFF4B1+7V41cY7ogwuJD6W8sM87g9RsLA/IBs5k3CyDOYPJ912O9JJyXDJvOYyhLtc2vIIYFcYf3gyp9yH8/20x4saVnDY459zZyvYKXFFQwyiuJCU44yimjemX/NQ6NjQXAcJGhNkrtnJf6pFgJVovvHmKG1lGeS2yHM7j34xWFAitTkmJlrQSNgKztTjXREkiMZXAJHRqLRq9euoM4=
   # DB_PASSWORD
-  - secure: bggT9Yh+O4LgRRVrwLk0RObCkMx5Qs2Rkc68Xs4f7KmBS4cdhYx9y6nXWH1l30aQYzezBGS4b9XgMsCdCSH+xE5ZzOkPvMveWJH4LGtkKv9QfbfkDkpsFqxlKjAzBN6Tk7Ft6pE6SviS3Mkktna9QPi811SC2tSMXVFn3S/KPmJAncLpV5D7mHptGgLbSH/aVDvmMY1hJ6eUVpk/jIpyjb+IEuZVaIeSV2Wi6k9AWZHXrU8FVL578ZGvoKabwmd8psqo+xYRBatLs/SPk1XiZ4uLbGuLfOEYSiy/qRzZm9PdD7eLeRZnK9IyXvS6FCtYv3RQb3erR/srSaawWtDi+Cp+xIFKErU87m64qaxHUYuZMvj1QPhwhZZtu7QmlSg+RiJhd1GTjADrgNp4VyeA9n7J3FOIrqfKavM3GwEx1EHiwjeI0nVz0QHBakQTDWx3GULRSeixw9dNcgcTtrxJICgZsCrAfJaotd6q/NkqjHA8P3MPlL9/vbqTREVHxcy7yWlcAjg0WKsab9m173k5N+DGASbN0tQFwFO7hh6VpAvIgkUDAH36s/wxO5jNSUj6lQw0xpOb40FkzNyGkWuf6bDSLu26yiOFp16SOX7Wt36JOVNP5bGfg848ETB0+pMdVcjB5JN6NtDZoqZ+aRqcpYb8HVrNAAPTxJVmBvoplEE=  
+  - secure: bggT9Yh+O4LgRRVrwLk0RObCkMx5Qs2Rkc68Xs4f7KmBS4cdhYx9y6nXWH1l30aQYzezBGS4b9XgMsCdCSH+xE5ZzOkPvMveWJH4LGtkKv9QfbfkDkpsFqxlKjAzBN6Tk7Ft6pE6SviS3Mkktna9QPi811SC2tSMXVFn3S/KPmJAncLpV5D7mHptGgLbSH/aVDvmMY1hJ6eUVpk/jIpyjb+IEuZVaIeSV2Wi6k9AWZHXrU8FVL578ZGvoKabwmd8psqo+xYRBatLs/SPk1XiZ4uLbGuLfOEYSiy/qRzZm9PdD7eLeRZnK9IyXvS6FCtYv3RQb3erR/srSaawWtDi+Cp+xIFKErU87m64qaxHUYuZMvj1QPhwhZZtu7QmlSg+RiJhd1GTjADrgNp4VyeA9n7J3FOIrqfKavM3GwEx1EHiwjeI0nVz0QHBakQTDWx3GULRSeixw9dNcgcTtrxJICgZsCrAfJaotd6q/NkqjHA8P3MPlL9/vbqTREVHxcy7yWlcAjg0WKsab9m173k5N+DGASbN0tQFwFO7hh6VpAvIgkUDAH36s/wxO5jNSUj6lQw0xpOb40FkzNyGkWuf6bDSLu26yiOFp16SOX7Wt36JOVNP5bGfg848ETB0+pMdVcjB5JN6NtDZoqZ+aRqcpYb8HVrNAAPTxJVmBvoplEE=
 
 # http://docs.travis-ci.com/user/languages/java/
 language: java
 jdk:
   - oraclejdk8
-  
-# http://docs.travis-ci.com/user/build-lifecycle/  
-before_install:
-  - npm install -g bower  
 
-# Test  
-install:
-  - mvn install -Popenshift -DskipTests=true -Dmaven.javadoc.skip=true -Dwlc.database.driver.classname=$JDBC_DRIVER_CLASSNAME -Dwlc.database.url=$JDBC_URL -Dwlc.database.username=$DB_USERNAME -Dwlc.database.password=$DB_PASSWORD -B -V
+# http://docs.travis-ci.com/user/build-lifecycle/
+before_install:
+  - npm install -g bower
+
+# Test
+#install:
+#  - mvn install -Popenshift -DskipTests=true -Dmaven.javadoc.skip=true -Dwlc.database.driver.classname=$JDBC_DRIVER_CLASSNAME -Dwlc.database.url=$JDBC_URL -Dwlc.database.username=$DB_USERNAME -Dwlc.database.password=$DB_PASSWORD -B -V
 
 # http://docs.travis-ci.com/user/notifications/
 notifications:
@@ -33,7 +33,7 @@ notifications:
 # http://docs.travis-ci.com/user/deployment/openshift/
 deploy:
   provider: openshift
-  skip_cleanup: true  
+  skip_cleanup: true
   user: bn@bennyn.de
   password:
     secure: hcYFpROsPJB0djTSJzO+QL5Qt27QwqAwEjUfJJmRdVZoJQ5L0J7PqDpBM+8JG4tPnnJo4+hlWOLCEw8AfxVjC+wD87FZy8pGrSQxAXDonYnfRzMtdI2YgSKYnKHv6/d862iRESLXkbP8PW6c347ZnZTCenI+cIIo5EVsSRlilXKBES1G9Vwg2vTqbqSRObFhZPwrvi717Beewdn0WM7WOlDpX78NGKRZzbZe/RFVf+6s2aIqVvdRSvVtRJex82S/yYJQsd1MaMBWN96hfmF0eJQEjxMML1i/nNfltb4w3IVY9qRHGs+vGxB9XNxk2iM3sCw6UDsOfKmdmgvozNKpU21H7LnVcZ6RuAhCH4n9j1Elo3OmzHql16rJUcPEYhbGqEjqqov7k9Kdkl0fZIpMAVzcZLiYfIpp8jZvsHihEJuJC1NHmQANlgac7WKFckIGyjsrWiujnTSYqwR8H3zvqHGObt+Pr7dteOkniX2tF/l3ZIsrxwW5d/8EUo4iVst++5RHz/1EH0txHo4/i4+LeP2xxw3wEjy2qvf3u0iObuVX/JjcUpbPvH2CdCcGVWOyZ9TO+lQtEPJhkvkddYwkiLWwoSXLOJ/Q39LjAd7ueesJ6c3lDwlhvl74afSZi46hiWrmUHc31N83N+CNw8zqkX7IzapM9i0Rj26zIUDTN3k=
