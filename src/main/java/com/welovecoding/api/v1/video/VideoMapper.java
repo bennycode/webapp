@@ -29,7 +29,7 @@ public class VideoMapper {
     if (playlist != null) {
       Category category = playlist.getCategory();
 
-      if (playlist.getProvider().equals("YOUTUBE")) {
+      if (playlist.getProvider() != null && playlist.getProvider().equals("YOUTUBE")) {
         dto.setPreviewImageUrl(String.format("http://img.youtube.com/vi/%s/1.jpg", entity.getCode()));
       }
       if (category != null) {
