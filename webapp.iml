@@ -17,19 +17,6 @@
         </sourceRoots>
       </configuration>
     </facet>
-    <facet type="Spring" name="Spring">
-      <configuration>
-        <fileset id="fileset" name="WebContext" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/com/welovecoding/config/WebConfig.java</file>
-        </fileset>
-        <fileset id="fileset2" name="PersistenceContext" removed="false">
-          <file>file://$MODULE_DIR$/src/main/java/com/welovecoding/config/PersistenceConfig.java</file>
-        </fileset>
-      </configuration>
-    </facet>
-    <facet type="Infinitest" name="Infinitest">
-      <configuration />
-    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -39,9 +26,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/out" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
-      <excludeFolder url="file://$MODULE_DIR$/webapps" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
