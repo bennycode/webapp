@@ -55,7 +55,21 @@ public class MethodLoggerInterceptor {
 
     if (method.getParameters() != null) {
       Annotation[][] annos = method.getParameterAnnotations();
-      Object[] params = method.getParameters();
+//      Object[] params = method.getParameters();
+//      for (int i = 0; i < annos.length; i++) {
+//
+//        for (int j = 0; j < annos[i].length; j++) {
+//          Annotation annotation = annos[i][j];
+//          log.append(" -       Annotation for Param ").append(i + 1).append(": ").append(annotation.annotationType()).append("\n");
+//        }
+//
+//        if (params[i] != null) {
+//          log.append(" -       Param ").append(i + 1).append(": (").append(params[i].getClass().getSimpleName()).append(") ").append(params[i]).append("\n");
+//        } else {
+//          log.append(" -       Param ").append(i + 1).append(": () ").append(params[i]).append("\n");
+//        }
+//      }
+      Class<?>[] params = method.getParameterTypes();
       for (int i = 0; i < annos.length; i++) {
 
         for (int j = 0; j < annos[i].length; j++) {
@@ -64,7 +78,7 @@ public class MethodLoggerInterceptor {
         }
 
         if (params[i] != null) {
-          log.append(" -       Param ").append(i + 1).append(": (").append(params[i].getClass().getSimpleName()).append(") ").append(params[i]).append("\n");
+          log.append(" -       Param ").append(i + 1).append(": (").append(params[i].getSimpleName()).append(") ").append(params[i]).append("\n");
         } else {
           log.append(" -       Param ").append(i + 1).append(": () ").append(params[i]).append("\n");
         }
