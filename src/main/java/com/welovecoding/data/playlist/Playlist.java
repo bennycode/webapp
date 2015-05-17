@@ -4,7 +4,6 @@ package com.welovecoding.data.playlist;
 import com.welovecoding.data.author.Author;
 import com.welovecoding.data.base.BaseEntity;
 import com.welovecoding.data.category.Category;
-import com.welovecoding.data.playlist.entity.Provider;
 import com.welovecoding.data.user.entity.User;
 import com.welovecoding.data.video.Video;
 
@@ -20,9 +19,9 @@ import java.util.Set;
 public class Playlist extends BaseEntity<Long> {
 
 
-  @Embedded
-  @Enumerated(EnumType.STRING)
-  private Provider provider;
+//  @Embedded
+//  @Enumerated(EnumType.STRING)
+//  private Provider provider;
 
 //  @Embedded
 //  @Enumerated(EnumType.STRING)
@@ -51,15 +50,19 @@ public class Playlist extends BaseEntity<Long> {
   @Column(length = 1024)
   private String description;
 
+  private String difficulty;
+  private String provider;
+  private String languageCode;
+
   private boolean enabled;
 
   public Playlist() {
     this.enabled = true;
     this.videos = new HashSet<>();
-    this.provider = Provider.YOUTUBE;
+    this.provider = "YOUTUBE";
   }
 
-  Playlist(Long id, String name, String slug, Date created, Date lastModified, User creator, User lastEditor, Provider provider, Category category, Author author, Set<Video> videos, String code, String description, boolean enabled) {
+  Playlist(Long id, String name, String slug, Date created, Date lastModified, User creator, User lastEditor, String provider, Category category, Author author, Set<Video> videos, String code, String description, boolean enabled) {
     super(id, name, slug, created, lastModified, creator, lastEditor);
     this.provider = provider;
     this.category = category;
@@ -70,12 +73,28 @@ public class Playlist extends BaseEntity<Long> {
     this.enabled = enabled;
   }
 
-  public Provider getProvider() {
+  public String getDifficulty() {
+    return difficulty;
+  }
+
+  public void setDifficulty(String difficulty) {
+    this.difficulty = difficulty;
+  }
+
+  public String getProvider() {
     return provider;
   }
 
-  public void setProvider(Provider provider) {
+  public void setProvider(String provider) {
     this.provider = provider;
+  }
+
+  public String getLanguageCode() {
+    return languageCode;
+  }
+
+  public void setLanguageCode(String languageCode) {
+    this.languageCode = languageCode;
   }
 
   @Override
