@@ -53,8 +53,8 @@ public class MethodLoggerInterceptor {
     log.append(" + Class: ").append(method.getDeclaringClass().getSimpleName()).append("\n");
     log.append(" -    Method: ").append(method.getName()).append("\n");
 
-    if (method.getParameters() != null) {
-      Annotation[][] annos = method.getParameterAnnotations();
+//    if (method.getParameters() != null) {
+//      Annotation[][] annos = method.getParameterAnnotations();
 //      Object[] params = method.getParameters();
 //      for (int i = 0; i < annos.length; i++) {
 //
@@ -69,6 +69,9 @@ public class MethodLoggerInterceptor {
 //          log.append(" -       Param ").append(i + 1).append(": () ").append(params[i]).append("\n");
 //        }
 //      }
+    if (method.getParameterTypes() != null) {
+
+      Annotation[][] annos = method.getParameterAnnotations();
       Class<?>[] params = method.getParameterTypes();
       for (int i = 0; i < annos.length; i++) {
 
