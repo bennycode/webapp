@@ -2,7 +2,6 @@ package com.welovecoding.data.playlist;
 
 
 import com.welovecoding.data.category.CategoryFactory;
-import com.welovecoding.data.playlist.entity.Provider;
 import com.welovecoding.data.video.Video;
 import com.welovecoding.data.video.VideoFactory;
 
@@ -36,7 +35,7 @@ public class PlaylistFactory {
         FIXED_DATE,
         null,
         null,
-        Provider.YOUTUBE,
+        "YOUTUBE",
         CategoryFactory.constructCategory(1, 1),
         AuthorFactory.constructAuthor(1, 1),
         new HashSet<>(VideoFactory.constructVideoList(10, 1, 1)),
@@ -88,7 +87,7 @@ public class PlaylistFactory {
           FIXED_DATE,
           null,
           null,
-          Provider.YOUTUBE,
+          "YOUTUBE",
           CategoryFactory.constructCategory(1, 1),
           AuthorFactory.constructAuthor(1, 1),
           new HashSet<>(VideoFactory.constructVideoList(10, 1, 1)),
