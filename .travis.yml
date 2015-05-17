@@ -20,7 +20,8 @@ jdk:
 # http://docs.travis-ci.com/user/build-lifecycle/  
 before_install:
   - npm install -g bower  
-  
+
+# Test  
 install:
   - mvn install -Popenshift -DskipTests=true -Dmaven.javadoc.skip=true -Dwlc.database.driver.classname=$JDBC_DRIVER_CLASSNAME -Dwlc.database.url=$JDBC_URL -Dwlc.database.username=$DB_USERNAME -Dwlc.database.password=$DB_PASSWORD -B -V
 
