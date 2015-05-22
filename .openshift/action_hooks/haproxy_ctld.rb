@@ -105,14 +105,10 @@ PID_FILE=File.join(HAPROXY_RUN_DIR, "haproxy_ctld.pid")
 $shutdown = false
 
 class HAProxyAttr
-  attr_accessor :pxname, :svname, :qcur, :qmax, :scur, :smax, :slim, :stot, :bin, :bout, :dreq, :dresp, :ereq, :econ, :eresp, :wretr, :wredis, :status, :weight, :act, :bck, :chkfail, :chkremove, :lastchg, :removetime, :qlimit,
-                :pid, :iid, :sid, :throttle, :lbtot, :tracked, :type, :rate, :rate_lim, :rate_max, :check_status, :check_code, :check_duration, :hrsp_1xx, :hrsp_2xx, :hrsp_3xx, :hrsp_4xx, :hrsp_5xx, :hrsp_other, :hanafail, :req_rate, :req_r
-  ate_max, :req_tot, :cli_abrt, :srv_abrt
+  attr_accessor :pxname, :svname, :qcur, :qmax, :scur, :smax, :slim, :stot, :bin, :bout, :dreq, :dresp, :ereq, :econ, :eresp, :wretr, :wredis, :status, :weight, :act, :bck, :chkfail, :chkremove, :lastchg, :removetime, :qlimit, :pid, :iid, :sid, :throttle, :lbtot, :tracked, :type, :rate, :rate_lim, :rate_max, :check_status, :check_code, :check_duration, :hrsp_1xx, :hrsp_2xx, :hrsp_3xx, :hrsp_4xx, :hrsp_5xx, :hrsp_other, :hanafail, :req_rate, :req_rate_max, :req_tot, :cli_abrt, :srv_abrt
 
   def initialize(line)
-    (@pxname, @svname, @qcur, @qmax, @scur, @smax, @slim, @stot, @bin, @bout, @dreq, @dresp, @ereq, @econ, @eresp, @wretr, @wredis, @status, @weight, @act, @bck, @chkfail, @chkremove, @lastchg, @removetime, @qlimit, @pid, @iid
-    , @sid, @throttle, @lbtot, @tracked, @type, @rate, @rate_lim, @rate_max, @check_status, @check_code, @check_duration, @hrsp_1xx, @hrsp_2xx, @hrsp_3xx, @hrsp_4xx, @hrsp_5xx, @hrsp_other, @hanafail, @req_rate, @req_rate_max, @
-    req_tot, @cli_abrt, @srv_abrt) = line.split(',')
+    (@pxname, @svname, @qcur, @qmax, @scur, @smax, @slim, @stot, @bin, @bout, @dreq, @dresp, @ereq, @econ, @eresp, @wretr, @wredis, @status, @weight, @act, @bck, @chkfail, @chkremove, @lastchg, @removetime, @qlimit, @pid, @ii, @sid, @throttle, @lbtot, @tracked, @type, @rate, @rate_lim, @rate_max, @check_status, @check_code, @check_duration, @hrsp_1xx, @hrsp_2xx, @hrsp_3xx, @hrsp_4xx, @hrsp_5xx, @hrsp_other, @hanafail, @req_rate, @req_rate_max, @req_tot, @cli_abrt, @srv_abrt) = line.split(',')
   end
 end
 
@@ -134,8 +130,7 @@ class Haproxy
   MAX_SESSIONS_PER_GEAR = ENV['OPENSHIFT_MAX_SESSIONS_PER_GEAR'] ? ENV['OPENSHIFT_MAX_SESSIONS_PER_GEAR'].to_f : 16.0
   MOVING_AVERAGE_SAMPLE_SIZE = 10
 
-  attr_accessor :gear_count, :sessions, :sessions_per_gear, :session_capacity_pct, :gear_namespace, :last_scale_up_time, :last_scale_error_time, :previous_stats, :status_urls_config_mtime, :stats, :pre
-  vious_remote_sessions_counts
+  attr_accessor :gear_count, :sessions, :sessions_per_gear, :session_capacity_pct, :gear_namespace, :last_scale_up_time, :last_scale_error_time, :previous_stats, :status_urls_config_mtime, :stats, :previous_remote_sessions_counts
 
   class ShouldRetry < StandardError
     attr_reader :message
@@ -355,8 +350,7 @@ class Haproxy
     else
       seconds_left = 0
     end
-    @log.debug("GEAR_INFO - capacity: #{session_capacity_pct}% gear_count: #{gear_count} sessions: #{sessions} up/remove_thresh: #{@gear_up_pct}%/#{@gear_remove_pct}% sec_left_til_remove: #{seconds_l
-               eft} gear_remove_thresh: #{@remove_count}/#{@remove_count_threshold}")
+    @log.debug("GEAR_INFO - capacity: #{session_capacity_pct}% gear_count: #{gear_count} sessions: #{sessions} up/remove_thresh: #{@gear_up_pct}%/#{@gear_remove_pct}% sec_left_til_remove: #{seconds_left} gear_remove_thresh: #{@remove_count}/#{@remove_count_threshold}")
   end
 
 
