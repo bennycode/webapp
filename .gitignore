@@ -2,6 +2,7 @@
 /target/
 /deployments/**/*.*
 .dpl/
+/webapps/**
 
 ### NetBeans ###
 nbproject/
