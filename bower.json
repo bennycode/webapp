@@ -7,7 +7,7 @@
         "roboto-fontface-bower": "git@github.com:choffmeister/roboto-fontface-bower.git#0.4.2"
     },
     "install": {
-      "path":  "src/main/webapp/WEB-INF/resources",
+      "path":  "src/main/webapp/WEB-INF/resources/libs",
       "sources": {
         "jquery": [
           "bower_components/jquery/dist/*.*"
