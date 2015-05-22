@@ -82,7 +82,7 @@ require 'net/http'
 # check_interval determines how often (in seconds) a the daemon should check
 # for scale up/down events.
 #
-@check_interval=5
+@check_interval=3
 
 #
 # FLAP_PROTECTION_TIME_SECONDS = 600 (default)
@@ -94,7 +94,7 @@ require 'net/http'
 # occurs.  In other words, if a scale up event has happened, don't issue
 # a scale down event until after 600 seconds has elapsed
 #
-FLAP_PROTECTION_TIME_SECONDS = 600
+FLAP_PROTECTION_TIME_SECONDS = 300
 
 HAPROXY_CONF_DIR=File.join(ENV['OPENSHIFT_HAPROXY_DIR'], "conf")
 HAPROXY_RUN_DIR=File.join(ENV['OPENSHIFT_HAPROXY_DIR'], "run")
@@ -245,7 +245,7 @@ class Haproxy
     end
 
     @gear_count = self.stats['express'].count - 2
-    @gear_up_pct = 70.0
+    @gear_up_pct = 40.0
     if @gear_count > 1
       # Pick a percentage for removing gears which is a moderate amount below the threshold where the gear would scale back up.
       @gear_remove_pct = (@gear_up_pct * ([1-(1.0 / @gear_count), 0.85].max)) - (@gear_up_pct / @gear_count)
