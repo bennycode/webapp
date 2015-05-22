@@ -17,13 +17,12 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @EnableWebMvc
 @EnableAspectJAutoProxy
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
-public class
-  WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
   @Bean
   public UrlBasedViewResolver setupViewResolver() {
     UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-    resolver.setPrefix("/WEB-INF/jsp/");
+    resolver.setPrefix("/WEB-INF/");
     resolver.setSuffix(".jsp");
     resolver.setViewClass(JstlView.class);
     return resolver;

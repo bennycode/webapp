@@ -20,8 +20,6 @@
   <hr class=""/>
   <div ui-view></div>
   <hr class=""/>
-
-
 </div>
 
 <script src="resources/js/angular.js/angular.js"></script>
