@@ -1,0 +1,23 @@
+{
+    "name": "webapp",
+    "version": "1.0.0",
+    "dependencies": {
+        "jquery": "git@github.com:jquery/jquery.git#2.1.4",
+        "angular": "git@github.com:angular/bower-angular.git#v1.3.16-build.113+sha.3881831",
+        "roboto-fontface-bower": "git@github.com:choffmeister/roboto-fontface-bower.git#0.4.2"
+    },
+    "install": {
+      "path":  "src/main/webapp/WEB-INF/resources",
+      "sources": {
+        "jquery": [
+          "bower_components/jquery/dist/*.*"
+        ],
+        "angular": [
+          "bower_components/angular/angular.{js,min.js,min.js.map}"
+        ],
+        "roboto-fontface-bower": [
+          "bower_components/roboto-fontface-bower/**"
+        ]
+      }
+    }
+}
