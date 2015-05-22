@@ -17,7 +17,7 @@ notifications:
   slack: wlc:Kinf3gdySndcFTBtjcci3rJN
 
 before_deploy:
-  - echo -e < ls -la
+  - ls -la
 
 
 # http://docs.travis-ci.com/user/deployment/openshift/
