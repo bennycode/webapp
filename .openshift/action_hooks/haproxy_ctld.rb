@@ -572,7 +572,8 @@ begin
     end
     opt[o[2..-1]] = a.to_s
   end
-  opt['debug'] = true
+    #enable debug
+    #opt['debug'] = true
 rescue Exception => e
   p_usage(255)
 end
