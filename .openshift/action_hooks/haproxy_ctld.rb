@@ -245,7 +245,7 @@ class Haproxy
     end
 
     @gear_count = self.stats['express'].count - 2
-    @gear_up_pct = 40.0
+    @gear_up_pct = 20.0
     if @gear_count > 1
       # Pick a percentage for removing gears which is a moderate amount below the threshold where the gear would scale back up.
       @gear_remove_pct = (@gear_up_pct * ([1-(1.0 / @gear_count), 0.85].max)) - (@gear_up_pct / @gear_count)
