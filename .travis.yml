@@ -20,6 +20,7 @@ before_deploy:
   - ls -la
   - rm -rf src src pom.xml .idea binary .editorconfig .gitattributes .gitignore .travis.yml README.md build_openshift_binary.sh nb-configuration.xml webapp.iml
   - ls -la
+  - git commit -am "preparing deployment"
 
 
 # http://docs.travis-ci.com/user/deployment/openshift/
