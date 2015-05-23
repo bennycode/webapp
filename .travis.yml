@@ -1,6 +1,11 @@
 # http://docs.travis-ci.com/user/workers/container-based-infrastructure/
 sudo: false
 
+env:
+  global:
+    # OPENSHIFT_PASSWORD
+    secure: k8Y3RJa7QCGcDZ1BzdvMVec/m/xCRkUTR+2/jbEn0FgV6W0TzkdKUmYGsR0KzpFKqP1Tt4JRHpi31IuFyA3EoVDdCgDEn3zQVu13TKMFBk01h6PbgfhyJs64ggDjcwmt1824ujn8KGketOplwySkvBZaP5AN13p/8ldw8HGVDujkmYAj9held21Zoj3c/mPYd0QjXaxeSnJoC+Mv0YgCa3WKiYmfdt4TSWUukQhrZtNKPufIN+z9SddXaSCQAvpEa9EhQdKowkaBnwvnj2K/FBLY1S7P5dne7xTPQ3mv4Kw4iDrscdGK9r4tIvWUoreffEjx2zCmL12BXDvVg38tExe98m2BZi2mDcbFhCW7r/koLKmSM1BkEYdkS03zycWU3p+cYG//HHPS7GUy/DTijJrG8JE9pIWDtVtWQzSi5YuKRAtYAlWIgp/GyQDZyh/NMdMb3YKMcETUYN4/9MtQ0Q8xpjXnLu0Ojeko2neQad0ugN4MMF/BGWOADyapwa0+uPM/NOU3oz3vN7yPRWnWhQJCrOtJlR1jja1DkmYqbDskO9bEuuYzVF75EXUb3Xnvtqa3C5ukLXWTEiJtHTIPVfud26ouMB9TdxPsL+uELmCI1VoTgUJMUfRJucnGUWqD2P70qPQnL7FZUrrblfCNxuchQv5X6Pn2XRksRlxNJnY=
+
 # http://docs.travis-ci.com/user/languages/java/
 language: java
 
