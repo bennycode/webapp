@@ -18,11 +18,13 @@ notifications:
 
 after_success:
   - ls -la
-  - rm -rf src src pom.xml target .idea binary .editorconfig .gitattributes .gitignore .travis.yml README.md build_openshift_binary.sh nb-configuration.xml webapp.iml
-  - ls -la
-  - git -c "user.name=Travis" -c "user.email=travis@travis.org" commit -am "preparing deployment"
-  - git remote add openshift ssh://55607def4382ec37eb0000b5@webapp-welovecoding.rhcloud.com/~/git/webapp.git/
-  - git push -f openshift master
+  - cp webapps/ROOT.war binary/dependencies/jbossews/webapps/ROOT.war
+  - cp -r .openshift/* binary/repo/.openshift/
+  - cd binary
+  - tar -czvf ../webapps/binary.tar.gz ./
+  - cd ..
+  - gem install rhc
+  - rhc deploy -a webapp webapps/binary.tar.gz --no-force-clean-build --no-hot-deploy -l bn@bennyn.de -p hcYFpROsPJB0djTSJzO+QL5Qt27QwqAwEjUfJJmRdVZoJQ5L0J7PqDpBM+8JG4tPnnJo4+hlWOLCEw8AfxVjC+wD87FZy8pGrSQxAXDonYnfRzMtdI2YgSKYnKHv6/d862iRESLXkbP8PW6c347ZnZTCenI+cIIo5EVsSRlilXKBES1G9Vwg2vTqbqSRObFhZPwrvi717Beewdn0WM7WOlDpX78NGKRZzbZe/RFVf+6s2aIqVvdRSvVtRJex82S/yYJQsd1MaMBWN96hfmF0eJQEjxMML1i/nNfltb4w3IVY9qRHGs+vGxB9XNxk2iM3sCw6UDsOfKmdmgvozNKpU21H7LnVcZ6RuAhCH4n9j1Elo3OmzHql16rJUcPEYhbGqEjqqov7k9Kdkl0fZIpMAVzcZLiYfIpp8jZvsHihEJuJC1NHmQANlgac7WKFckIGyjsrWiujnTSYqwR8H3zvqHGObt+Pr7dteOkniX2tF/l3ZIsrxwW5d/8EUo4iVst++5RHz/1EH0txHo4/i4+LeP2xxw3wEjy2qvf3u0iObuVX/JjcUpbPvH2CdCcGVWOyZ9TO+lQtEPJhkvkddYwkiLWwoSXLOJ/Q39LjAd7ueesJ6c3lDwlhvl74afSZi46hiWrmUHc31N83N+CNw8zqkX7IzapM9i0Rj26zIUDTN3k=
 
 
 # http://docs.travis-ci.com/user/deployment/openshift/
