@@ -16,8 +16,8 @@ jdk:
 
 # http://docs.travis-ci.com/user/build-lifecycle/
 before_install:
-#  - openssl aes-256-cbc -K $encrypted_b48b31fc6699_key -iv $encrypted_b48b31fc6699_iv
-#  - in id_rsa.enc -out id_rsa -d
+  - openssl aes-256-cbc -K $encrypted_b48b31fc6699_key -iv $encrypted_b48b31fc6699_iv
+  - in id_rsa.enc -out id_rsa -d
   - npm install -g bower
 
 # http://docs.travis-ci.com/user/notifications/
@@ -32,8 +32,8 @@ after_success:
   - cd binary
   - tar -czvf ../webapps/binary.tar.gz ./
   - cd ..
-#  - mv id_rsa ~/.ssh/id_rsa
-#  - chmod 600 ~/.ssh/id_rsa
+  - mv id_rsa ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
   - pwd
   - cd ~/.ssh/
   - ls -la
