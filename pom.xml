@@ -328,7 +328,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.18.1</version>
         <configuration>
-          <testFailureIgnore>true</testFailureIgnore>
+          <testFailureIgnore>false</testFailureIgnore>
           <parallel>classes</parallel>
           <useUnlimitedThreads>true</useUnlimitedThreads>
         </configuration>
@@ -338,7 +338,7 @@
         <artifactId>maven-failsafe-plugin</artifactId>
         <version>2.18.1</version>
         <configuration>
-          <testFailureIgnore>true</testFailureIgnore>
+          <testFailureIgnore>false</testFailureIgnore>
           <!--                    <parallel>classes</parallel>
                                 <useUnlimitedThreads>true</useUnlimitedThreads>-->
         </configuration>
