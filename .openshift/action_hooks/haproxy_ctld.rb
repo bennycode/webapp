@@ -82,7 +82,7 @@ require 'net/http'
 # check_interval determines how often (in seconds) a the daemon should check
 # for scale up/down events.
 #
-@check_interval=3
+@check_interval=5
 
 #
 # FLAP_PROTECTION_TIME_SECONDS = 600 (default)
