@@ -44,7 +44,9 @@ notifications:
 after_success:
   - cp webapps/ROOT.war binary/dependencies/jbossews/webapps/ROOT.war
   - cp -r .openshift/* binary/repo/.openshift
-  - tar -czvf ../webapps/binary.tar.gz ./binary/
+  - cd binary
+  - tar -czvf ../webapps/binary.tar.gz ./
+  - cd ..
   - mv id_rsa ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - gem install rhc
