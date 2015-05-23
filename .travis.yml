@@ -24,7 +24,7 @@ after_success:
   - tar -czvf ../webapps/binary.tar.gz ./
   - cd ..
   - gem install rhc
-  - rhc deploy -a webapp webapps/binary.tar.gz --no-force-clean-build -l openshift@welovecoding.com -p $OPENSHIFT_PASSWORD
+  - rhc deploy -a webapp webapps/binary.tar.gz --no-force-clean-build -l openshift@welovecoding.com -p $OPENSHIFT_PASSWORD -d
 
 
 # http://docs.travis-ci.com/user/deployment/openshift/
