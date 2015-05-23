@@ -408,15 +408,6 @@
   </build>
   <profiles>
     <profile>
-      <properties>
-        <!-- Database settings -->
-        <wlc.database.driver.classname>com.mysql.jdbc.Driver</wlc.database.driver.classname>
-        <wlc.database.url>
-          jdbc:mysql://${env.OPENSHIFT_MYSQL_DB_HOST}:${env.OPENSHIFT_MYSQL_DB_PORT}/${env.OPENSHIFT_APP_NAME}
-        </wlc.database.url>
-        <wlc.database.username>${env.OPENSHIFT_MYSQL_DB_USERNAME}</wlc.database.username>
-        <wlc.database.password>${env.OPENSHIFT_MYSQL_DB_PASSWORD}</wlc.database.password>
-      </properties>
       <!-- When built in OpenShift the 'openshift' profile will be used when
                         invoking mvn. -->
       <!-- Use this profile for any OpenShift specific customization your app
