@@ -94,7 +94,7 @@ require 'net/http'
 # occurs.  In other words, if a scale up event has happened, don't issue
 # a scale down event until after 600 seconds has elapsed
 #
-FLAP_PROTECTION_TIME_SECONDS = 300
+FLAP_PROTECTION_TIME_SECONDS = 400
 
 HAPROXY_CONF_DIR=File.join(ENV['OPENSHIFT_HAPROXY_DIR'], "conf")
 HAPROXY_RUN_DIR=File.join(ENV['OPENSHIFT_HAPROXY_DIR'], "run")
