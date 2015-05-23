@@ -24,6 +24,7 @@ jdk:
 before_install:
   - openssl aes-256-cbc -K $encrypted_b48b31fc6699_key -iv $encrypted_b48b31fc6699_iv
     -in id_rsa.enc -out id_rsa -d
+  - npm install -g bower
   - npm install -g bower-installer
 
 install:
