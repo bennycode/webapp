@@ -27,14 +27,14 @@ before_install:
   - npm install -g bower
 
 install:
-  - mvn clean install 
-    -DskipTests=true 
-    -Dmaven.javadoc.skip=true 
-    -Dwlc.database.driver.classname=$JDBC_DRIVER 
-    -Dwlc.database.url=$DB_URL 
-    -Dwlc.database.username=$DB_USERNAME 
-    -Dwlc.database.password=$DB_PASSWORD 
-    -Popenshift -B -V  
+  - mvn clean install
+    -DskipTests=true
+    -Dmaven.javadoc.skip=true
+    -Dwlc.database.driver.classname=com.mysql.jdbc.Driver
+    -Dwlc.database.url=$DB_URL
+    -Dwlc.database.username=$DB_USERNAME
+    -Dwlc.database.password=$DB_PASSWORD
+    -Popenshift -B -V
 
 # http://docs.travis-ci.com/user/notifications/
 notifications:
