@@ -17,8 +17,11 @@ jdk:
 # http://docs.travis-ci.com/user/build-lifecycle/
 before_install:
   - openssl aes-256-cbc -K $encrypted_b48b31fc6699_key -iv $encrypted_b48b31fc6699_iv
-  - in id_rsa.enc -out id_rsa -d
+    -in id_rsa.enc -out id_rsa -d
   - npm install -g bower
+
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -Popenshift
 
 # http://docs.travis-ci.com/user/notifications/
 notifications:
@@ -40,15 +43,3 @@ after_success:
   - cd /home/travis/build/welovecoding/webapp
   - gem install rhc
   - rhc deploy -a webapp webapps/binary.tar.gz --no-force-clean-build -l $OPENSHIFT_LOGIN -p $OPENSHIFT_PASSWORD -d
-
-
-# http://docs.travis-ci.com/user/deployment/openshift/
-#deploy:
-#  provider: openshift
-#  skip_cleanup: true
-#  user: bn@bennyn.de
-#  password:
-#    secure: hcYFpROsPJB0djTSJzO+QL5Qt27QwqAwEjUfJJmRdVZoJQ5L0J7PqDpBM+8JG4tPnnJo4+hlWOLCEw8AfxVjC+wD87FZy8pGrSQxAXDonYnfRzMtdI2YgSKYnKHv6/d862iRESLXkbP8PW6c347ZnZTCenI+cIIo5EVsSRlilXKBES1G9Vwg2vTqbqSRObFhZPwrvi717Beewdn0WM7WOlDpX78NGKRZzbZe/RFVf+6s2aIqVvdRSvVtRJex82S/yYJQsd1MaMBWN96hfmF0eJQEjxMML1i/nNfltb4w3IVY9qRHGs+vGxB9XNxk2iM3sCw6UDsOfKmdmgvozNKpU21H7LnVcZ6RuAhCH4n9j1Elo3OmzHql16rJUcPEYhbGqEjqqov7k9Kdkl0fZIpMAVzcZLiYfIpp8jZvsHihEJuJC1NHmQANlgac7WKFckIGyjsrWiujnTSYqwR8H3zvqHGObt+Pr7dteOkniX2tF/l3ZIsrxwW5d/8EUo4iVst++5RHz/1EH0txHo4/i4+LeP2xxw3wEjy2qvf3u0iObuVX/JjcUpbPvH2CdCcGVWOyZ9TO+lQtEPJhkvkddYwkiLWwoSXLOJ/Q39LjAd7ueesJ6c3lDwlhvl74afSZi46hiWrmUHc31N83N+CNw8zqkX7IzapM9i0Rj26zIUDTN3k=
-#  app: webapp
-#  domain: welovecoding
-#  on: master
