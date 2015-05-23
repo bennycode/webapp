@@ -1,6 +1,13 @@
 # http://docs.travis-ci.com/user/workers/container-based-infrastructure/
 sudo: false
 
+env:
+  global:
+    # OPENSHIFT_LOGIN
+    - secure: luLUTvkbZr9J3GzAhbWrCq9XjfwjHtVznpRTOE7Kyhqe2nfmk3SKIC3HuK5q4So4vLyWrywzlTnidBeekwpFnSESCjm2rE7ucBcIrEHLS1iSc8htCxwj7yNbzcplpdyNrZJXePBNTMngCN1kFFFf9/ybWLzC7O/puVqyZZEwvc2GjI68r3K9tf51weiAkQBEhYpdCPjSeEG07kf/MO+whlj0kk81oZc1WnRupbYBrl0vd1yx6W3++QvExmy9H0TOSjComs3bsqjDjf57f3y1qKKUMl1NNOeiyCsO5JOK04RF8cb4P3Nq2a7RGh+2lWGLC2MZE1GAzeVSNpDWvJ4KKodiKW5RsIfLpzoBkJBH9XUrnspoWT9emKB5RQN3Du/fNlWdC1wKUqNA9qnJksuOuEVwEhRo+5CgulPhDjeYQsGDd6uEp+duEvMULxvGP0wXlJYivXc2/XGKfIapRi8BGvGrYadxFliQK/UazTzk8kPZGJx6w6bcJyhzJZyYF/y5WUsC/zeM9bu67DHYO/t23NGSqWDXka5zfSh8Uo4YqxaHAzBDeUKIJyxsOTBsxEj4po1z7MpbrPP1wV7bQWKkHjyD46Jn/IBqpN5ZYQ4lWZduO7VQdbJCEWhxFQTAg4C/O9QQXVzmOVlv7ce1NaZcpPM5X04DFgwp8eXxPDoU/eE=
+    # OPENSHIFT_PASSWORD
+    - secure: k8Y3RJa7QCGcDZ1BzdvMVec/m/xCRkUTR+2/jbEn0FgV6W0TzkdKUmYGsR0KzpFKqP1Tt4JRHpi31IuFyA3EoVDdCgDEn3zQVu13TKMFBk01h6PbgfhyJs64ggDjcwmt1824ujn8KGketOplwySkvBZaP5AN13p/8ldw8HGVDujkmYAj9held21Zoj3c/mPYd0QjXaxeSnJoC+Mv0YgCa3WKiYmfdt4TSWUukQhrZtNKPufIN+z9SddXaSCQAvpEa9EhQdKowkaBnwvnj2K/FBLY1S7P5dne7xTPQ3mv4Kw4iDrscdGK9r4tIvWUoreffEjx2zCmL12BXDvVg38tExe98m2BZi2mDcbFhCW7r/koLKmSM1BkEYdkS03zycWU3p+cYG//HHPS7GUy/DTijJrG8JE9pIWDtVtWQzSi5YuKRAtYAlWIgp/GyQDZyh/NMdMb3YKMcETUYN4/9MtQ0Q8xpjXnLu0Ojeko2neQad0ugN4MMF/BGWOADyapwa0+uPM/NOU3oz3vN7yPRWnWhQJCrOtJlR1jja1DkmYqbDskO9bEuuYzVF75EXUb3Xnvtqa3C5ukLXWTEiJtHTIPVfud26ouMB9TdxPsL+uELmCI1VoTgUJMUfRJucnGUWqD2P70qPQnL7FZUrrblfCNxuchQv5X6Pn2XRksRlxNJnY=
+
 # http://docs.travis-ci.com/user/languages/java/
 language: java
 
@@ -24,7 +31,7 @@ after_success:
   - tar -czvf ../webapps/binary.tar.gz ./
   - cd ..
   - gem install rhc
-  - rhc deploy -a webapp webapps/binary.tar.gz --no-force-clean-build -l openshift@welovecoding.com -p $OPENSHIFT_PASSWORD
+  - rhc deploy -a webapp webapps/binary.tar.gz --no-force-clean-build -l $OPENSHIFT_LOGIN -p $OPENSHIFT_PASSWORD -d
 
 
 # http://docs.travis-ci.com/user/deployment/openshift/
