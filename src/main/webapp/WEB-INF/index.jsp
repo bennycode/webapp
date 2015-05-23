@@ -1,32 +1,40 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
-<html ng-app="app">
+<html data-ng-app="webapp">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>We Love Coding</title>
   <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
-
+  <!-- Dependencies -->
+  <script src="resources/libs/angular/angular.js"></script>
 </head>
-<body ng-controller="SomeController">
-<div id="wrapper">
+<body>
+<div data-ng-app="webapp">
+  <div data-ng-controller="CategoryController">
+    <div data-ng-show="vm.message">
+      {{ vm.message }}
+    </div>
 
+    <table data-ng-show="vm.categories.length > 0" class="table table-striped">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Color</th>
+      </tr>
 
-  <p>Enter Name: <input type="text" ng-model="myname"></p>
-
-  <p>Hello {{myname}}!!</p>
-
-  <hr class=""/>
-  <div ui-view></div>
-  <hr class=""/>
+      <tr data-ng-repeat="category in vm.categories">
+        <td>{{ category.id }}</td>
+        <td>{{ category.name }}</td>
+        <td>{{ category.color }}</td>
+      </tr>
+    </table>
+  </div>
 </div>
-
-<script src="resources/js/angular.js/angular.js"></script>
-<script src="resources/js/angular.js/angular-resource.js"></script>
-<script src="resources/js/angular-ui-router/angular-ui-router.min.js"></script>
-<script src="resources/js/angular-ui-bootstrap/ui-bootstrap.js"></script>
-<script src="resources/js/app/app.js"></script>
-
+<!-- App -->
+<script src="resources/app/module/Category.js"></script>
+<script src="resources/app/module/CategoryViewModel.js"></script>
+<script src="resources/app/module/webapp.js"></script>
 </body>
 </html>
