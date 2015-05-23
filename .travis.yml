@@ -1,35 +1,51 @@
 # http://docs.travis-ci.com/user/workers/container-based-infrastructure/
 sudo: false
 
+env:
+  global:
+    # OPENSHIFT_LOGIN
+    - secure: luLUTvkbZr9J3GzAhbWrCq9XjfwjHtVznpRTOE7Kyhqe2nfmk3SKIC3HuK5q4So4vLyWrywzlTnidBeekwpFnSESCjm2rE7ucBcIrEHLS1iSc8htCxwj7yNbzcplpdyNrZJXePBNTMngCN1kFFFf9/ybWLzC7O/puVqyZZEwvc2GjI68r3K9tf51weiAkQBEhYpdCPjSeEG07kf/MO+whlj0kk81oZc1WnRupbYBrl0vd1yx6W3++QvExmy9H0TOSjComs3bsqjDjf57f3y1qKKUMl1NNOeiyCsO5JOK04RF8cb4P3Nq2a7RGh+2lWGLC2MZE1GAzeVSNpDWvJ4KKodiKW5RsIfLpzoBkJBH9XUrnspoWT9emKB5RQN3Du/fNlWdC1wKUqNA9qnJksuOuEVwEhRo+5CgulPhDjeYQsGDd6uEp+duEvMULxvGP0wXlJYivXc2/XGKfIapRi8BGvGrYadxFliQK/UazTzk8kPZGJx6w6bcJyhzJZyYF/y5WUsC/zeM9bu67DHYO/t23NGSqWDXka5zfSh8Uo4YqxaHAzBDeUKIJyxsOTBsxEj4po1z7MpbrPP1wV7bQWKkHjyD46Jn/IBqpN5ZYQ4lWZduO7VQdbJCEWhxFQTAg4C/O9QQXVzmOVlv7ce1NaZcpPM5X04DFgwp8eXxPDoU/eE=
+    # OPENSHIFT_PASSWORD
+    - secure: k8Y3RJa7QCGcDZ1BzdvMVec/m/xCRkUTR+2/jbEn0FgV6W0TzkdKUmYGsR0KzpFKqP1Tt4JRHpi31IuFyA3EoVDdCgDEn3zQVu13TKMFBk01h6PbgfhyJs64ggDjcwmt1824ujn8KGketOplwySkvBZaP5AN13p/8ldw8HGVDujkmYAj9held21Zoj3c/mPYd0QjXaxeSnJoC+Mv0YgCa3WKiYmfdt4TSWUukQhrZtNKPufIN+z9SddXaSCQAvpEa9EhQdKowkaBnwvnj2K/FBLY1S7P5dne7xTPQ3mv4Kw4iDrscdGK9r4tIvWUoreffEjx2zCmL12BXDvVg38tExe98m2BZi2mDcbFhCW7r/koLKmSM1BkEYdkS03zycWU3p+cYG//HHPS7GUy/DTijJrG8JE9pIWDtVtWQzSi5YuKRAtYAlWIgp/GyQDZyh/NMdMb3YKMcETUYN4/9MtQ0Q8xpjXnLu0Ojeko2neQad0ugN4MMF/BGWOADyapwa0+uPM/NOU3oz3vN7yPRWnWhQJCrOtJlR1jja1DkmYqbDskO9bEuuYzVF75EXUb3Xnvtqa3C5ukLXWTEiJtHTIPVfud26ouMB9TdxPsL+uELmCI1VoTgUJMUfRJucnGUWqD2P70qPQnL7FZUrrblfCNxuchQv5X6Pn2XRksRlxNJnY=
+    # DB_URL
+    - secure: Tn35+8uWWPG/py32akIiBdeDgRWqTMKF4bBB9UVyEGDD/F71u29jr8jO8098zOb1lMV9fzIGoUroL0EcBV1igMawFuumGMA9+7KZH/JH3obq12VhRorkP/yRUgLEOREtBFRdTLFRN5lnwMGDVjoCJTyiEw2GlN0cEV9ZzIxVj+fPtwpV86WL/zXPmayzFRIh9R577N/V5oGy2XGYQRsnWg1Nv7TU48o12g4gic7iExZLTMVDps59TrEloCFwBntHZr+ACDsW9HXX+sCxza7XR1IpeBfgc+prQL2cM3/d+DEEzbSLTm22Zjq4r/hHqs7kaz+UOeL6CWFDqzXFshDeNHKXKLBdTHsMYmWDEOiZUWHAvqrnue3nyXCQO/AqSS/cVLl8LTnTIJZvjBLHIYsbM/0QtkOWKi2o5cWpBuQAJ5j4EYQiR9q2ww+9RBpss6HkSHuLNdotQdIQMb2O22BpLGXDrA2v81GtTPLhQoJ52BxeL2FEvq3ru0lcM//tNmjPYgHRQ9LcvnszRrca6c3V5mwLDTX8O4tB6oyuybFg3yh21W5OCUR0PhTWjfbpSZOMZNCMes/HGlw0W8KyEjXP4q86hFP4LF4qES/rZUfhT8XfU8zYtOsfjWcqVkWxogZd2abj7CYMkJn385PpGrRjJuX2b88BkRS4KAdmaQv1wzY=
+    # DB_USERNAME
+    - secure: IZCFAQ0zJUA6jlTqHmbY52NPbbddkNeTPNKQZXvzcmgprSAq1Y9ZMdlyNpPGYigG+PN4Tkw2ZaklyzR43z3736euTdovVVqeN7HjGjQJd044OhuL9uslCIUBQf0WH7bNtHANgN9cJ7itrXG8tpY9Kw7gn46ZT2CwBv9cdOGOMhQd6yN1q6gLIzkgb/yD+5f27XsLrTnBExwDW2/pseMXhkrpkSg54dv8IfyRGQJK9vVZxCjRzb+l918TnQtsuyGphjBfd51YUO1j3QPmwy2ZRvyse9ghfcQ3aTZjCvoHS3XedjQKbC3hnHCf2Qqr22D0lbv2+oyqxWe5M0EGXpe0Go1FKxLaKIIAB0iboe6Hkehsw2USvu+gkS1ISIh5qt7rYg4fkDncJk8/ihG8M/3+3w6Q6vdmLXEC6GmKzJsZGfHrGtp+mTKWe02zzrpSTYarcN7Y+s5g+v9y8LGPDpTEVP0mfZBltxBEophrHgOqgFrGSZbg4YnALrBMLUmFXIg64PkGn0rGGdyF6RoC0dE2JbbmIDJsCJgviTMRe5oPXoQ1961Vz7urqcx4yzK5T3IipFRv0+qTnpuZdjgfxMOR4ApgkldSis7epuaKvsTNeEDWwMfr4FIYg41Ua3oasKdubK7NUgGFQKhajxPQUbePlXLfz9CkW96/kvXe3+Q8mes=
+    # DB_PASSWORD
+    - secure: CHZkRXrerJkRZYZPngo+H+ydP1u85Jd7DtsnPtaR80ieaoWbzq8D/VCRZ/zzUfb9TyQTqmnlGMg5C8zYrxDZgiKc5axWEz8optxV3neooJYQ7Lf00qE1GPGRppkPycoYY6bMSjiJgvOmAnvKkvcOb2hUDHDCS4Mp8e2Ap8NIAdLCvE9T0Uqs19i4G+fODZC01lG8EI9TKnbxp6AkHlVcuJP0cjBoHQ/fiDorhxK8phND+YZCKide9AC0nNKv1lj0p8GKpcyZ9OFMowGpTugv20nHNKPd6wNOXIdGV9+aFVxhb23P3JZ+ebgOJywGDcv39h4iUUI0ioFYkEAZBf+GnO6BJ9aP3LCDuOv9aIRrtUIYwmEvJbHYL4N1lk1wUJOCedY2cO6pN9aofBq125gkkMQD2VR/bDveDwfqeyJThI5UZ6tozNatUeAXFUDvAgHAwtTBcn8xwCRVP1d4zQtFmmPxzr9aoJ5aJOYu9xjowKXqmgc5ixtlxtuSq4VJ2D9he4NQxMlTmROS1Wjf8z28O7PUAAFCfIlXllAUe63AzgThV0p8gL0H4KXoVDpMslcR0jyvjWa4MUeQKXXmNsdg2RNM1CYgisfc7V8qtvFcKRm0dI6mgPR+9ng1heKB/jISsIGD5fzv+YUtrnsC36s0nWZKttLNFZfM3fqVM2Z89dw=
+
 # http://docs.travis-ci.com/user/languages/java/
 language: java
 
 jdk:
-  - oraclejdk8
+  - oraclejdk7
 
 # http://docs.travis-ci.com/user/build-lifecycle/
 before_install:
+  - openssl aes-256-cbc -K $encrypted_b48b31fc6699_key -iv $encrypted_b48b31fc6699_iv
+    -in id_rsa.enc -out id_rsa -d
   - npm install -g bower
+
+install:
+  - mvn clean install
+    -DskipTests=true
+    -Dmaven.javadoc.skip=true
+    -Dwlc.database.driver.classname=com.mysql.jdbc.Driver
+    -Dwlc.database.url=$DB_URL
+    -Dwlc.database.username=$DB_USERNAME
+    -Dwlc.database.password=$DB_PASSWORD
+    -Popenshift -B -V
 
 # http://docs.travis-ci.com/user/notifications/
 notifications:
   email: false
   slack: wlc:Kinf3gdySndcFTBtjcci3rJN
 
-before_deploy:
-  - ls -la
-  - rm -rf src src pom.xml target .idea binary .editorconfig .gitattributes .gitignore .travis.yml README.md build_openshift_binary.sh nb-configuration.xml webapp.iml
-  - ls -la
-  - git -c "user.name=Travis" -c "user.email=travis@travis.org" commit -am "preparing deployment"
-
-
-# http://docs.travis-ci.com/user/deployment/openshift/
-deploy:
-  provider: openshift
-  skip_cleanup: true
-  user: bn@bennyn.de
-  password:
-    secure: hcYFpROsPJB0djTSJzO+QL5Qt27QwqAwEjUfJJmRdVZoJQ5L0J7PqDpBM+8JG4tPnnJo4+hlWOLCEw8AfxVjC+wD87FZy8pGrSQxAXDonYnfRzMtdI2YgSKYnKHv6/d862iRESLXkbP8PW6c347ZnZTCenI+cIIo5EVsSRlilXKBES1G9Vwg2vTqbqSRObFhZPwrvi717Beewdn0WM7WOlDpX78NGKRZzbZe/RFVf+6s2aIqVvdRSvVtRJex82S/yYJQsd1MaMBWN96hfmF0eJQEjxMML1i/nNfltb4w3IVY9qRHGs+vGxB9XNxk2iM3sCw6UDsOfKmdmgvozNKpU21H7LnVcZ6RuAhCH4n9j1Elo3OmzHql16rJUcPEYhbGqEjqqov7k9Kdkl0fZIpMAVzcZLiYfIpp8jZvsHihEJuJC1NHmQANlgac7WKFckIGyjsrWiujnTSYqwR8H3zvqHGObt+Pr7dteOkniX2tF/l3ZIsrxwW5d/8EUo4iVst++5RHz/1EH0txHo4/i4+LeP2xxw3wEjy2qvf3u0iObuVX/JjcUpbPvH2CdCcGVWOyZ9TO+lQtEPJhkvkddYwkiLWwoSXLOJ/Q39LjAd7ueesJ6c3lDwlhvl74afSZi46hiWrmUHc31N83N+CNw8zqkX7IzapM9i0Rj26zIUDTN3k=
-  app: webapp
-  domain: welovecoding
-  on: master
+after_success:
+  - cp webapps/ROOT.war binary/dependencies/jbossews/webapps/ROOT.war
+  - cp -r .openshift/* binary/repo/.openshift
+  - tar -czvf ../webapps/binary.tar.gz ./binary/
+  - mv id_rsa ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - gem install rhc
+  - rhc deploy -a webapp webapps/binary.tar.gz --no-force-clean-build -l $OPENSHIFT_LOGIN -p $OPENSHIFT_PASSWORD
