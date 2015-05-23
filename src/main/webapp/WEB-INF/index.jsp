@@ -1,32 +1,47 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-
 <!DOCTYPE html>
-<html ng-app="app">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>We Love Coding</title>
-  <link rel="stylesheet" type="text/css" href="resources/css/main.css"/>
+<html data-ng-app="webapp">
+  <head>
+    <meta charset="UTF-8" />      
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>We Love Coding</title>
+    <link rel="stylesheet" href="resources/libs/bootstrap/css/bootstrap.css"/>
+    <!-- Dependencies -->
+    <script src="resources/libs/es5-shim/es5-shim.js"></script>
+    <script src="resources/libs/angular/angular.js"></script>
+  </head>
+  <body data-ng-controller="CategoryController">
+    <div>
+      <div data-ng-show="vm.message">
+        {{ vm.message}}
+      </div>
 
-</head>
-<body ng-controller="SomeController">
-<div id="wrapper">
+      <table
+        class="table table-striped"
+        data-ng-show="vm.categories.length > 0"
+        >
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Color</th>
+          <th>Action</th>
+        </tr>
 
-
-  <p>Enter Name: <input type="text" ng-model="myname"></p>
-
-  <p>Hello {{myname}}!!</p>
-
-  <hr class=""/>
-  <div ui-view></div>
-  <hr class=""/>
-</div>
-
-<script src="resources/js/angular.js/angular.js"></script>
-<script src="resources/js/angular.js/angular-resource.js"></script>
-<script src="resources/js/angular-ui-router/angular-ui-router.min.js"></script>
-<script src="resources/js/angular-ui-bootstrap/ui-bootstrap.js"></script>
-<script src="resources/js/app/app.js"></script>
-
-</body>
+        <tr
+          data-ng-repeat="category in vm.categories"
+          data-ng-class="{ info: category.id === vm.selectedCategory.id }"
+          >
+          <td>{{ category.id}}</td>
+          <td>{{ category.name}}</td>
+          <td>{{ category.color}}</td>
+          <td><a href="" data-ng-click="vm.selectCategory(category)">Select</a></td>
+        </tr>
+      </table>
+    </div>
+    <!-- App -->
+    <script src="resources/app/module/Category.js"></script>
+    <script src="resources/app/module/CategoryViewModel.js"></script>
+    <script src="resources/app/module/webapp.js"></script>
+  </body>
 </html>
