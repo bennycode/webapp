@@ -26,3 +26,6 @@ build.properties
 # http://devnet.jetbrains.com/docs/DOC-1186
 .idea/*.xml
 .idea/*/*
+
+### Secrests ###
+id_rsa
