@@ -36,7 +36,7 @@
   <properties>
     <!-- Database settings -->
     <wlc.database.driver.classname>com.mysql.jdbc.Driver</wlc.database.driver.classname>
-    <wlc.database.url>jdbc:mysql://localhost:3306/welovecoding</wlc.database.url>
+    <wlc.database.url>jdbc:mysql://localhost:3306/webapp</wlc.database.url>
     <wlc.database.username>root</wlc.database.username>
     <wlc.database.password></wlc.database.password>
 

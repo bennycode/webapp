@@ -1,8 +1,15 @@
 ### Builds ###
-/target/
-/deployments/**/*.*
+target/
+deployments/**/*.*
 .dpl/
-/webapps/**
+webapps/**
+
+### Bower ###
+bower_components/
+src/main/webapp/WEB-INF/resources/**/LICENSE
+src/main/webapp/WEB-INF/resources/**/bower.json
+src/main/webapp/WEB-INF/resources/**/package.json
+src/main/webapp/WEB-INF/resources/**/README.md
 
 ### NetBeans ###
 nbproject/
@@ -16,5 +23,5 @@ build.properties
 
 ### IntelliJ ###
 # http://devnet.jetbrains.com/docs/DOC-1186
-/.idea/*.xml
-/.idea/*/*
+.idea/*.xml
+.idea/*/*
