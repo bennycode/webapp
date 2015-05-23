@@ -4,6 +4,7 @@
   "dependencies": {
     "angular": "git@github.com:angular/bower-angular.git#v1.3.16-build.113+sha.3881831",
     "bootstrap": "git@github.com:twbs/bootstrap.git#3.3.4",
+    "es5-shim": "git@github.com:es-shims/es5-shim.git#4.1.3",
     "jquery": "git@github.com:jquery/jquery.git#2.1.4",
     "roboto-fontface-bower": "git@github.com:choffmeister/roboto-fontface-bower.git#0.4.2"
   },
@@ -15,6 +16,10 @@
       ],
       "bootstrap": [
         "bower_components/bootstrap/dist/**"
+      ],
+      "es5-shim": [
+        "bower_components/es-shims/es5-sham.{js,min.js,map}",
+        "bower_components/es-shims/es5-shim.{js,min.js,map}"
       ],
       "jquery": [
         "bower_components/jquery/dist/*.*"
