@@ -11,6 +11,7 @@
     <script src="resources/libs/angular/angular.js"></script>
   </head>
   <body data-ng-controller="CategoryController">
+    <h1>${title}</h1>
     <div>
       <div data-ng-show="vm.message">
         {{::vm.message}}
