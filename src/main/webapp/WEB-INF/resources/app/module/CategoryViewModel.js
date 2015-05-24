@@ -8,12 +8,26 @@ function arrayize(data) {
 
 function CategoryViewModel($http) {
   this.message = "Hello World";
-  this.selectedCategory = null;
 
+  // Selection
   this.categories = [];
+  this.selectedCategory = null;
 
   this.selectCategory = function (category) {
     this.selectedCategory = category;
+  };
+
+  // Sorting
+  this.sortColumn = "id";
+  this.sortDirection = false;
+
+  this.setSortDirection = function (column) {
+    if (this.sortColumn === column) {
+      this.sortDirection = !this.sortDirection;
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = false;
+    }
   };
 
   var self = this;

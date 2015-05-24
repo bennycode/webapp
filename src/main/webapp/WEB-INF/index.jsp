@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <title>We Love Coding</title>
     <link rel="stylesheet" href="resources/libs/bootstrap/css/bootstrap.css"/>
     <!-- Dependencies -->
@@ -12,9 +11,10 @@
     <script src="resources/libs/angular/angular.js"></script>
   </head>
   <body data-ng-controller="CategoryController">
+    
     <div>
       <div data-ng-show="vm.message">
-        {{ vm.message}}
+        {{ ::vm.message}}
       </div>
 
       <table
@@ -22,20 +22,20 @@
         data-ng-show="vm.categories.length > 0"
         >
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Color</th>
+          <th><a data-ng-click="vm.setSortDirection('id')">ID</a></th>
+          <th><a data-ng-click="vm.setSortDirection('name')">Name</a></th>
+          <th><a data-ng-click="vm.setSortDirection('color')">Color</a></th>
           <th>Action</th>
         </tr>
 
         <tr
-          data-ng-repeat="category in vm.categories"
+          data-ng-repeat="category in vm.categories| orderBy:vm.sortColumn:vm.sortDirection"
           data-ng-class="{ info: category.id === vm.selectedCategory.id }"
           >
           <td>{{ category.id}}</td>
           <td>{{ category.name}}</td>
           <td>{{ category.color}}</td>
-          <td><a href="" data-ng-click="vm.selectCategory(category)">Select</a></td>
+          <td><a data-ng-click="vm.selectCategory(category)">Select</a></td>
         </tr>
       </table>
     </div>
