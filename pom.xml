@@ -271,6 +271,7 @@
     </dependency>
   </dependencies>
 
+  <!-- http://www.avajava.com/tutorials/lessons/what-are-the-phases-of-the-maven-default-lifecycle.html -->
   <build>
     <plugins>
       <plugin>
