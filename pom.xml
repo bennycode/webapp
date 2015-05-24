@@ -378,6 +378,28 @@
       <build>
         <finalName>webapp</finalName>
         <plugins>
+          <!-- https://maven.apache.org/plugins/maven-antrun-plugin/ -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <!-- Clean bower components defined in "bower.json" -->
+                    <delete dir="bower_components" includeemptydirs="true"/>
+                    <delete dir="src/main/webapp/WEB-INF/resources/libs" includeemptydirs="true"/>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- http://mojo.codehaus.org/exec-maven-plugin/ -->
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
@@ -391,10 +413,12 @@
               </execution>
             </executions>
             <configuration>
+              <!-- https://github.com/blittle/bower-installer -->
               <executable>bower-installer</executable>
               <workingDirectory>${basedir}</workingDirectory>
             </configuration>
           </plugin>
+          <!-- https://maven.apache.org/plugins/maven-war-plugin/ -->
           <plugin>
             <artifactId>maven-war-plugin</artifactId>
             <version>2.1.1</version>
