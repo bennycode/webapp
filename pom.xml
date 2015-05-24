@@ -19,7 +19,7 @@
       </snapshots>
     </repository>
   </repositories>
-  
+
   <pluginRepositories>
     <pluginRepository>
       <id>eap</id>
@@ -48,12 +48,12 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <spring.data.version>1.8.0.RELEASE</spring.data.version>
     <spring.version>4.1.5.RELEASE</spring.version>
-    
+
     <!-- Local settings -->
     <wlc.database.driver.classname>com.mysql.jdbc.Driver</wlc.database.driver.classname>
     <wlc.database.url>jdbc:mysql://localhost:3306/webapp</wlc.database.url>
     <wlc.database.username>root</wlc.database.username>
-    <wlc.database.password></wlc.database.password>    
+    <wlc.database.password></wlc.database.password>
   </properties>
 
   <dependencies>
@@ -62,7 +62,7 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.35</version>
     </dependency>
-    
+
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-web-api</artifactId>
@@ -93,7 +93,7 @@
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    
+
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aop</artifactId>
@@ -273,36 +273,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.7</version>
-        <executions>
-          <execution>
-            <id>render-maven-properties</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <target>
-                <!--<echo>STAGE................................: ${javax.faces.project.stage}</echo>-->
-                <echo>-------------------------------------------</echo>
-                <echo>project.artifactId...................: ${project.artifactId}</echo>
-                <echo>project.basedir......................: ${project.basedir}</echo>
-                <echo>project.build.directory..............: ${project.build.directory}</echo>
-                <echo>project.build.outputDirectory........: ${project.build.outputDirectory}</echo>
-                <echo/>
-                <echo>-- Database Information --</echo>
-                <echo>wlc.database.driver.classname........: ${wlc.database.driver.classname}</echo>
-                <echo>wlc.database.url.....................: ${wlc.database.url}</echo>
-                <echo>wlc.database.username................: ${wlc.database.username}</echo>
-                <echo>wlc.database.password................: ${wlc.database.password}</echo>
-                <echo/>
-              </target>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
