@@ -8,29 +8,23 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class DefaultController {
 
-  @RequestMapping(value = "/", method = RequestMethod.GET)
+  @RequestMapping(method = RequestMethod.GET, value = "/")
   public ModelAndView index() {
     ModelAndView model = new ModelAndView("index");
-    model.addObject("msg", "hello world");
-    model.setViewName("index");
+    model.addObject("title", "We Love Coding");
     return model;
   }
 
-  @RequestMapping(value = "/debug", method = RequestMethod.GET)
+  @RequestMapping(method = RequestMethod.GET,
+    value = {"/debug", "/netbeans-tomcat-status-test"}
+  )
   public ModelAndView debug() {
-    ModelAndView model = new ModelAndView("debug");
-    model.addObject("msg", "hello world");
-    model.setViewName("debug");
-    return model;
+    return new ModelAndView("debug");
   }
 
-  @RequestMapping(value = "/snoop", method = RequestMethod.GET)
+  @RequestMapping(method = RequestMethod.GET, value = "/snoop")
   public ModelAndView snoop() {
-    ModelAndView model = new ModelAndView("snoop");
-    model.addObject("msg", "hello world");
-    model.setViewName("snoop");
-    return model;
+    return new ModelAndView("snoop");
   }
-
 
 }

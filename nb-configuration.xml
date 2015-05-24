@@ -19,5 +19,6 @@
         <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.keepGettersAndSettersTogether>true</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.keepGettersAndSettersTogether>
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>Tomcat</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
         <org-netbeans-modules-editor-indent.text.javascript.CodeStyle.project.continuationIndentSize>2</org-netbeans-modules-editor-indent.text.javascript.CodeStyle.project.continuationIndentSize>
+        <org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>2</org-netbeans-modules-editor-indent.text.x-java.CodeStyle.project.continuationIndentSize>
     </properties>
 </project-shared-configuration>
