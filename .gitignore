@@ -14,7 +14,7 @@ src/main/webapp/WEB-INF/resources/**/package.json
 src/main/webapp/WEB-INF/resources/**/README.md
 
 ### NetBeans ###
-nbproject/
+nbproject/private/
 build/
 nbbuild/
 dist/
