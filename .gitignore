@@ -26,6 +26,7 @@ build.properties
 ### IntelliJ ###
 # http://devnet.jetbrains.com/docs/DOC-1186
 .idea/*.xml
+!.idea/codeStyleSettings.xml
 .idea/*/*
 
 ### Secrests ###
