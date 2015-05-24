@@ -1,5 +1,5 @@
-var webapp = angular.module("webapp", []);
+var app = angular.module("webapp", []);
 
-webapp.controller("CategoryController", function($scope, $http){
+app.controller("CategoryController", function($scope, $http){
   $scope.vm = new CategoryViewModel($http);
 });
