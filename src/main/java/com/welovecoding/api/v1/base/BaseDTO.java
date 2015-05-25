@@ -13,16 +13,16 @@ public abstract class BaseDTO<PK extends Serializable> extends ResourceSupport {
   private Date created;
   private Date lastModified;
 
-  public BaseDTO() {
+  protected BaseDTO() {
   }
 
-  public BaseDTO(PK identifier, Date created, Date lastModified) {
+  protected BaseDTO(PK identifier, Date created, Date lastModified) {
     this.identifier = identifier;
     this.created = created;
     this.lastModified = lastModified;
   }
 
-  public BaseDTO(BaseDTO<PK> dto) {
+  protected BaseDTO(BaseDTO<PK> dto) {
     this.identifier = dto.getIdentifier();
     this.created = dto.getCreated();
     this.lastModified = dto.getLastModified();

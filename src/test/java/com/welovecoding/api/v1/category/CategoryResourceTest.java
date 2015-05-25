@@ -1,7 +1,8 @@
 package com.welovecoding.api.v1.category;
 
-import com.welovecoding.data.category.CategoryFactory;
-import com.welovecoding.data.category.CategoryService;
+import com.welovecoding.data.category.entity.Category;
+import com.welovecoding.data.category.entity.CategoryFactory;
+import com.welovecoding.data.category.service.CategoryService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,6 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,8 +30,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import java.util.HashSet;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
@@ -58,6 +59,7 @@ public class CategoryResourceTest {
 
   private MockMvc mockMvc;
 
+
   @Autowired
   private CategoryService categoryService;
 
@@ -77,9 +79,11 @@ public class CategoryResourceTest {
 
 
   @Test
-  public void testFindAllCategoriesOrderedByName() throws Exception {
+  public void testFindAllCategories() throws Exception {
     System.out.println(name.getMethodName());
-    when(categoryService.findAllOrderedByName()).thenReturn(new HashSet<>(CategoryFactory.constructCategoryList(10, 1, 1)));
+    Page<Category> pageMock = Mockito.mock(Page.class);
+    when(pageMock.getContent()).thenReturn(CategoryFactory.constructList(10, 1, 1));
+    when(categoryService.findAllAndSortBy(Sort.Direction.ASC, "id")).thenReturn(pageMock);
 
     MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
       .andDo(print())
@@ -90,7 +94,27 @@ public class CategoryResourceTest {
 
     String content = result.getResponse().getContentAsString();
 
-    verify(categoryService, times(1)).findAllOrderedByName();
+    verify(categoryService, times(1)).findAllAndSortBy(Sort.Direction.ASC, "id");
+    verifyNoMoreInteractions(categoryService);
+  }
+
+  @Test
+  public void testFindAllCategoriesSorted() throws Exception {
+    System.out.println(name.getMethodName());
+    Page<Category> pageMock = Mockito.mock(Page.class);
+    when(pageMock.getContent()).thenReturn(CategoryFactory.constructList(10, 1, 1));
+    when(categoryService.findAllAndSortBy(Sort.Direction.DESC, "title")).thenReturn(pageMock);
+
+    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories?direction=DESC&attribute=title"))
+      .andDo(print())
+      .andExpect(status().isOk())
+      .andExpect(content().contentType("application/json;charset=UTF-8"))
+      .andExpect(jsonPath("$", hasSize(10)))
+      .andReturn();
+
+    String content = result.getResponse().getContentAsString();
+
+    verify(categoryService, times(1)).findAllAndSortBy(Sort.Direction.DESC, "title");
     verifyNoMoreInteractions(categoryService);
   }
 }

@@ -41,7 +41,7 @@ public class MethodLoggerInterceptor {
    *
    * @param pjp
    * @return
-   * @throws java.lang.Throwable
+   * @throws Throwable
    */
   @Around("onlyLoggedAnnotatedTypes()")
   public Object intercept(final ProceedingJoinPoint pjp) throws Throwable {

@@ -2,21 +2,42 @@
 <dataset>
   <USER ID="1"
         CREATED="1970-01-01 01:00:01.0"
-        LASTMODIFIED="1970-01-01 01:00:01.0"
-        EMAIL="mail1"
-        ADMIN="true"/>
-  <USERCREDENTIALS TOKEN="token"
-                   USER_ID="1"
-                   CRED_TYPE="GOOGLE"/>
+        LAST_MODIFIED="1970-01-01 01:00:01.0"
+        SLUG="slug1"
+        FIRST_NAME="firstname1"
+        LAST_NAME="lastname1"
+        ROLE="ROLE_USER"
+        USERNAME="username1"
+        EMAIL="mail1"/>
   <CATEGORY ID="1"
-            NAME="name1"
+            TITLE="title1"
             SLUG="slug1"
             CREATED="1970-01-01 01:00:01.0"
-            LASTMODIFIED="1970-01-01 01:00:01.0"
-            CREATOR_ID="1"
-            LASTEDITOR_ID="1"
+            LAST_MODIFIED="1970-01-01 01:00:01.0"
             COLOR="#EF9608"/>
-  <PLAYLIST/>
+  <CATEGORY ID="2"
+            TITLE="title2"
+            SLUG="slug2"
+            CREATED="1970-01-01 01:00:01.0"
+            LAST_MODIFIED="1970-01-01 01:00:01.0"
+            COLOR="#EF9608"/>
+  <CATEGORY ID="3"
+            TITLE="title3"
+            SLUG="slug3"
+            CREATED="1970-01-01 01:00:01.0"
+            LAST_MODIFIED="1970-01-01 01:00:01.0"
+            COLOR="#EF9608"/>
+  <CATEGORY ID="4"
+            TITLE="title4"
+            SLUG="slug4"
+            CREATED="1970-01-01 01:00:01.0"
+            LAST_MODIFIED="1970-01-01 01:00:01.0"
+            COLOR="#EF9608"/>
+  <CATEGORY ID="5"
+            TITLE="title5"
+            SLUG="slug5"
+            CREATED="1970-01-01 01:00:01.0"
+            LAST_MODIFIED="1970-01-01 01:00:01.0"
+            COLOR="#EF9608"/>
   <AUTHOR/>
-  <VIDEO/>
 </dataset>

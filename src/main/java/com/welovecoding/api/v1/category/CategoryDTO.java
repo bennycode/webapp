@@ -1,52 +1,36 @@
 package com.welovecoding.api.v1.category;
 
+import com.welovecoding.api.v1.base.SlugBaseDTO;
+import com.welovecoding.api.v1.tutorial.TutorialDTO;
 import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @JsonPropertyOrder({
-  "id",
-  "name",
-  "color",
-  "numberOfVideos",
-  "availableLanguages"
+
 })
-public class CategoryDTO {
+public class CategoryDTO extends SlugBaseDTO<Long> {
+  private String title;
 
-  private Long id;
-  private String name;
   private String color;
-  private int numberOfVideos;
-  private List<String> availableLanguages;
 
-  public CategoryDTO() {
-  }
+  private List<TutorialDTO> tutorials = new ArrayList<>();
 
-  CategoryDTO(Long id, String name, String color, int numberOfVideos, List<String> availableLanguages) {
-    this.id = id;
-    this.name = name;
+  CategoryDTO(Long identifier, Date created, Date lastModified, String slug, String title, String color, List<TutorialDTO> tutorials) {
+    super(identifier, created, lastModified, slug);
+    this.title = title;
     this.color = color;
-    this.numberOfVideos = numberOfVideos;
-    this.availableLanguages = availableLanguages;
+    this.tutorials = tutorials;
   }
 
-  public Long getId() {
-    return id;
+  public String getTitle() {
+    return title;
   }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    if (name == null || name.isEmpty()) {
-    } else {
-      this.name = name;
-    }
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public String getColor() {
@@ -54,50 +38,14 @@ public class CategoryDTO {
   }
 
   public void setColor(String color) {
-    if (color == null || color.isEmpty()) {
-    } else {
-      this.color = color;
-    }
+    this.color = color;
   }
 
-  public int getNumberOfVideos() {
-    return numberOfVideos;
+  public List<TutorialDTO> getTutorials() {
+    return tutorials;
   }
 
-  public void setNumberOfVideos(int numberOfVideos) {
-    this.numberOfVideos = numberOfVideos;
-  }
-
-  public List<String> getAvailableLanguages() {
-    return availableLanguages;
-  }
-
-  public void setAvailableLanguages(List<String> availableLanguages) {
-    this.availableLanguages = availableLanguages;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    CategoryDTO that = (CategoryDTO) o;
-
-    if (numberOfVideos != that.numberOfVideos) return false;
-    if (id != null ? !id.equals(that.id) : that.id != null) return false;
-    if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    if (color != null ? !color.equals(that.color) : that.color != null) return false;
-    return !(availableLanguages != null ? !availableLanguages.equals(that.availableLanguages) : that.availableLanguages != null);
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (color != null ? color.hashCode() : 0);
-    result = 31 * result + numberOfVideos;
-    result = 31 * result + (availableLanguages != null ? availableLanguages.hashCode() : 0);
-    return result;
+  public void setTutorials(List<TutorialDTO> tutorials) {
+    this.tutorials = tutorials;
   }
 }

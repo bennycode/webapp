@@ -5,6 +5,9 @@
       <value>
         <option name="HTML_ATTRIBUTE_WRAP" value="0" />
         <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="" />
+        <XML>
+          <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+        </XML>
       </value>
     </option>
     <option name="USE_PER_PROJECT_SETTINGS" value="true" />
