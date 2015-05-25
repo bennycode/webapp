@@ -27,6 +27,9 @@ public class Author extends SlugBaseEntity<Long> {
   @OneToOne
   private User user;
 
+  public Author() {
+  }
+
   public Author(Long id, Date created, Date lastModified, String slug, String firstname, String lastname, String description, String website, String channelUrl, User user) {
     super(id, created, lastModified, slug);
     this.firstname = firstname;

@@ -1,7 +1,7 @@
 package com.welovecoding.config;
 
 import com.welovecoding.data.user.repository.UserRepository;
-import com.welovecoding.data.user.service.RepositoryUserDetailsService;
+import com.welovecoding.data.user.service.ExampleUserDetailsService;
 import com.welovecoding.data.user.service.SimpleSocialUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -51,15 +51,18 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
       .authorizeRequests()
         //Anyone can access the urls
       .antMatchers(
-        "/",
+        "/**",
+        "/api/v1/service/ping",
         "/auth/**",
         "/login",
         "/signup/**",
         "/user/register/**"
       ).permitAll()
       //The rest of the our application is protected.
-      .antMatchers("/**").hasRole("USER")
-      //Adds the SocialAuthenticationFilter to Spring Security's filter chain.
+//      .antMatchers("/**").hasRole("USER")
+      .and()
+      .rememberMe()
+        //Adds the SocialAuthenticationFilter to Spring Security's filter chain.
       .and()
       .apply(new SpringSocialConfigurer());
   }
@@ -83,6 +86,6 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
 
   @Bean
   public UserDetailsService userDetailsService() {
-    return new RepositoryUserDetailsService(userRepository);
+    return new ExampleUserDetailsService(userRepository);
   }
 }
