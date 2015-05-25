@@ -85,6 +85,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
   }
 
   @Bean
+  @Override
   public UserDetailsService userDetailsService() {
     return new ExampleUserDetailsService(userRepository);
   }
