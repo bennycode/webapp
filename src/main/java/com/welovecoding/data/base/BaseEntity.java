@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-public abstract class BaseEntity<PK extends Serializable> extends AbstractPersistable<PK> {
+public abstract class BaseEntity<PK extends Serializable & Comparable> extends AbstractPersistable<PK> implements Comparable<BaseEntity<PK>> {
 
 
   @Column(nullable = false)
@@ -30,10 +30,9 @@ public abstract class BaseEntity<PK extends Serializable> extends AbstractPersis
     this.lastModified = lastModified;
   }
 
-//  public long getVersion() {
+  //  public long getVersion() {
 //    return version;
 //  }
-
   public Date getCreated() {
     return created;
   }
@@ -61,6 +60,23 @@ public abstract class BaseEntity<PK extends Serializable> extends AbstractPersis
   @PreUpdate
   public void preUpdate() {
     this.lastModified = new Date();
+  }
+
+  public abstract Comparable comparableAttribute();
+
+  @Override
+
+  public int compareTo(BaseEntity be) {
+    if (be.comparableAttribute() == null && this.comparableAttribute() == null) {
+      return 0;
+    }
+    if (this.comparableAttribute() == null) {
+      return 1;
+    }
+    if (be.comparableAttribute() == null) {
+      return -1;
+    }
+    return this.comparableAttribute().compareTo(be.comparableAttribute());
   }
 
 }

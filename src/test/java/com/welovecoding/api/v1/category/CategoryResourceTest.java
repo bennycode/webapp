@@ -31,6 +31,10 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -102,7 +106,16 @@ public class CategoryResourceTest {
   public void testFindAllCategoriesSorted() throws Exception {
     System.out.println(name.getMethodName());
     Page<Category> pageMock = Mockito.mock(Page.class);
-    when(pageMock.getContent()).thenReturn(CategoryFactory.constructList(10, 1, 1));
+
+    LinkedList<Category> categories = new LinkedList<>(CategoryFactory.constructList(10, 1, 1));
+    Collections.sort(categories);
+    Collections.sort(categories, new Comparator<Category>() {
+      @Override
+      public int compare(Category o1, Category o2) {
+        return o2.compareTo(o1);
+      }
+    });
+    when(pageMock.getContent()).thenReturn(categories);
     when(categoryService.findAllAndSortBy(Sort.Direction.DESC, "title")).thenReturn(pageMock);
 
     MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories?direction=DESC&attribute=title"))

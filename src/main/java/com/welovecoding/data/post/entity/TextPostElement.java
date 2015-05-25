@@ -20,6 +20,11 @@ public class TextPostElement extends PostElement {
   public TextPostElement() {
   }
 
+  @Override
+  public Comparable comparableAttribute() {
+    return getTitle();
+  }
+
   public String getTitle() {
     return title;
   }

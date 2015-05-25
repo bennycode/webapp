@@ -34,6 +34,11 @@ public class VideoPostElement extends PostElement {
   public VideoPostElement() {
   }
 
+  @Override
+  public Comparable comparableAttribute() {
+    return getTitle();
+  }
+
   public String getTitle() {
     return title;
   }

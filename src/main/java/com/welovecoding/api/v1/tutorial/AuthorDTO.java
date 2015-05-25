@@ -1,13 +1,13 @@
 package com.welovecoding.api.v1.tutorial;
 
+import com.welovecoding.api.v1.base.BaseDTO;
 import com.welovecoding.api.v1.user.UserDTO;
-import com.welovecoding.data.base.BaseEntity;
 
 import javax.persistence.Entity;
 
 
 @Entity
-public class AuthorDTO extends BaseEntity<Long> {
+public class AuthorDTO extends BaseDTO<Long> {
 
   private String firstname;
   private String lastname;

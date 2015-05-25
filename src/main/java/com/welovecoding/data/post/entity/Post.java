@@ -55,6 +55,11 @@ public class Post extends SlugBaseEntity<Long> {
     return getTitle();
   }
 
+  @Override
+  public Comparable comparableAttribute() {
+    return getTitle();
+  }
+
   public String getTitle() {
     return title;
   }
@@ -67,6 +72,7 @@ public class Post extends SlugBaseEntity<Long> {
   public String getDescription() {
     return description;
   }
+
 
   public void setDescription(String description) {
     if (description != null && description.length() > 1024) {
