@@ -43,9 +43,9 @@
 </div>
 
 <!-- App -->
-<script src="resources/app/angular/module/wlc/common/NumberFilter.js"></script>
-<script src="resources/app/angular/module/wlc/webapp/Category.js"></script>
-<script src="resources/app/angular/module/wlc/webapp/CategoryViewModel.js"></script>
-<script src="resources/app/angular/module/wlc/webapp/CategoryController.js"></script>
+<script src="resources/app/wlc/common/NumberFilter.js"></script>
+<script src="resources/app/wlc/webapp/Category.js"></script>
+<script src="resources/app/wlc/webapp/CategoryViewModel.js"></script>
+<script src="resources/app/wlc/webapp/CategoryController.js"></script>
 </body>
 </html>
