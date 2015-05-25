@@ -19,7 +19,6 @@ build/
 nbbuild/
 dist/
 nbdist/
-nbactions.xml
 build.xml
 build.properties
 
