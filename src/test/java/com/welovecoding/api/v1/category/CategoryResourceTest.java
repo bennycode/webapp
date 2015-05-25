@@ -32,6 +32,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -108,7 +109,12 @@ public class CategoryResourceTest {
 
     LinkedList<Category> categories = new LinkedList<>(CategoryFactory.constructList(10, 1, 1));
     Collections.sort(categories);
-    Collections.sort(categories, Collections.reverseOrder().reversed());
+    Collections.sort(categories, new Comparator<Category>() {
+      @Override
+      public int compare(Category o1, Category o2) {
+        return o2.compareTo(o1);
+      }
+    });
     when(pageMock.getContent()).thenReturn(categories);
     when(categoryService.findAllAndSortBy(Sort.Direction.DESC, "title")).thenReturn(pageMock);
 
