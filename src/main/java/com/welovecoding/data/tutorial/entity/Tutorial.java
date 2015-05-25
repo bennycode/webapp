@@ -53,6 +53,11 @@ public class Tutorial extends SlugBaseEntity<Long> {
   }
 
   @Override
+  public Comparable comparableAttribute() {
+    return getTitle();
+  }
+
+  @Override
   protected String getSlugableName() {
     return getTitle();
   }

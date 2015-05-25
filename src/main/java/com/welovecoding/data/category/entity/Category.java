@@ -29,11 +29,17 @@ public class Category extends SlugBaseEntity<Long> {
   public Category() {
   }
 
+
   Category(Long id, Date created, Date lastModified, String slug, String title, String color, List<Tutorial> tutorials) {
     super(id, created, lastModified, slug);
     this.title = title;
     this.color = color;
     this.tutorials = tutorials;
+  }
+
+  @Override
+  public Comparable comparableAttribute() {
+    return getTitle();
   }
 
   @Override

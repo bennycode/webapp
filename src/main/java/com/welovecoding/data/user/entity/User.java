@@ -50,6 +50,11 @@ public class User extends SlugBaseEntity<Long> {
   }
 
   @Override
+  public Comparable comparableAttribute() {
+    return getUsername();
+  }
+
+  @Override
   protected String getSlugableName() {
     return getUsername();
   }

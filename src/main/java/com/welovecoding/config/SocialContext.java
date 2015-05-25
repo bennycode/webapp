@@ -38,12 +38,12 @@ public class SocialContext implements SocialConfigurer {
   @Override
   public void addConnectionFactories(ConnectionFactoryConfigurer cfConfig, Environment env) {
     cfConfig.addConnectionFactory(new TwitterConnectionFactory(
-      env.getProperty("twitter.consumer.key"),
-      env.getProperty("twitter.consumer.secret")
+      env.getProperty("twitter.consumer.key", "no_key"),
+      env.getProperty("twitter.consumer.secret", "no_secret")
     ));
     cfConfig.addConnectionFactory(new FacebookConnectionFactory(
-      env.getProperty("facebook.app.id"),
-      env.getProperty("facebook.app.secret")
+      env.getProperty("facebook.app.id", "no_id"),
+      env.getProperty("facebook.app.secret", "no_secret")
     ));
   }
 

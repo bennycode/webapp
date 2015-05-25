@@ -38,6 +38,11 @@ public class Author extends SlugBaseEntity<Long> {
   }
 
   @Override
+  public Comparable comparableAttribute() {
+    return getFirstname() + " " + getLastname();
+  }
+
+  @Override
   protected String getSlugableName() {
     return getFirstname() + " " + getLastname();
   }

@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-public abstract class SlugBaseEntity<PK extends Serializable> extends BaseEntity<PK> {
+public abstract class SlugBaseEntity<PK extends Serializable & Comparable> extends BaseEntity<PK> {
 
   @NotNull
   @Size(min = 1, max = 255)
@@ -40,4 +40,5 @@ public abstract class SlugBaseEntity<PK extends Serializable> extends BaseEntity
       this.slug = Slugify.slugify(getSlugableName());
     }
   }
+
 }
