@@ -18,7 +18,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 @Import({WebContext.class, PersistenceContext.class, SecurityContext.class, SocialContext.class})
 public class ApplicationContext {
 
-  private static final String MESSAGE_SOURCE_BASE_NAME = "i18n/messages";
+  private static final String MESSAGE_SOURCE_BASE_NAME = "i18n/en_GB";
 
   @Bean
   public MessageSource messageSource() {

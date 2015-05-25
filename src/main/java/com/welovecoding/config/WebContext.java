@@ -17,7 +17,8 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = {
-  "com.welovecoding.view"
+  "com.welovecoding.view",
+  "com.welovecoding.api"
 })
 @EnableWebMvc
 @EnableAspectJAutoProxy
@@ -53,6 +54,13 @@ public class WebContext extends WebMvcConfigurerAdapter {
 
     return exceptionResolver;
   }
+//  http://stackoverflow.com/questions/26384930/how-to-add-n-before-each-spring-json-response-to-prevent-common-vulnerab
+//  @Override
+//  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//    MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+//    converter.setJsonPrefix(")]}',\n");
+//    converters.add(converter);
+//  }
 
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {

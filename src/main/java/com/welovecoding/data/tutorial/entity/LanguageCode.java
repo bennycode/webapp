@@ -2,7 +2,7 @@ package com.welovecoding.data.tutorial.entity;
 
 
 /**
- * Example: "EN" (English), "ja" (Japanese), "kok" (Konkani)
+ * Example: "en" (English), "ja" (Japanese), "kok" (Konkani)
  * <p/>
  * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
  * http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html
