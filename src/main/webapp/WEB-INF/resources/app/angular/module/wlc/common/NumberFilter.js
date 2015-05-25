@@ -1,6 +1,4 @@
-/* global angular */
-
-angular.module("wlc.common.filter", [])
+angular.module("wlc.common.NumberFilter", [])
   .filter('toDecimal', function () {
     return function (input) {
       if (input < 10) {
@@ -9,3 +7,4 @@ angular.module("wlc.common.filter", [])
       return input;
     };
   });
+  

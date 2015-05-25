@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="webapp">
+<html data-ng-app="wlc.webapp">
   <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -41,9 +41,9 @@
     </div>
 
     <!-- App -->
-    <script src="resources/app/wlc/common/filter/commonFilter.js"></script>
-    <script src="resources/app/module/Category.js"></script>
-    <script src="resources/app/module/CategoryViewModel.js"></script>
-    <script src="resources/app/module/webapp.js"></script>
+    <script src="resources/app/angular/module/wlc/common/NumberFilter.js"></script>
+    <script src="resources/app/angular/module/wlc/webapp/Category.js"></script>
+    <script src="resources/app/angular/module/wlc/webapp/CategoryViewModel.js"></script>
+    <script src="resources/app/angular/module/wlc/webapp/CategoryController.js"></script>
   </body>
 </html>
