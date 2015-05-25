@@ -6,7 +6,9 @@ function arrayize(data) {
   }
 }
 
-function CategoryViewModel($http) {
+var wlc = window.wlc || {};
+wlc.webapp = wlc.webapp || {};
+wlc.webapp.CategoryViewModel = function ($http) {
   this.message = "Hello World";
 
   // Selection
@@ -36,10 +38,10 @@ function CategoryViewModel($http) {
     .then(function (result) {
       var categories = arrayize(result.data);
       categories.forEach(function (categoryPayload) {
-        self.categories.push(new Category(categoryPayload));
+        self.categories.push(new wlc.webapp.Category(categoryPayload));
       });
     })
     .catch(function (result) {
       console.log('Error', result);
     });
-}
+};
