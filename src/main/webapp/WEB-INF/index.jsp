@@ -9,10 +9,12 @@
     <!-- Dependencies -->
     <script src="resources/libs/es5-shim/es5-shim.js"></script>
     <script src="resources/libs/angular/angular.js"></script>
+    <script src="resources/libs/angular-resource/angular-resource.js"></script>
   </head>
-  <body data-ng-controller="CategoryController">
+  <body>
     <h1>${title}</h1>
-    <div>
+
+    <div data-ng-controller="CategoryController">
       <div data-ng-show="vm.message">
         {{::vm.message}}
       </div>
@@ -24,6 +26,7 @@
         <tr>
           <th><a data-ng-click="vm.setSortDirection('id')">ID</a></th>
           <th><a data-ng-click="vm.setSortDirection('title')">Name</a></th>
+          <th><a data-ng-click="vm.setSortDirection('slug')">Slug</a></th>
           <th><a data-ng-click="vm.setSortDirection('color')">Color</a></th>
           <th>Action</th>
         </tr>
@@ -34,10 +37,20 @@
           >
           <td>{{ category.id|toDecimal}}</td>
           <td>{{ category.title}}</td>
+          <td>{{ category.slug}}</td>
           <td>{{ category.color}}</td>
-          <td><a data-ng-click="vm.selectCategory(category)">Select</a></td>
+          <td><a data-ng-click="vm.selectCategory(category)">Edit</a></td>
         </tr>
       </table>
+
+      <form>
+        <div><label for="categoryTitle">Title</label></div>
+        <div><input data-ng-model="vm.selectedCategory.title" name="categoryTitle" /></div>
+        <div><label for="categorySlug">Slug</label></div>
+        <div><input data-ng-model="vm.selectedCategory.slug" name="categorySlug" /></div>
+        <div><label for="categoryColor">Color</label></div>
+        <div><input data-ng-model="vm.selectedCategory.color" name="categoryColor" /></div>
+      </form>
     </div>
 
     <!-- App -->
@@ -45,5 +58,6 @@
     <script src="resources/app/wlc/webapp/Category.js"></script>
     <script src="resources/app/wlc/webapp/CategoryViewModel.js"></script>
     <script src="resources/app/wlc/webapp/CategoryController.js"></script>
+    <script src="resources/app/wlc/webapp/service/CategoryService.js"></script>
   </body>
 </html>
