@@ -1,17 +1,17 @@
 package com.welovecoding.api.v1.category;
 
 
-import com.welovecoding.data.category.CategoryService;
+import com.welovecoding.data.category.entity.Category;
+import com.welovecoding.data.category.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Produces;
-import java.util.Set;
+import java.util.List;
 
-import static com.welovecoding.api.v1.category.CategoryMapper.entitySetToDtoSet;
+import static com.welovecoding.api.v1.category.CategoryMapper.entityListToDtoList;
 import static com.welovecoding.api.v1.category.CategoryMapper.entityToDto;
 
 
@@ -33,7 +33,27 @@ public class CategoryResource {
   }
 
   @RequestMapping(value = "", method = RequestMethod.GET)
-  public Set<CategoryDTO> findAllCategoriesOrderedByName() {
-    return entitySetToDtoSet(categoryService.findAllOrderedByName(), 2);
+  public List<CategoryDTO> findAllCategories(
+    @RequestParam(value = "direction", required = false) String direction,
+    @RequestParam(value = "attribute", required = false) String attribute) {
+
+    System.out.println(direction);
+    System.out.println(attribute);
+
+    Sort.Direction defaultDirection = Sort.Direction.ASC;
+    String defaultAttribute = "id";
+
+    if (Sort.Direction.fromStringOrNull(direction) != null) {
+      defaultDirection = Sort.Direction.fromStringOrNull(direction);
+    }
+    if (attribute != null) {
+      defaultAttribute = attribute;
+    }
+    System.out.println(defaultDirection);
+    System.out.println(defaultAttribute);
+
+    Page<Category> allAndSortBy = categoryService.findAllAndSortBy(defaultDirection, defaultAttribute);
+    return entityListToDtoList(allAndSortBy.getContent(), 2);
   }
+
 }

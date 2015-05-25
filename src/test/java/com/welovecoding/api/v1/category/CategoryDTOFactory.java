@@ -1,7 +1,6 @@
 package com.welovecoding.api.v1.category;
 
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +15,7 @@ public class CategoryDTOFactory {
     LOG.setLevel(Level.INFO);
   }
 
-  public static CategoryDTO constructCategoryDTO(Integer id, int numberOfVideos, int dept) {
+  public static CategoryDTO constructOne(Integer id, int numberOfVideos, int dept) {
     if (dept < 0) {
       throw new IllegalArgumentException("Depts smaller than 0 are not allowed!");
     }
@@ -27,7 +26,14 @@ public class CategoryDTOFactory {
       if (id != null) {
         longId = new Long(id);
       }
-      return new CategoryDTO(longId, "categoryName", "#EF9608", numberOfVideos, Arrays.asList(new String[]{}));
+      return new CategoryDTO(
+        longId,
+        FIXED_DATE,
+        FIXED_DATE,
+        "slug1",
+        "title1",
+        "#EF9608",
+        null);
     }
     return null;
   }

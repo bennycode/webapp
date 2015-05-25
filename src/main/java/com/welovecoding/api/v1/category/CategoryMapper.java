@@ -1,13 +1,11 @@
 package com.welovecoding.api.v1.category;
 
 
-import com.welovecoding.api.v1.playlist.PlaylistDTO;
-import com.welovecoding.api.v1.playlist.PlaylistMapper;
-import com.welovecoding.data.category.Category;
-import com.welovecoding.data.playlist.Playlist;
-import com.welovecoding.data.playlist.entity.LanguageCode;
+import com.welovecoding.api.v1.tutorial.TutorialMapper;
+import com.welovecoding.data.category.entity.Category;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryMapper {
 
@@ -18,69 +16,26 @@ public class CategoryMapper {
     if (dept < 0) {
       throw new IllegalArgumentException("Depts smaller than 0 are not allowed!");
     }
-    Set<PlaylistDTO> entitySetToDtoSet = new HashSet<>();
-    dept--;
-    if (entity.getPlaylists() != null) {
-      entitySetToDtoSet = PlaylistMapper.entitySetToDtoSet(entity.getPlaylists(), dept);
-    }
-
-    CategoryDTO dto = new CategoryDTO();
-
-    dto.setId(entity.getId());
-    dto.setName(entity.getName());
-    dto.setColor(entity.getColor());
-
-    HashMap<String, String> availableLanguagesMap = new HashMap<>();
-    List<String> availableLanguages = new ArrayList<>();
-    int numberOfVideos = 0;
-
-    if (entity.getPlaylists() != null)
-    if (entity.getPlaylists().size() > 0) {
-      for (Playlist playlist : entity.getPlaylists()) {
-        numberOfVideos += playlist.getVideos().size();
-//        availableLanguagesMap.put(
-//          mapLanguage(playlist.getLanguageCode()),
-//          mapLanguage(playlist.getLanguageCode())
-//        );
-      }
-    }
-
-    dto.setNumberOfVideos(numberOfVideos);
-
-    SortedSet<String> sortedKeys = new TreeSet<>(availableLanguagesMap.keySet());
-    for (String key : sortedKeys) {
-      availableLanguages.add(key);
-    }
-
-    dto.setAvailableLanguages(availableLanguages);
+    CategoryDTO dto = new CategoryDTO(
+      entity.getId(),
+      entity.getCreated(),
+      entity.getLastModified(),
+      entity.getSlug(),
+      entity.getTitle(),
+      entity.getColor(),
+      TutorialMapper.entityListToDtoList(entity.getTutorials(), dept)
+    );
     return dto;
   }
 
-  public static Set<CategoryDTO> entitySetToDtoSet(Set<Category> entityList, int dept) {
-    Set<CategoryDTO> dtoList = new HashSet<>();
-    if (dept > 0) {
+  public static List<CategoryDTO> entityListToDtoList(List<Category> entityList, int dept) {
+    List<CategoryDTO> dtoList = new ArrayList<>();
+    if (dept > 0 && entityList != null) {
       for (Category entity : entityList) {
         dtoList.add(entityToDto(entity, dept));
       }
     }
     return dtoList;
-  }
-
-  public static String mapLanguage(LanguageCode language) {
-    String dtoLanguage = "English";
-
-    if (language != null) {
-      switch (language) {
-        case en:
-          dtoLanguage = "English";
-          break;
-        case de:
-          dtoLanguage = "German";
-          break;
-      }
-    }
-
-    return dtoLanguage;
   }
 
 }

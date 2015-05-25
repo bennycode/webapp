@@ -71,13 +71,27 @@ public class CategoryResourceIT {
 
   @Test
   @DatabaseSetup(value = "insert.xml")
-  public void testFindAllCategoriesOrderedByName() throws Exception {
+  public void testFindAllCategories() throws Exception {
     System.out.println(name.getMethodName());
     MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
       .andDo(print())
       .andExpect(status().isOk())
       .andExpect(content().contentType("application/json;charset=UTF-8"))
-      .andExpect(jsonPath("$", hasSize(1)))
+      .andExpect(jsonPath("$", hasSize(5)))
+      .andReturn();
+
+    String content = result.getResponse().getContentAsString();
+  }
+
+  @Test
+  @DatabaseSetup(value = "insert.xml")
+  public void testFindAllCategoriesSorted() throws Exception {
+    System.out.println(name.getMethodName());
+    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories?direction=DESC&attribute=title"))
+      .andDo(print())
+      .andExpect(status().isOk())
+      .andExpect(content().contentType("application/json;charset=UTF-8"))
+      .andExpect(jsonPath("$", hasSize(5)))
       .andReturn();
 
     String content = result.getResponse().getContentAsString();

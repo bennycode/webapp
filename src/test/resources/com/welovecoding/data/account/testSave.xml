@@ -3,15 +3,10 @@
   <USER ID="1"
         CREATED="1970-01-01 01:00:01.0"
         LASTMODIFIED="1970-01-01 01:00:01.0"
-        EMAIL="mail"
-        ADMIN="true"/>
-  <USERCREDENTIALS TOKEN="token"
-                   USER_ID="1"
-                   CRED_TYPE="GOOGLE"/>
+        EMAIL="mail"/>
   <CATEGORY/>
-  <PLAYLIST/>
+  <TUTORIAL/>
   <AUTHOR/>
-  <VIDEO/>
   <ACCOUNT ID="2"
            CREATED="1970-01-01 01:00:01.0"
            LASTMODIFIED="1970-01-01 01:00:01.0"

@@ -5,11 +5,7 @@
         LASTMODIFIED="1970-01-01 01:00:01.0"
         EMAIL="mail1"
         ADMIN="true"/>
-  <USERCREDENTIALS TOKEN="token"
-                   USER_ID="1"
-                   CRED_TYPE="GOOGLE"/>
   <CATEGORY/>
-  <PLAYLIST/>
+  <TUTORIAL/>
   <AUTHOR/>
-  <VIDEO/>
 </dataset>

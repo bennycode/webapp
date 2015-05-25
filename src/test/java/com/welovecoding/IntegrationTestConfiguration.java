@@ -2,6 +2,10 @@ package com.welovecoding;
 
 import com.github.springtestdbunit.bean.DatabaseConfigBean;
 import com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean;
+import com.welovecoding.data.category.entity.Category;
+import com.welovecoding.data.post.entity.Post;
+import com.welovecoding.data.tutorial.entity.Tutorial;
+import com.welovecoding.data.user.entity.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -30,11 +34,10 @@ import java.util.Properties;
   excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = {Configuration.class}))
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {
-  "com.welovecoding.data.author",
   "com.welovecoding.data.category",
-  "com.welovecoding.data.playlist",
+  "com.welovecoding.data.tutorial",
   "com.welovecoding.data.user",
-  "com.welovecoding.data.video"
+  "com.welovecoding.data.post"
 })
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
 public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
@@ -85,11 +88,10 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
     em.setDataSource(dataSource());
     // scan for entities
     em.setPackagesToScan(
-      "com.welovecoding.data.author",
-      "com.welovecoding.data.category",
-      "com.welovecoding.data.playlist",
-      "com.welovecoding.data.user",
-      "com.welovecoding.data.video"
+      Category.class.getPackage().getName(),
+      Tutorial.class.getPackage().getName(),
+      User.class.getPackage().getName(),
+      Post.class.getPackage().getName()
     );
 
     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -98,6 +100,8 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
       {
         setProperty("hibernate.hbm2ddl.auto", "create-drop");
         setProperty("database.url", "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1");
+        setProperty("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+        setProperty("hibernate.format_sql", "true");
         setProperty("hibernate.show_sql", "false");
         setProperty("hibernate.format_sql", "true");
       }
