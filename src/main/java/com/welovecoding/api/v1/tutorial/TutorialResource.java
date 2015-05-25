@@ -14,7 +14,7 @@ import static com.welovecoding.api.v1.tutorial.TutorialMapper.entityToDto;
 
 
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/api/v1/categories/{categorySlug}")
 @Produces("application/json")
 public class TutorialResource {
 

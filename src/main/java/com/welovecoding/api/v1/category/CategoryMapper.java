@@ -1,14 +1,24 @@
 package com.welovecoding.api.v1.category;
 
-
 import com.welovecoding.api.v1.tutorial.TutorialMapper;
+import com.welovecoding.data.base.Slugify;
 import com.welovecoding.data.category.entity.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryMapper {
-
+  
+  public static Category dtoToEntity(CategoryDTO dto) {
+    Category entity = new Category();
+    
+    entity.setColor(dto.getColor());
+    entity.setSlug(Slugify.slugify(dto.getTitle()));
+    entity.setTitle(dto.getTitle());
+    
+    return entity;
+  }
+  
   public static CategoryDTO entityToDto(Category entity, int dept) {
     if (entity == null || dept == 0) {
       return null;
@@ -27,7 +37,7 @@ public class CategoryMapper {
     );
     return dto;
   }
-
+  
   public static List<CategoryDTO> entityListToDtoList(List<Category> entityList, int dept) {
     List<CategoryDTO> dtoList = new ArrayList<>();
     if (dept > 0 && entityList != null) {
@@ -37,5 +47,5 @@ public class CategoryMapper {
     }
     return dtoList;
   }
-
+  
 }
