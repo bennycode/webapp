@@ -37,7 +37,8 @@ wlc.webapp.CategoryViewModel = function ($http) {
   $http.get('api/v1/categories')
     .then(function (result) {
       var categories = arrayize(result.data);
-      categories.forEach(function (categoryPayload) {
+      categories.forEach(function (categoryPayload, index) {
+        categoryPayload.id = index;
         self.categories.push(new wlc.webapp.Category(categoryPayload));
       });
     })

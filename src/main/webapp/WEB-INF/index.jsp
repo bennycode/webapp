@@ -25,7 +25,7 @@
     >
     <tr>
       <th><a data-ng-click="vm.setSortDirection('id')">ID</a></th>
-      <th><a data-ng-click="vm.setSortDirection('name')">Name</a></th>
+      <th><a data-ng-click="vm.setSortDirection('title')">Name</a></th>
       <th><a data-ng-click="vm.setSortDirection('color')">Color</a></th>
       <th>Action</th>
     </tr>
@@ -35,7 +35,7 @@
       data-ng-class="{ info: category.id === vm.selectedCategory.id }"
       >
       <td>{{ category.id|toDecimal}}</td>
-      <td>{{ category.name}}</td>
+      <td>{{ category.title}}</td>
       <td>{{ category.color}}</td>
       <td><a data-ng-click="vm.selectCategory(category)">Select</a></td>
     </tr>
