@@ -21,7 +21,7 @@
 
       <table
         class="table table-striped"
-        data-ng-show="vm.categories.length > 0"
+        data-ng-show="service.getAll().length > 0"
         >
         <tr>
           <th><a data-ng-click="vm.setSortDirection('id')">ID</a></th>
@@ -32,8 +32,8 @@
         </tr>
 
         <tr
-          data-ng-repeat="category in vm.categories| orderBy:vm.sortColumn:vm.sortDirection"
-          data-ng-class="{ info: category.id === vm.selectedCategory.id }"
+          data-ng-repeat="category in service.getAll()| orderBy:vm.sortColumn:vm.sortDirection"
+          data-ng-class="{ info: category.title === vm.selectedCategory.title }"
           >
           <td>{{ category.id|toDecimal}}</td>
           <td>{{ category.title}}</td>
@@ -50,6 +50,7 @@
         <div><input data-ng-model="vm.selectedCategory.slug" name="categorySlug" /></div>
         <div><label for="categoryColor">Color</label></div>
         <div><input data-ng-model="vm.selectedCategory.color" name="categoryColor" /></div>
+        <div><button data-ng-click="service.save(vm.selectedCategory)">Save</button></div>
       </form>
     </div>
 

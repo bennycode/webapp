@@ -1,19 +1,11 @@
-function arrayize(data) {
-  if (angular.isArray(data)) {
-    return data;
-  } else {
-    return [data];
-  }
-}
-
 var wlc = window.wlc || {};
 wlc.webapp = wlc.webapp || {};
-wlc.webapp.CategoryViewModel = function ($http) {
+wlc.webapp.CategoryViewModel = function () {
   this.message = "Hello World";
 
   // Selection
   this.categories = [];
-  this.selectedCategory = null;
+  this.selectedCategory = undefined;
 
   this.selectCategory = function (category) {
     this.selectedCategory = category;
@@ -31,18 +23,4 @@ wlc.webapp.CategoryViewModel = function ($http) {
       this.sortDirection = false;
     }
   };
-
-  var self = this;
-
-  $http.get('api/v1/categories')
-    .then(function (result) {
-      var categories = arrayize(result.data);
-      categories.forEach(function (categoryPayload, index) {
-        categoryPayload.id = index;
-        self.categories.push(new wlc.webapp.Category(categoryPayload));
-      });
-    })
-    .catch(function (result) {
-      console.log('Error', result);
-    });
 };

@@ -1,22 +1,27 @@
 angular.module("wlc.webapp.service", ["ngResource"])
   .constant("baseUrl", "/api/v1/categories/:slug")
   .factory("CategoryService", function ($resource, baseUrl) {
-    var CategoryResource = $resource(baseUrl);
+    var endpoint = $resource(baseUrl);
+    var categoryResources = [];
 
-    var createCategory = function (category) {
-      category.$save();
-      console.log('Saved category.');
-    };
-
-    var deleteCategory = function (category) {
-      CategoryResource.delete({slug: category.slug}, function () {
-        console.log('Deleted category.');
+    var fetchAll = function () {
+      endpoint.query(function (data) {
+        categoryResources = data;
+        console.log('Fetched all category resources.', categoryResources);
       });
     };
 
+    var saveCategory = function (categoryResource) {
+      console.log('Saving category', categoryResource);
+      categoryResource.$save();
+    };
+
     return {
-      createCategory: createCategory,
-      deleteCategory: deleteCategory
+      fetchAll: fetchAll,
+      getAll: function () {
+        return categoryResources;
+      },
+      save: saveCategory
     };
 
   });
