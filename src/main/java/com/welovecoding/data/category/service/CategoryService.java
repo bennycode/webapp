@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.welovecoding.ParameterValidator.isNull;
+import static com.welovecoding.ParameterValidator.notEmpty;
 import static com.welovecoding.ParameterValidator.notNull;
 import static com.welovecoding.data.base.EntityValidator.validateEntity;
 
@@ -64,6 +65,14 @@ public class CategoryService {
     } else {
       getRepository().delete(id);
     }
+  }
+
+  public void delete(String categorySlug) throws NoEntityToDeleteFoundException {
+    notNull(categorySlug, new IllegalArgumentException("Slug is null"));
+    notEmpty(categorySlug, new IllegalArgumentException("Slug is empty"));
+    Category entity = findBySlug(categorySlug);
+    notNull(entity, new IllegalArgumentException("Entity is null"));
+    delete(entity.getId());
   }
 
   public Category findBySlug(String slug) {
