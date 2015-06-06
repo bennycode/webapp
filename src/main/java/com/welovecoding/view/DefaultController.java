@@ -27,14 +27,4 @@ public class DefaultController {
     return new ModelAndView("snoop");
   }
 
-  @RequestMapping(value = "/login", method = RequestMethod.GET)
-  public String showLoginPage() {
-    return "user/login";
-  }
-
-  @RequestMapping(value = "/signup", method = RequestMethod.GET)
-  public String redirectRequestToRegistrationPage() {
-    return "redirect:/user/register";
-  }
-
 }

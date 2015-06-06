@@ -34,9 +34,7 @@ public class UserFactory {
         "mail1@mail.com",
         "firstname1",
         "lastname1",
-        "password1",
-        Role.ROLE_USER,
-        SocialMediaService.FACEBOOK
+        "password1"
       );
     }
     return null;
@@ -58,9 +56,7 @@ public class UserFactory {
           "mail" + i + "@mail.com",
           "firstname" + i,
           "lastname" + i,
-          "password" + i,
-          Role.ROLE_USER,
-          SocialMediaService.FACEBOOK
+          "password" + i
         ));
       }
     }

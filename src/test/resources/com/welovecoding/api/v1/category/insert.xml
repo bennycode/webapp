@@ -6,7 +6,6 @@
         SLUG="slug1"
         FIRST_NAME="firstname1"
         LAST_NAME="lastname1"
-        ROLE="ROLE_USER"
         USERNAME="username1"
         EMAIL="mail1"/>
   <CATEGORY ID="1"
