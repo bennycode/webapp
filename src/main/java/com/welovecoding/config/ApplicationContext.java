@@ -15,7 +15,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
   "com.welovecoding.data.user.service",
   "com.welovecoding.data.post.service"
 })
-@Import({WebContext.class, PersistenceContext.class, /*SecurityContext.class,*/ SocialContext.class})
+@Import({WebContext.class, PersistenceContext.class})
 public class ApplicationContext {
 
   private static final String MESSAGE_SOURCE_BASE_NAME = "i18n/en_GB";

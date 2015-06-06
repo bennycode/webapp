@@ -2,7 +2,9 @@ package com.welovecoding.data.user.entity;
 
 import com.welovecoding.data.base.SlugBaseEntity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -27,26 +29,16 @@ public class User extends SlugBaseEntity<Long> {
   @Column(name = "password", length = 255)
   private String password;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "role", length = 20, nullable = false)
-  private Role role;
-
-  @Enumerated(EnumType.STRING)
-  @Column(name = "sign_in_provider", length = 20)
-  private SocialMediaService signInProvider;
-
   public User() {
   }
 
-  User(Long id, Date created, Date lastModified, String slug, String username, String email, String firstName, String lastName, String password, Role role, SocialMediaService signInProvider) {
+  User(Long id, Date created, Date lastModified, String slug, String username, String email, String firstName, String lastName, String password) {
     super(id, created, lastModified, slug);
     this.username = username;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
     this.password = password;
-    this.role = role;
-    this.signInProvider = signInProvider;
   }
 
   @Override
@@ -103,22 +95,6 @@ public class User extends SlugBaseEntity<Long> {
     this.password = password;
   }
 
-  public Role getRole() {
-    return role;
-  }
-
-  public void setRole(Role role) {
-    this.role = role;
-  }
-
-  public SocialMediaService getSignInProvider() {
-    return signInProvider;
-  }
-
-  public void setSignInProvider(SocialMediaService signInProvider) {
-    this.signInProvider = signInProvider;
-  }
-
 
   public static class Builder {
 
@@ -126,16 +102,10 @@ public class User extends SlugBaseEntity<Long> {
 
     public Builder() {
       user = new User();
-      user.role = Role.ROLE_USER;
     }
 
     public Builder id(Long id) {
       user.setId(id);
-      return this;
-    }
-
-    public Builder role(Role role) {
-      user.role = role;
       return this;
     }
 
@@ -156,11 +126,6 @@ public class User extends SlugBaseEntity<Long> {
 
     public Builder password(String password) {
       user.password = password;
-      return this;
-    }
-
-    public Builder signInProvider(SocialMediaService signInProvider) {
-      user.signInProvider = signInProvider;
       return this;
     }
 
