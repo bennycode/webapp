@@ -9,13 +9,23 @@
     "jquery": "git://github.com/jquery/jquery.git#2.1.4"
   },
   "install": {
-    "path": "src/main/webapp/WEB-INF/resources/libs",
+    "path": "src/main/resources/public/resources/libs",
     "sources": {
-      "angular": ["bower_components/angular/angular.{js,min.js,min.js.map}"],
-      "angular-resource": ["bower_components/angular-resource/angular-resource.{js,min.js,min.js.map}"],
-      "bootstrap": ["bower_components/bootstrap/dist/**"],
-      "es5-shim": ["bower_components/es5-shim/es5-shim.{js,min.js,map}"],
-      "jquery": ["bower_components/jquery/dist/*.*"]
+      "angular": [
+        "bower_components/angular/angular.{js,min.js,min.js.map}"
+      ],
+      "angular-resource": [
+        "bower_components/angular-resource/angular-resource.{js,min.js,min.js.map}"
+      ],
+      "bootstrap": [
+        "bower_components/bootstrap/dist/**"
+      ],
+      "es5-shim": [
+        "bower_components/es5-shim/es5-shim.{js,min.js,map}"
+      ],
+      "jquery": [
+        "bower_components/jquery/dist/*.*"
+      ]
     }
   }
 }
