@@ -7,7 +7,7 @@ webapps/**
 
 ### Bower ###
 bower_components/
-src/main/resources/public/resources/libs/**/*
+#src/main/resources/public/resources/libs/**/*
 
 ### NetBeans ###
 nbproject/private/
