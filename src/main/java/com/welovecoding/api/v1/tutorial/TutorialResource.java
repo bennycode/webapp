@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.Produces;
-
 import static com.welovecoding.api.v1.tutorial.TutorialMapper.entityToDto;
 
 
 @RestController
 @RequestMapping("/api/v1/categories/{categorySlug}")
-@Produces("application/json")
+//@Produces("application/json")
 public class TutorialResource {
 
   private final TutorialService tutorialService;

@@ -1,9 +1,9 @@
 package com.welovecoding.api.v1.tutorial;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.welovecoding.api.v1.base.SlugBaseDTO;
 import com.welovecoding.data.tutorial.entity.Difficulty;
 import com.welovecoding.data.tutorial.entity.LanguageCode;
-import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
 import java.util.Date;
 import java.util.List;

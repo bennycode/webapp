@@ -1,8 +1,8 @@
 package com.welovecoding.api.v1.category;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.welovecoding.api.v1.base.SlugBaseDTO;
 import com.welovecoding.api.v1.tutorial.TutorialDTO;
-import org.codehaus.jackson.annotate.JsonPropertyOrder;
 
 import java.util.ArrayList;
 import java.util.Date;

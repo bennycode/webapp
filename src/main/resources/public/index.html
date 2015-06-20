@@ -45,12 +45,14 @@
 
       <form>
         <div><label for="categoryTitle">Title</label></div>
-        <div><input data-ng-model="vm.selectedCategory.title" name="categoryTitle" /></div>
+        <div><input data-ng-model="vm.selectedCategory.title" name="categoryTitle"/></div>
         <div><label for="categorySlug">Slug</label></div>
-        <div><input data-ng-model="vm.selectedCategory.slug" name="categorySlug" /></div>
+        <div><input data-ng-model="vm.selectedCategory.slug" name="categorySlug"/></div>
         <div><label for="categoryColor">Color</label></div>
-        <div><input data-ng-model="vm.selectedCategory.color" name="categoryColor" /></div>
-        <div><button data-ng-click="service.save(vm.selectedCategory)">Save</button></div>
+        <div><input data-ng-model="vm.selectedCategory.color" name="categoryColor"/></div>
+        <div>
+          <button data-ng-click="service.save(vm.selectedCategory)">Save</button>
+        </div>
       </form>
     </div>
 

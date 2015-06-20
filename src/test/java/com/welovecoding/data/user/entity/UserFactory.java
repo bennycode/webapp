@@ -34,7 +34,8 @@ public class UserFactory {
         "mail1@mail.com",
         "firstname1",
         "lastname1",
-        "password1"
+        "password1",
+        Role.ROLE_USER
       );
     }
     return null;
@@ -56,7 +57,8 @@ public class UserFactory {
           "mail" + i + "@mail.com",
           "firstname" + i,
           "lastname" + i,
-          "password" + i
+          "password" + i,
+          Role.ROLE_USER
         ));
       }
     }

@@ -48,6 +48,7 @@ public class PersistenceContext {
 
   @Bean
   public DataSource dataSource() {
+
     BoneCPDataSource dataSource = new BoneCPDataSource();
     dataSource.setDriverClass(env.getProperty("wlc.database.driver.classname"));
     dataSource.setJdbcUrl(env.getProperty("wlc.database.url"));
@@ -65,14 +66,14 @@ public class PersistenceContext {
   }
 
   @Bean
-  public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+  public static PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
     JpaTransactionManager transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(emf);
     return transactionManager;
   }
 
   @Bean
-  public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+  public static PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
     return new PersistenceExceptionTranslationPostProcessor();
   }
 
