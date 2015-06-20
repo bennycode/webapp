@@ -30,3 +30,5 @@ build.properties
 
 ### Secrests ###
 id_rsa
+
+pom.xml

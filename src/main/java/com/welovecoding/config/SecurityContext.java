@@ -1,10 +1,8 @@
 package com.welovecoding.config;
 
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 //@Configuration
 //@EnableWebSecurity
-public class SecurityContext extends WebSecurityConfigurerAdapter {
+public class SecurityContext /*extends WebSecurityConfigurerAdapter*/ {
 
 //  @Autowired
 //  private UserRepository userRepository;

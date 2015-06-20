@@ -19,8 +19,6 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -45,7 +43,7 @@ import java.util.Properties;
 public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
 
   @Bean
-  public DataSource dataSource() {
+  public static DataSource dataSource() {
     DataSource dataSource = new EmbeddedDatabaseBuilder()
       .setType(EmbeddedDatabaseType.H2)
       .setScriptEncoding("UTF-8")
@@ -71,21 +69,21 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
    * @return
    */
   @Bean
-  public DatabaseConfigBean dbUnitDatabaseConfig() {
+  public static DatabaseConfigBean dbUnitDatabaseConfig() {
     DatabaseConfigBean dbConfig = new com.github.springtestdbunit.bean.DatabaseConfigBean();
     dbConfig.setDatatypeFactory(new org.dbunit.ext.h2.H2DataTypeFactory());
     return dbConfig;
   }
 
   @Bean
-  public DatabaseDataSourceConnectionFactoryBean dbUnitDatabaseConnection() {
+  public static DatabaseDataSourceConnectionFactoryBean dbUnitDatabaseConnection() {
     DatabaseDataSourceConnectionFactoryBean dbConnection = new com.github.springtestdbunit.bean.DatabaseDataSourceConnectionFactoryBean(dataSource());
     dbConnection.setDatabaseConfig(dbUnitDatabaseConfig());
     return dbConnection;
   }
 
   @Bean
-  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+  public static LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
     em.setDataSource(dataSource());
     // scan for entities
@@ -113,25 +111,25 @@ public class IntegrationTestConfiguration extends WebMvcConfigurerAdapter {
   }
 
   @Bean
-  public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+  public static PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
     JpaTransactionManager transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(emf);
     return transactionManager;
   }
 
   @Bean
-  public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+  public static PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
     return new PersistenceExceptionTranslationPostProcessor();
   }
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder(10);
-  }
+//  @Bean
+//  public static PasswordEncoder passwordEncoder() {
+//    return new BCryptPasswordEncoder(10);
+//  }
 
 //  http://stackoverflow.com/questions/26384930/how-to-add-n-before-each-spring-json-response-to-prevent-common-vulnerab
 //  @Override
-//  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//  public static void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 //    MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
 //    converter.setJsonPrefix(")]}',\n");
 //    converters.add(converter);

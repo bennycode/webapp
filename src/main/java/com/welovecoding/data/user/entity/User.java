@@ -31,14 +31,11 @@ public class User extends SlugBaseEntity<Long> {
   @Column(name = "role", length = 20, nullable = false)
   private Role role;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "sign_in_provider", length = 20)
-  private SocialMediaService signInProvider;
 
   public User() {
   }
 
-  User(Long id, Date created, Date lastModified, String slug, String username, String email, String firstName, String lastName, String password, Role role, SocialMediaService signInProvider) {
+  User(Long id, Date created, Date lastModified, String slug, String username, String email, String firstName, String lastName, String password, Role role) {
     super(id, created, lastModified, slug);
     this.username = username;
     this.email = email;
@@ -46,7 +43,6 @@ public class User extends SlugBaseEntity<Long> {
     this.lastName = lastName;
     this.password = password;
     this.role = role;
-    this.signInProvider = signInProvider;
   }
 
   @Override
@@ -65,10 +61,6 @@ public class User extends SlugBaseEntity<Long> {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public static Builder getBuilder() {
-    return new Builder();
   }
 
   public String getEmail() {
@@ -111,61 +103,4 @@ public class User extends SlugBaseEntity<Long> {
     this.role = role;
   }
 
-  public SocialMediaService getSignInProvider() {
-    return signInProvider;
-  }
-
-  public void setSignInProvider(SocialMediaService signInProvider) {
-    this.signInProvider = signInProvider;
-  }
-
-
-  public static class Builder {
-
-    private User user;
-
-    public Builder() {
-      user = new User();
-      user.role = Role.ROLE_USER;
-    }
-
-    public Builder id(Long id) {
-      user.setId(id);
-      return this;
-    }
-
-    public Builder role(Role role) {
-      user.role = role;
-      return this;
-    }
-
-    public Builder email(String email) {
-      user.email = email;
-      return this;
-    }
-
-    public Builder firstName(String firstName) {
-      user.firstName = firstName;
-      return this;
-    }
-
-    public Builder lastName(String lastName) {
-      user.lastName = lastName;
-      return this;
-    }
-
-    public Builder password(String password) {
-      user.password = password;
-      return this;
-    }
-
-    public Builder signInProvider(SocialMediaService signInProvider) {
-      user.signInProvider = signInProvider;
-      return this;
-    }
-
-    public User build() {
-      return user;
-    }
-  }
 }

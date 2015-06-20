@@ -47,12 +47,13 @@ public class PersistenceContext {
   private Environment env;
 
   @Bean
-  public DataSource dataSource() {
+  public static DataSource dataSource() {
+
     BoneCPDataSource dataSource = new BoneCPDataSource();
-    dataSource.setDriverClass(env.getProperty("wlc.database.driver.classname"));
-    dataSource.setJdbcUrl(env.getProperty("wlc.database.url"));
-    dataSource.setUsername(env.getProperty("wlc.database.username"));
-    dataSource.setPassword(env.getProperty("wlc.database.password"));
+    dataSource.setDriverClass("com.mysql.jdbc.Driver");
+    dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/webapp");
+    dataSource.setUsername("root");
+    dataSource.setPassword("");
 
     dataSource.setIdleConnectionTestPeriodInMinutes(240);
     dataSource.setIdleMaxAgeInMinutes(60);
@@ -65,19 +66,19 @@ public class PersistenceContext {
   }
 
   @Bean
-  public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+  public static PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
     JpaTransactionManager transactionManager = new JpaTransactionManager();
     transactionManager.setEntityManagerFactory(emf);
     return transactionManager;
   }
 
   @Bean
-  public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
+  public static PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
     return new PersistenceExceptionTranslationPostProcessor();
   }
 
   @Bean
-  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+  public static LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
     em.setDataSource(dataSource());
     // scan for entities

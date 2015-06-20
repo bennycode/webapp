@@ -35,8 +35,7 @@ public class UserFactory {
         "firstname1",
         "lastname1",
         "password1",
-        Role.ROLE_USER,
-        SocialMediaService.FACEBOOK
+        Role.ROLE_USER
       );
     }
     return null;
@@ -59,8 +58,7 @@ public class UserFactory {
           "firstname" + i,
           "lastname" + i,
           "password" + i,
-          Role.ROLE_USER,
-          SocialMediaService.FACEBOOK
+          Role.ROLE_USER
         ));
       }
     }
