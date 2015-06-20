@@ -1,25 +1,22 @@
 package com.welovecoding.api.v1.category;
 
-import static com.welovecoding.api.v1.category.CategoryMapper.dtoToEntity;
+import com.welovecoding.data.base.exception.NoEntityToDeleteFoundException;
+import com.welovecoding.data.base.exception.NoEntityToUpdateFoundException;
 import com.welovecoding.data.category.entity.Category;
 import com.welovecoding.data.category.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Produces;
 import java.util.List;
 
-import static com.welovecoding.api.v1.category.CategoryMapper.entityListToDtoList;
-import static com.welovecoding.api.v1.category.CategoryMapper.entityToDto;
-import com.welovecoding.data.base.exception.NoEntityToDeleteFoundException;
-import com.welovecoding.data.base.exception.NoEntityToUpdateFoundException;
-import org.springframework.http.MediaType;
+import static com.welovecoding.api.v1.category.CategoryMapper.*;
 
 @RestController
 @RequestMapping("/api/v1/categories")
-@Produces("application/json")
+//@Produces("application/json")
 public class CategoryResource {
 
   private final CategoryService categoryService;

@@ -2,9 +2,7 @@ package com.welovecoding.data.user.entity;
 
 import com.welovecoding.data.base.SlugBaseEntity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -29,16 +27,22 @@ public class User extends SlugBaseEntity<Long> {
   @Column(name = "password", length = 255)
   private String password;
 
+  @Enumerated(EnumType.STRING)
+  @Column(name = "role", length = 20, nullable = false)
+  private Role role;
+
+
   public User() {
   }
 
-  User(Long id, Date created, Date lastModified, String slug, String username, String email, String firstName, String lastName, String password) {
+  User(Long id, Date created, Date lastModified, String slug, String username, String email, String firstName, String lastName, String password, Role role) {
     super(id, created, lastModified, slug);
     this.username = username;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
     this.password = password;
+    this.role = role;
   }
 
   @Override
@@ -57,10 +61,6 @@ public class User extends SlugBaseEntity<Long> {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public static Builder getBuilder() {
-    return new Builder();
   }
 
   public String getEmail() {
@@ -95,42 +95,12 @@ public class User extends SlugBaseEntity<Long> {
     this.password = password;
   }
 
-
-  public static class Builder {
-
-    private User user;
-
-    public Builder() {
-      user = new User();
-    }
-
-    public Builder id(Long id) {
-      user.setId(id);
-      return this;
-    }
-
-    public Builder email(String email) {
-      user.email = email;
-      return this;
-    }
-
-    public Builder firstName(String firstName) {
-      user.firstName = firstName;
-      return this;
-    }
-
-    public Builder lastName(String lastName) {
-      user.lastName = lastName;
-      return this;
-    }
-
-    public Builder password(String password) {
-      user.password = password;
-      return this;
-    }
-
-    public User build() {
-      return user;
-    }
+  public Role getRole() {
+    return role;
   }
+
+  public void setRole(Role role) {
+    this.role = role;
+  }
+
 }
