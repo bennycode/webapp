@@ -47,13 +47,13 @@ public class PersistenceContext {
   private Environment env;
 
   @Bean
-  public static DataSource dataSource() {
+  public DataSource dataSource() {
 
     BoneCPDataSource dataSource = new BoneCPDataSource();
-    dataSource.setDriverClass("com.mysql.jdbc.Driver");
-    dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/webapp");
-    dataSource.setUsername("root");
-    dataSource.setPassword("");
+    dataSource.setDriverClass(env.getProperty("wlc.database.driver.classname"));
+    dataSource.setJdbcUrl(env.getProperty("wlc.database.url"));
+    dataSource.setUsername(env.getProperty("wlc.database.username"));
+    dataSource.setPassword(env.getProperty("wlc.database.password"));
 
     dataSource.setIdleConnectionTestPeriodInMinutes(240);
     dataSource.setIdleMaxAgeInMinutes(60);
@@ -78,7 +78,7 @@ public class PersistenceContext {
   }
 
   @Bean
-  public static LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
     em.setDataSource(dataSource());
     // scan for entities

@@ -10,14 +10,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Produces;
 import java.util.List;
 
 import static com.welovecoding.api.v1.category.CategoryMapper.*;
 
 @RestController
 @RequestMapping("/api/v1/categories")
-@Produces("application/json")
+//@Produces("application/json")
 public class CategoryResource {
 
   private final CategoryService categoryService;
