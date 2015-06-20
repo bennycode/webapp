@@ -7,11 +7,7 @@ webapps/**
 
 ### Bower ###
 bower_components/
-src/main/webapp/WEB-INF/resources/libs
-src/main/webapp/WEB-INF/resources/**/LICENSE
-src/main/webapp/WEB-INF/resources/**/bower.json
-src/main/webapp/WEB-INF/resources/**/package.json
-src/main/webapp/WEB-INF/resources/**/README.md
+src/main/resources/public/resources/libs/**/*
 
 ### NetBeans ###
 nbproject/private/
