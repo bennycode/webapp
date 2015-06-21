@@ -19,7 +19,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
   "com.welovecoding.data.user.service",
   "com.welovecoding.data.post.service"
 })
-@Import({PersistenceContext.class, APIContext.class})
+@Import({PersistenceContext.class, APIContext.class, AuthConfig.class})
 public class ApplicationContext extends SpringBootServletInitializer {
 
   public static void main(String[] args) throws Exception {
