@@ -27,7 +27,7 @@ public class MethodLoggerInterceptor {
   public MethodLoggerInterceptor() {
   }
 
-  @Pointcut("@within(com.welovecoding.api.v1.base.Logged)")
+  @Pointcut("@annotation(com.welovecoding.api.v1.base.Logged)")
   public void onlyLoggedAnnotatedTypes() {
   }
 
@@ -36,12 +36,12 @@ public class MethodLoggerInterceptor {
   }
 
   /**
-   * logging of genaral information about actual classname methodname and
+   * Logging of genaral information about actual classname methodname and
    * params.
    *
-   * @param pjp
-   * @return
-   * @throws Throwable
+   * @param pjp ProceedingJoinPoint for execution of intercepted method
+   * @return result of the executed method
+   * @throws Throwable Thrown exception of the executed method
    */
   @Around("onlyLoggedAnnotatedTypes()")
   public Object intercept(final ProceedingJoinPoint pjp) throws Throwable {
@@ -53,22 +53,6 @@ public class MethodLoggerInterceptor {
     log.append(" + Class: ").append(method.getDeclaringClass().getSimpleName()).append("\n");
     log.append(" -    Method: ").append(method.getName()).append("\n");
 
-//    if (method.getParameters() != null) {
-//      Annotation[][] annos = method.getParameterAnnotations();
-//      Object[] params = method.getParameters();
-//      for (int i = 0; i < annos.length; i++) {
-//
-//        for (int j = 0; j < annos[i].length; j++) {
-//          Annotation annotation = annos[i][j];
-//          log.append(" -       Annotation for Param ").append(i + 1).append(": ").append(annotation.annotationType()).append("\n");
-//        }
-//
-//        if (params[i] != null) {
-//          log.append(" -       Param ").append(i + 1).append(": (").append(params[i].getClass().getSimpleName()).append(") ").append(params[i]).append("\n");
-//        } else {
-//          log.append(" -       Param ").append(i + 1).append(": () ").append(params[i]).append("\n");
-//        }
-//      }
     if (method.getParameterTypes() != null) {
 
       Annotation[][] annos = method.getParameterAnnotations();
@@ -77,13 +61,13 @@ public class MethodLoggerInterceptor {
 
         for (int j = 0; j < annos[i].length; j++) {
           Annotation annotation = annos[i][j];
-          log.append(" -       Annotation for Param ").append(i + 1).append(": ").append(annotation.annotationType()).append("\n");
+          log.append(" -       Annotation for Param ").append(i + 1).append(": @").append(annotation.annotationType().getSimpleName()).append("\n");
         }
 
         if (params[i] != null) {
-          log.append(" -       Param ").append(i + 1).append(": (").append(params[i].getSimpleName()).append(") ").append(params[i]).append("\n");
+          log.append(" -       Param ").append(i + 1).append(": (").append(params[i].getSimpleName()).append(") ").append(pjp.getArgs()[i]).append("\n");
         } else {
-          log.append(" -       Param ").append(i + 1).append(": () ").append(params[i]).append("\n");
+          log.append(" -       Param ").append(i + 1).append(": () ").append(pjp.getArgs()[i]).append("\n");
         }
       }
     }

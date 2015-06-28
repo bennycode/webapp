@@ -1,5 +1,6 @@
 package com.welovecoding.api.v1.category;
 
+import com.welovecoding.api.v1.base.Logged;
 import com.welovecoding.data.base.exception.NoEntityToDeleteFoundException;
 import com.welovecoding.data.base.exception.NoEntityToUpdateFoundException;
 import com.welovecoding.data.category.entity.Category;
@@ -16,7 +17,6 @@ import static com.welovecoding.api.v1.category.CategoryMapper.*;
 
 @RestController
 @RequestMapping("/api/v1/categories")
-//@Produces("application/json")
 public class CategoryResource {
 
   private final CategoryService categoryService;
@@ -59,13 +59,11 @@ public class CategoryResource {
     categoryService.delete(categorySlug);
   }
 
+  @Logged
   @RequestMapping(value = "", method = RequestMethod.GET)
   public List<CategoryDTO> findAllCategories(
     @RequestParam(value = "direction", required = false) String direction,
     @RequestParam(value = "attribute", required = false) String attribute) {
-
-    System.out.println(direction);
-    System.out.println(attribute);
 
     Sort.Direction defaultDirection = Sort.Direction.ASC;
     String defaultAttribute = "id";
@@ -77,9 +75,6 @@ public class CategoryResource {
     if (attribute != null) {
       defaultAttribute = attribute;
     }
-
-    System.out.println(defaultDirection);
-    System.out.println(defaultAttribute);
 
     Page<Category> allAndSortBy = categoryService.findAllAndSortBy(defaultDirection, defaultAttribute);
     return entityListToDtoList(allAndSortBy.getContent(), 2);
