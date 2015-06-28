@@ -16,9 +16,12 @@ mvn package
 # with spring-boot-maven-plugin
 mvn spring-boot:run -Pdev
 
-# as executable jar
+# as executable war
 mvn clean package -Pdev
 java -jar target/*.war
+
+# create deployable war
+mvn clean package -Pdeployable
 ```
 
 ## Environment
