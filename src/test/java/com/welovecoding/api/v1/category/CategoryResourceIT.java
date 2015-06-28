@@ -11,6 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -23,10 +25,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -41,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
   DbUnitTestExecutionListener.class})
 public class CategoryResourceIT {
 
-  private static final Logger LOG = Logger.getLogger(CategoryResourceIT.class.getName());
+  private static final Logger LOG = LoggerFactory.getLogger(CategoryResourceIT.class.getName());
 
   @Rule
   public TestName name = new TestName();
@@ -57,10 +55,8 @@ public class CategoryResourceIT {
     DatabaseDataSourceConnection datasource = (DatabaseDataSourceConnection) webApplicationContext.getBean("dbUnitDatabaseConnection");
     try {
       SchemaDumper.dumpSchema("testdb", datasource.getConnection());
-    } catch (SQLException ex) {
-      LOG.log(Level.SEVERE, null, ex);
     } catch (Exception ex) {
-      LOG.log(Level.SEVERE, null, ex);
+      LOG.error(null, ex);
     }
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }

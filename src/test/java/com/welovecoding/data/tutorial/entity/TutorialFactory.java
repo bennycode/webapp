@@ -2,25 +2,21 @@ package com.welovecoding.data.tutorial.entity;
 
 
 import com.welovecoding.data.category.entity.CategoryFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TutorialFactory {
 
-  private static final Logger LOG = Logger.getLogger(TutorialFactory.class.getName());
+  private static final Logger LOG = LoggerFactory.getLogger(TutorialFactory.class.getName());
 
   public static final Date FIXED_DATE = new Date(1000L);
 
-  static {
-    LOG.setLevel(Level.INFO);
-  }
-
   public static Tutorial constructOne(Integer id, int dept) {
-    LOG.log(Level.FINE, "Constructing Tutorial");
+    LOG.info("Constructing Tutorial");
     Long longId = null;
     dept--;
     if (dept > -1) {
@@ -45,7 +41,7 @@ public class TutorialFactory {
   }
 
   public static Tutorial constructWithNullValues(Integer id) {
-    LOG.log(Level.FINE, "Constructing Tutorial With Null Values");
+    LOG.info("Constructing Tutorial With Null Values");
     Long longId = null;
     if (id != null) {
       longId = new Long(id);
@@ -66,11 +62,11 @@ public class TutorialFactory {
   }
 
   public static List<Tutorial> constructList(int size, int startId, int dept) {
-    LOG.log(Level.FINE, "Constructing Tutorial List");
+    LOG.info("Constructing Tutorial List");
     List<Tutorial> tutorials = new ArrayList<>();
     dept--;
     if (dept > -1) {
-      for (int i = 0 + startId; i < (size + startId); i++) {
+      for (int i = startId; i < (size + startId); i++) {
         List<Author> set = new ArrayList<>();
         if (dept > -1) {
           set = AuthorFactory.constructList(10, i, dept);

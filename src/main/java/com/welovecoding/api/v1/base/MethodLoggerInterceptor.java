@@ -5,14 +5,14 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * This Interceptor is responsible for logging genaral information about actual
@@ -47,7 +47,7 @@ public class MethodLoggerInterceptor {
   public Object intercept(final ProceedingJoinPoint pjp) throws Throwable {
     Method method = ((MethodSignature) pjp.getSignature()).getMethod();
 
-    Logger LOG = Logger.getLogger(method.getDeclaringClass().getName());
+    Logger LOG = LoggerFactory.getLogger(method.getDeclaringClass().getName());
     StringBuilder log = new StringBuilder("---------------------------------------------------------\n");
 
     log.append(" + Class: ").append(method.getDeclaringClass().getSimpleName()).append("\n");
@@ -88,14 +88,14 @@ public class MethodLoggerInterceptor {
       }
     }
 
-    Object retVal = null;
+    Object retVal;
     try {
       retVal = pjp.proceed(pjp.getArgs());
       log.append(" -       ReturnValue ").append(": ").append(retVal);
-      LOG.log(Level.INFO, log.toString());
+      LOG.info(log.toString());
     } catch (Exception e) {
       log.append(" -       Threw Exception ").append(": ").append(e.getClass().getSimpleName());
-      LOG.log(Level.SEVERE, log.toString());
+      LOG.info(log.toString());
       throw e;
     }
 

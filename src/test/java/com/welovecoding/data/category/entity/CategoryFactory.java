@@ -3,25 +3,22 @@ package com.welovecoding.data.category.entity;
 
 import com.welovecoding.data.tutorial.entity.Tutorial;
 import com.welovecoding.data.tutorial.entity.TutorialFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CategoryFactory {
 
-  private static final Logger LOG = Logger.getLogger(CategoryFactory.class.getName());
+  private static final Logger LOG = LoggerFactory.getLogger(CategoryFactory.class.getName());
 
   public static final Date FIXED_DATE = new Date(1000L);
 
-  static {
-    LOG.setLevel(Level.INFO);
-  }
 
   public static Category constructOne(Integer id, int dept) {
-    LOG.log(Level.FINE, "Constructing Category");
+    LOG.info("Constructing Category");
     Long longId = null;
     dept--;
     if (dept > -1) {
@@ -34,7 +31,7 @@ public class CategoryFactory {
   }
 
   public static Category constructOneWithNullValues(Integer id) {
-    LOG.log(Level.FINE, "Constructing Video With Null Values");
+    LOG.info("Constructing Video With Null Values");
     Long longId = null;
     if (id != null) {
       longId = new Long(id);
@@ -43,11 +40,11 @@ public class CategoryFactory {
   }
 
   public static List<Category> constructList(int size, int startId, int dept) {
-    LOG.log(Level.FINE, "Constructing Category List");
+    LOG.info("Constructing Category List");
     List<Category> categories = new ArrayList<>();
     dept--;
     if (dept > -1) {
-      for (int i = 0 + startId; i < (size + startId); i++) {
+      for (int i = startId; i < (size + startId); i++) {
         List<Tutorial> list = new ArrayList<>();
         if (dept > -1) {
           list = TutorialFactory.constructList(10, i, dept);

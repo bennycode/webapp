@@ -2,25 +2,21 @@ package com.welovecoding.data.tutorial.entity;
 
 
 import com.welovecoding.data.user.entity.UserFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AuthorFactory {
 
-  private static final Logger LOG = Logger.getLogger(AuthorFactory.class.getName());
+  private static final Logger LOG = LoggerFactory.getLogger(AuthorFactory.class.getName());
 
   public static final Date FIXED_DATE = new Date(1000L);
 
-  static {
-    LOG.setLevel(Level.INFO);
-  }
-
   public static Author constructOne(Integer id, int dept) {
-    LOG.log(Level.FINE, "Constructing Author");
+    LOG.info("Constructing Author");
     Long longId = null;
     dept--;
     if (dept > -1) {
@@ -44,11 +40,11 @@ public class AuthorFactory {
 
 
   public static List<Author> constructList(int size, int startId, int dept) {
-    LOG.log(Level.FINE, "Constructing Author List");
+    LOG.info("Constructing Author List");
     List<Author> list = new ArrayList<>();
     dept--;
     if (dept > -1) {
-      for (int i = 0 + startId; i < (size + startId); i++) {
+      for (int i = startId; i < (size + startId); i++) {
         list.add(new Author(
           new Long(i),
           FIXED_DATE,
