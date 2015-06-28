@@ -4,6 +4,7 @@ out/
 deployments/**/*.*
 .dpl/
 webapps/**
+webapp.log
 
 ### Bower ###
 bower_components/
