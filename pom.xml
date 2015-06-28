@@ -66,9 +66,9 @@
     <tomcat.version>7.0.61</tomcat.version>
 
     <!-- Local settings -->
-    <wlc.database.driver.classname>org.h2.Driver</wlc.database.driver.classname>
-    <wlc.database.url>jdbc:h2:mem:testdb;DB_CLOSE_DELAY=30;DB_CLOSE_ON_EXIT=false</wlc.database.url>
-    <wlc.database.username>sa</wlc.database.username>
+    <wlc.database.driver.classname>com.mysql.jdbc.Driver</wlc.database.driver.classname>
+    <wlc.database.url>jdbc:mysql://localhost:3306/webapp</wlc.database.url>
+    <wlc.database.username>root</wlc.database.username>
     <wlc.database.password></wlc.database.password>
   </properties>
 
@@ -297,13 +297,6 @@
       <!-- By default that is to put the resulting archive into the 'webapps' folder. -->
       <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
       <id>openshift</id>
-
-      <properties>
-        <wlc.database.driver.classname>com.mysql.jdbc.Driver</wlc.database.driver.classname>
-        <wlc.database.url>jdbc:mysql://localhost:3306/webapp</wlc.database.url>
-        <wlc.database.username>root</wlc.database.username>
-        <wlc.database.password></wlc.database.password>
-      </properties>
 
       <dependencies>
         <dependency>
