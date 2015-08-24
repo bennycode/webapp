@@ -24,6 +24,10 @@ java -jar target/*.war
 mvn clean package -Pdeployable
 ```
 
+## Presence
+
+- http://localhost:8080/
+
 ## Environment
 
 - [JBoss EWS 2.1.0](https://access.redhat.com/articles/111723) (Tomcat 7.0.54, OpenJDK 7)
