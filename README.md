@@ -24,9 +24,10 @@ java -jar target/*.war
 mvn clean package -Pdeployable
 ```
 
-## Presence
+## Deployment
 
 - http://localhost:8080/
+- http://www.wlc.rocks/
 
 ## Environment
 
