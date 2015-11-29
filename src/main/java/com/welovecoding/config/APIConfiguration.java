@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 })
 @EnableAspectJAutoProxy
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
-public class APIContext extends WebMvcConfigurerAdapter {
+public class APIConfiguration extends WebMvcConfigurerAdapter {
 
 
 }

@@ -1,0 +1,57 @@
+spring:
+    profiles:
+        active: prod
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false
+    datasource:
+        driver-class-name: @wlc.datasource.driver.classname@
+        url: @wlc.datasource.url@
+        username: @wlc.datasource.username@
+        password: @wlc.datasource.password@
+    jpa:
+        database-platform: org.hibernate.dialect.MySQLInnoDBDialect
+        database: MYSQL
+        show_sql: false
+        properties:
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+    mail:
+        host: @wlc.mail.host@
+        port: @wlc.mail.port@
+        user: noreply@welovecoding.com
+        password: @wlc.mail.password@
+        protocol: smtp
+        tls: false
+        auth: true
+    thymeleaf:
+        cache: true
+
+server:
+    port: 8080
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+
+# ===================================================================
+# WeLoveCoding specific properties
+# ===================================================================
+
+wlc:
+    http:
+        cache: # Used by the CachingHttpHeadersFilter
+            timeToLiveInDays: 31
+    metrics:
+        jmx.enabled: true
+        spark:
+            enabled: false
+            host: localhost
+            port: 9999
+        graphite:
+            enabled: false
+            host: localhost
+            port: 2003
+            prefix: wlc

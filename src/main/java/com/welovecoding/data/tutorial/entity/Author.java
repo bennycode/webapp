@@ -5,7 +5,6 @@ import com.welovecoding.data.user.entity.User;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -24,8 +23,8 @@ public class Author extends SlugBaseEntity<Long> {
   private String website;
   @Size(min = 0, max = 255)
   private String channelUrl;
-  @OneToOne
-  private User user;
+//  @OneToOne
+//  private User user;
 
   public Author() {
   }
@@ -37,7 +36,7 @@ public class Author extends SlugBaseEntity<Long> {
     this.description = description;
     this.website = website;
     this.channelUrl = channelUrl;
-    this.user = user;
+//    this.user = user;
   }
 
   @Override
@@ -50,13 +49,13 @@ public class Author extends SlugBaseEntity<Long> {
     return getFirstname() + " " + getLastname();
   }
 
-  public User getUser() {
-    return user;
-  }
-
-  public void setUser(User user) {
-    this.user = user;
-  }
+//  public User getUser() {
+//    return user;
+//  }
+//
+//  public void setUser(User user) {
+//    this.user = user;
+//  }
 
   public String getFirstname() {
     return firstname;

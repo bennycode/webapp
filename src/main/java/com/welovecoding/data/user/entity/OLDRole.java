@@ -1,5 +1,5 @@
 package com.welovecoding.data.user.entity;
 
-public enum Role {
+public enum OLDRole {
   ROLE_USER
 }

@@ -1,7 +1,7 @@
 package com.welovecoding.api.v1.tutorial;
 
 import com.welovecoding.api.v1.base.BaseDTO;
-import com.welovecoding.api.v1.user.UserDTO;
+import com.welovecoding.api.v1.user.dto.UserDTO;
 
 import javax.persistence.Entity;
 

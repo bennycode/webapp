@@ -31,7 +31,7 @@ public class TutorialFactory {
         "title1",
         "desc1",
         true,
-        AuthorFactory.constructList(10, 1, dept),
+        null,//AuthorFactory.constructList(10, 1, dept),
         CategoryFactory.constructOne(1, dept),
         LanguageCode.EN,
         Difficulty.EASY
@@ -69,7 +69,7 @@ public class TutorialFactory {
       for (int i = startId; i < (size + startId); i++) {
         List<Author> set = new ArrayList<>();
         if (dept > -1) {
-          set = AuthorFactory.constructList(10, i, dept);
+//          set = AuthorFactory.constructList(10, i, dept);
         }
         tutorials.add(new Tutorial(
           new Long(i),

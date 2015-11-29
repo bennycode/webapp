@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/v1/service")
+@RequestMapping("/api/v1")
 //@Produces("application/json")
 public class ServiceResource {
 

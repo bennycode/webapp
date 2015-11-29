@@ -1,106 +1,212 @@
 package com.welovecoding.data.user.entity;
 
-import com.welovecoding.data.base.SlugBaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.welovecoding.data.audit.AbstractAuditingEntity;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.time.ZonedDateTime;
 
+/**
+ * A user.
+ */
 @Entity
-public class User extends SlugBaseEntity<Long> {
+@Table(name = "wlc_user")
+public class User extends AbstractAuditingEntity implements Serializable {
 
-  @NotNull
-  @Size(min = 1, max = 255)
-  @Basic(optional = false)
-  private String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-  @Column(name = "email", length = 100, nullable = false, unique = true)
-  private String email;
+	@NotNull
+	@Pattern(regexp = "^[a-z0-9]*$|(anonymousUser)")
+	@Size(min = 1, max = 50)
+	@Column(length = 50, unique = true, nullable = false)
+	private String login;
 
-  @Column(name = "first_name", length = 100, nullable = false)
-  private String firstName;
+	@JsonIgnore
+	@NotNull
+	@Size(min = 60, max = 60)
+	@Column(length = 60)
+	private String password;
 
-  @Column(name = "last_name", length = 100, nullable = false)
-  private String lastName;
+	@Size(max = 50)
+	@Column(name = "first_name", length = 50)
+	private String firstName;
 
-  @Column(name = "password", length = 255)
-  private String password;
+	@Size(max = 50)
+	@Column(name = "last_name", length = 50)
+	private String lastName;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "role", length = 20, nullable = false)
-  private Role role;
+	@Email
+	@Size(max = 100)
+	@Column(length = 100, unique = true)
+	private String email;
 
+	@Column(nullable = false)
+	private boolean activated = false;
 
-  public User() {
-  }
+	@Size(min = 2, max = 5)
+	@Column(name = "lang_key", length = 5)
+	private String langKey;
 
-  User(Long id, Date created, Date lastModified, String slug, String username, String email, String firstName, String lastName, String password, Role role) {
-    super(id, created, lastModified, slug);
-    this.username = username;
-    this.email = email;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.password = password;
-    this.role = role;
-  }
+	@Size(max = 30)
+	@Column(name = "activation_key", length = 30)
+	@JsonIgnore
+	private String activationKey;
 
-  @Override
-  public Comparable comparableAttribute() {
-    return getUsername();
-  }
+	@Size(max = 30)
+	@Column(name = "reset_key", length = 30)
+	private String resetKey;
 
-  @Override
-  protected String getSlugableName() {
-    return getUsername();
-  }
+	@Column(name = "reset_date", nullable = true)
+	private ZonedDateTime resetDate = null;
 
-  public String getUsername() {
-    return username;
-  }
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(
+		name = "wlc_user_authority",
+		joinColumns = {
+			@JoinColumn(name = "user_id", referencedColumnName = "id")},
+		inverseJoinColumns = {
+			@JoinColumn(name = "authority_name", referencedColumnName = "name")})
+	private Set<Authority> authorities = new HashSet<>();
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public String getEmail() {
-    return email;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+	public String getLogin() {
+		return login;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public String getPassword() {
+		return password;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public String getPassword() {
-    return password;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public Role getRole() {
-    return role;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  public void setRole(Role role) {
-    this.role = role;
-  }
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean getActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
+
+	public String getActivationKey() {
+		return activationKey;
+	}
+
+	public void setActivationKey(String activationKey) {
+		this.activationKey = activationKey;
+	}
+
+	public String getResetKey() {
+		return resetKey;
+	}
+
+	public void setResetKey(String resetKey) {
+		this.resetKey = resetKey;
+	}
+
+	public ZonedDateTime getResetDate() {
+		return resetDate;
+	}
+
+	public void setResetDate(ZonedDateTime resetDate) {
+		this.resetDate = resetDate;
+	}
+
+	public String getLangKey() {
+		return langKey;
+	}
+
+	public void setLangKey(String langKey) {
+		this.langKey = langKey;
+	}
+
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		User user = (User) o;
+
+		if (!login.equals(user.login)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return login.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return "User{"
+			+ "login='" + login + '\''
+			+ ", firstName='" + firstName + '\''
+			+ ", lastName='" + lastName + '\''
+			+ ", email='" + email + '\''
+			+ ", activated='" + activated + '\''
+			+ ", langKey='" + langKey + '\''
+			+ ", activationKey='" + activationKey + '\''
+			+ "}";
+	}
 }
