@@ -18,7 +18,7 @@ env:
 language: java
 
 jdk:
-  - oraclejdk7
+  - oraclejdk8
 
 # http://docs.travis-ci.com/user/build-lifecycle/
 before_install:
