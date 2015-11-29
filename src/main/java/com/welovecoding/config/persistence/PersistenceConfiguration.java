@@ -1,6 +1,7 @@
 package com.welovecoding.config.persistence;
 
 import com.codahale.metrics.MetricRegistry;
+import com.welovecoding.config.Constants;
 import com.welovecoding.config.WLCProperties;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -17,6 +18,7 @@ import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -80,6 +82,7 @@ public class PersistenceConfiguration {
 	/**
 	 * Open the TCP port for the H2 database, so it is available remotely.
 	 */
+	@Profile(Constants.SPRING_PROFILE_DEVELOPMENT)
 	@Bean(initMethod = "start", destroyMethod = "stop")
 	public Server h2TCPServer() throws SQLException {
 		return Server.createTcpServer("-tcp", "-tcpAllowOthers");
