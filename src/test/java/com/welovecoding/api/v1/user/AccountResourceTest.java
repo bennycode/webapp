@@ -1,7 +1,6 @@
 package com.welovecoding.api.v1.user;
 
 import com.welovecoding.Application;
-import com.welovecoding.SchemaDumper;
 import com.welovecoding.api.v1.user.dto.UserDTO;
 import com.welovecoding.config.security.util.AuthoritiesConstants;
 import com.welovecoding.data.mail.MailService;
@@ -29,7 +28,6 @@ import javax.transaction.Transactional;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import org.dbunit.database.DatabaseDataSourceConnection;
 import org.junit.Rule;
 import org.junit.rules.TestName;
 import static org.mockito.Matchers.anyObject;
@@ -95,15 +93,6 @@ public class AccountResourceTest {
 		this.restUserMockMvc = MockMvcBuilders.standaloneSetup(accountUserMockResource).build();
 	}
 
-	private void dumpDB() {
-		DatabaseDataSourceConnection datasource = (DatabaseDataSourceConnection) applicationContext.getBean("dbUnitDatabaseConnection");
-		try {
-			SchemaDumper.dumpSchema("wlc", datasource.getConnection());
-		} catch (Exception ex) {
-			log.error(null, ex);
-		}
-	}
-
 	@Test
 	public void testNonAuthenticatedUser() throws Exception {
 		log.debug(name.getMethodName());
@@ -135,7 +124,7 @@ public class AccountResourceTest {
 		user.setLogin("test");
 		user.setFirstName("john");
 		user.setLastName("doe");
-		user.setEmail("john.doe@jhipter.com");
+		user.setEmail("john.doe@mail.com");
 		user.setAuthorities(authorities);
 		when(mockUserService.getUserWithAuthorities()).thenReturn(user);
 
@@ -145,7 +134,7 @@ public class AccountResourceTest {
 			.andExpect(jsonPath("$.login").value("test"))
 			.andExpect(jsonPath("$.firstName").value("john"))
 			.andExpect(jsonPath("$.lastName").value("doe"))
-			.andExpect(jsonPath("$.email").value("john.doe@jhipter.com"))
+			.andExpect(jsonPath("$.email").value("john.doe@mail.com"))
 			.andExpect(jsonPath("$.authorities").value(AuthoritiesConstants.ADMIN));
 	}
 
