@@ -45,9 +45,11 @@ notifications:
   email: false
   slack: wlc:Kinf3gdySndcFTBtjcci3rJN
 
+# http://stackoverflow.com/questions/24856603/openshift-can-not-deploy-binary-application-on-wildfly
 after_success:
   - if [ "$TRAVIS_BRANCH" != "master" ]; then echo "No deployment because branch is not master."; exit 0; fi
-  - cp webapps/ROOT.war binary/dependencies/jbossews/webapps/ROOT.war
+  - cp webapps/ROOT.war binary/dependencies/jbossews/webapps/ROOT.war #tomcat
+  - cp webapps/ROOT.war binary/dependencies/jbosseap/deployments/ROOT.war #wildfly
   - cp -r .openshift/* binary/repo/.openshift
   - cd binary
   - tar -czvf ../webapps/binary.tar.gz ./
