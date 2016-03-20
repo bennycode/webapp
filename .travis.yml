@@ -50,6 +50,7 @@ after_success:
   - if [ "$TRAVIS_BRANCH" != "master" ]; then echo "No deployment because branch is not master."; exit 0; fi
 #  - cp webapps/ROOT.war binary/dependencies/jbossews/webapps/ROOT.war #tomcat
   - cp webapps/ROOT.war binary/dependencies/jbosseap/deployments/ROOT.war #wildfly
+  - touch binary/dependencies/jbosseap/deployments/ROOT.war.dodeploy
   - cp -r .openshift/* binary/repo/.openshift
   - cd binary
   - tar -czvf ../webapps/binary.tar.gz ./
