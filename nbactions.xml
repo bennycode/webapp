@@ -12,4 +12,23 @@
                 <maven.javadoc.skip>true</maven.javadoc.skip>
             </properties>
         </action>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>war</packaging>
+                <packaging>ear</packaging>
+                <packaging>ejb</packaging>
+            </packagings>
+            <goals>
+                <goal>package</goal>
+            </goals>
+            <properties>
+                <netbeans.deploy>true</netbeans.deploy>
+                <netbeans.deploy.clientUrlPart></netbeans.deploy.clientUrlPart>
+                <skipTests>true</skipTests>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>dev</activatedProfile>
+            </activatedProfiles>
+        </action>
     </actions>

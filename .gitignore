@@ -3,7 +3,6 @@ target/
 out/
 deployments/**/*.*
 .dpl/
-webapps/**
 webapp.log
 
 ### Bower ###
@@ -27,3 +26,5 @@ build.properties
 
 ### Secrests ###
 id_rsa
+/nbactions-dev.xml
+/src/main/resources/.h2.server.properties
