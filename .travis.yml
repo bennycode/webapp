@@ -45,17 +45,14 @@ notifications:
 before_deploy:
   - if [ "$TRAVIS_BRANCH" != "master" ]; then echo "No deployment because branch is not master."; exit 0; fi
   - ZIPFILE=`find target -name 'webapp-*.zip' -exec basename {} + | head -n 1`;
-  - DATE=`date`;ELASTIC_BEANSTALK_LABEL="${ZIPFILE//.zip/}_${DATE//[^a-zA-Z0-9]/_}";echo "Version label is '$ELASTIC_BEANSTALK_LABEL'"
-#  - gem install dpl
-#  - dpl --provider=elasticbeanstalk --app="wlc-webapp" --env="wlcwebapp" --region="eu-central-1" --zip_file="$ZIPFILE"
+  - DATE=`date`;export ELASTIC_BEANSTALK_LABEL="${ZIPFILE//.zip/}_${DATE//[^a-zA-Z0-9]/_}";
+  - echo "Version label is '$ELASTIC_BEANSTALK_LABEL'"
   
 deploy:
   - provider: elasticbeanstalk
     edge: true
     skip_cleanup: true
     zip-file: target/$ZIPFILE
-#    access-key-id:
-#    secret-access-key:
     region: eu-central-1
     app: wlc-webapp
     env: wlcwebapp
