@@ -53,7 +53,7 @@ deploy:
   - provider: elasticbeanstalk
     edge: true
     skip_cleanup: true
-    zip-file: $ZIPFILE
+    zip-file: target/$ZIPFILE
 #    access-key-id:
 #    secret-access-key:
     region: eu-central-1
