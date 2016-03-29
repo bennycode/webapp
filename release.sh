@@ -10,3 +10,8 @@ mvn -Pdev,production,standalone clean install antrun:run@prepare-eb-bundle assem
 	-DskipTests=true \
   -Dmaven.javadoc.skip=true \
 	-B -V
+
+mvn -Pdev,production,standalone clean install \
+	-DskipTests=true \
+  -Dmaven.javadoc.skip=true \
+	-B -V

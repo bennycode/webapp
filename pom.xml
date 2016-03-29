@@ -481,7 +481,7 @@
               <execution>
                 <!--mvn -Pdev,production,standalone antrun:run@prepare-eb-bundle -DskipTests=true-->
                 <id>prepare-eb-bundle</id>
-                <phase>prepare-package</phase>
+                <phase>install</phase>
                 <configuration>
                   <target>
                     <copy todir="target/eb-bundle" verbose="true">
@@ -493,7 +493,10 @@
                       </resources>
                     </copy>
                   </target>
-                </configuration>                       
+                </configuration>
+                <goals>
+                    <goal>run</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
@@ -533,7 +536,7 @@
             <executions>
               <execution>
                 <id>package-eb-bundle</id>
-                <phase>package</phase>
+                <phase>install</phase>
                 <configuration>
                   <descriptors>
                     <!--expects all neccessary files in target/eb-bundle-->
@@ -541,6 +544,9 @@
                   </descriptors>
                   <tarLongFileMode>posix</tarLongFileMode>
                 </configuration>
+                <goals>
+                    <goal>assembly</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
