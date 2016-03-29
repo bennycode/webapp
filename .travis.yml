@@ -29,6 +29,7 @@ jdk:
 cache:
   directories:
   - $HOME/.m2
+  - $HOME/.npm
 
 # http://docs.travis-ci.com/user/build-lifecycle/
 before_install:
