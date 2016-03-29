@@ -7,6 +7,10 @@ env:
     - secure: luLUTvkbZr9J3GzAhbWrCq9XjfwjHtVznpRTOE7Kyhqe2nfmk3SKIC3HuK5q4So4vLyWrywzlTnidBeekwpFnSESCjm2rE7ucBcIrEHLS1iSc8htCxwj7yNbzcplpdyNrZJXePBNTMngCN1kFFFf9/ybWLzC7O/puVqyZZEwvc2GjI68r3K9tf51weiAkQBEhYpdCPjSeEG07kf/MO+whlj0kk81oZc1WnRupbYBrl0vd1yx6W3++QvExmy9H0TOSjComs3bsqjDjf57f3y1qKKUMl1NNOeiyCsO5JOK04RF8cb4P3Nq2a7RGh+2lWGLC2MZE1GAzeVSNpDWvJ4KKodiKW5RsIfLpzoBkJBH9XUrnspoWT9emKB5RQN3Du/fNlWdC1wKUqNA9qnJksuOuEVwEhRo+5CgulPhDjeYQsGDd6uEp+duEvMULxvGP0wXlJYivXc2/XGKfIapRi8BGvGrYadxFliQK/UazTzk8kPZGJx6w6bcJyhzJZyYF/y5WUsC/zeM9bu67DHYO/t23NGSqWDXka5zfSh8Uo4YqxaHAzBDeUKIJyxsOTBsxEj4po1z7MpbrPP1wV7bQWKkHjyD46Jn/IBqpN5ZYQ4lWZduO7VQdbJCEWhxFQTAg4C/O9QQXVzmOVlv7ce1NaZcpPM5X04DFgwp8eXxPDoU/eE=
     # OPENSHIFT_PASSWORD
     - secure: k8Y3RJa7QCGcDZ1BzdvMVec/m/xCRkUTR+2/jbEn0FgV6W0TzkdKUmYGsR0KzpFKqP1Tt4JRHpi31IuFyA3EoVDdCgDEn3zQVu13TKMFBk01h6PbgfhyJs64ggDjcwmt1824ujn8KGketOplwySkvBZaP5AN13p/8ldw8HGVDujkmYAj9held21Zoj3c/mPYd0QjXaxeSnJoC+Mv0YgCa3WKiYmfdt4TSWUukQhrZtNKPufIN+z9SddXaSCQAvpEa9EhQdKowkaBnwvnj2K/FBLY1S7P5dne7xTPQ3mv4Kw4iDrscdGK9r4tIvWUoreffEjx2zCmL12BXDvVg38tExe98m2BZi2mDcbFhCW7r/koLKmSM1BkEYdkS03zycWU3p+cYG//HHPS7GUy/DTijJrG8JE9pIWDtVtWQzSi5YuKRAtYAlWIgp/GyQDZyh/NMdMb3YKMcETUYN4/9MtQ0Q8xpjXnLu0Ojeko2neQad0ugN4MMF/BGWOADyapwa0+uPM/NOU3oz3vN7yPRWnWhQJCrOtJlR1jja1DkmYqbDskO9bEuuYzVF75EXUb3Xnvtqa3C5ukLXWTEiJtHTIPVfud26ouMB9TdxPsL+uELmCI1VoTgUJMUfRJucnGUWqD2P70qPQnL7FZUrrblfCNxuchQv5X6Pn2XRksRlxNJnY=
+    # AWS_ACCESS_KEY_ID
+    - secure: "bcF/ET9sZbqXtTe0kD4wZIYywWNXHqo1roscTbAH4k5fvIID2BUejaPin0C66M1YBKciC2DsoTLO3GLdUMEgCZCa51WdVvMA3dMaB0MQ3pCFOiwVymIp5pAMdaqGzGDMW/bAXdWDHm61NIFs8l5bW0msR4fodQ8TKLWa2TASS4VS0RNIL1LbcqPjqSF323xjiVVa1tHmb5p2tKR7uxoo1Jv04mdHVAJkqll7T2rCqIeJKj/57wttJjuQWO/FKu8/VvibnzkjQ4X+sIs1LP3t7V1KQCoRD38j/3XZk2sQ4+pJspUoJEkD9bpc8tlBdIXTSQRIyrcD84S5nq2o83mwqMBWC4j7MdOR0bcqnhAN74tKobKrgcRB26Mp5+qLGxpfUXIRQbtCXSMO95w1gfxEnPblKxUaR9t7Dg5+zP/yJ0uFJNF1kRWae5dXZXquoNSmrt0GyRIA1DyVqlsB/3nU5uN1TBUolz+4EkcQwH6/Ux2cFqKKtq9PkSoIHg4iKVvILAKJ81Pckpyx8aAnl+TD5zHrsQ5ugEFHGlHU73aBZHjiY17Kr2NYfwVHziGrCm1Zcp5HUy1eQyicDBZ4/zRYvGV9adKF7e3j1EPdBNciyk0666G+a28TJL+UdLIvHvODpP5gvCJzs/vUK4y13fs4a+Gcd8wezzGM/FXrd5CShR8="
+    # AWS_SECRET_ACCESS_KEY
+    - secure: "hvG4JFomCwDEMxUbpEstR0Tj0WIQccuPa0p07chbxCTU7lkWeFMZbeOMzrSv4JiES5cRcayzgyscy4GUL2sZqCpLpGZpmoREuwN480NO1XyHeMwylJ4D3xjdopQ5FWDmp+0w9lYEJVVk3apfiZh6n5Si8v+HhJn3wDSq7kokX69BKSX3njGjY+AQ9DOqLST5CMoc+f7NjwgduLQzyUUkEXUQHkXI9eA2ZeucuGgHHb0Gf4lbWCYt81HvKLCz0KghSmNJBNojZf2efjOf5b3RMkQ10RjmEV8ma4xZJMEjCaTlnAhJAM7/qwoCzEQDRvKnDm6+qQmRwK1BOa9MKIDy3z/mfAyjzyOeBpxKyxMEG/tYQnDyYfH0EF7e/5qfNu7hya3FANVIogujqIMFLpGtBkRexLCUIsgpjnXZdh6fFLEnq5ZBcA5gum9YQJzR0/1eqYw9F+WGFKMx0dQCfjcror4rfwvSGoHOLaT7/diMQZKVpMYosAzWjltOnGDaB9sqczE5kfl2/SLUDs8pD5breBaTzFqF5c1kv9oOKuLilaXtv+CoKRPObjEmmprjWUo6ucW3JryLiy71vcz82JVvTSoxbkYAtQYyBXeVes33NfXw5zX6shBNv1BU0C2T85wUtT51wetfwD7L3p+F7uIWMC39RkkvjI8LOMgec9b43F4="
     # DB_URL
     - secure: Tn35+8uWWPG/py32akIiBdeDgRWqTMKF4bBB9UVyEGDD/F71u29jr8jO8098zOb1lMV9fzIGoUroL0EcBV1igMawFuumGMA9+7KZH/JH3obq12VhRorkP/yRUgLEOREtBFRdTLFRN5lnwMGDVjoCJTyiEw2GlN0cEV9ZzIxVj+fPtwpV86WL/zXPmayzFRIh9R577N/V5oGy2XGYQRsnWg1Nv7TU48o12g4gic7iExZLTMVDps59TrEloCFwBntHZr+ACDsW9HXX+sCxza7XR1IpeBfgc+prQL2cM3/d+DEEzbSLTm22Zjq4r/hHqs7kaz+UOeL6CWFDqzXFshDeNHKXKLBdTHsMYmWDEOiZUWHAvqrnue3nyXCQO/AqSS/cVLl8LTnTIJZvjBLHIYsbM/0QtkOWKi2o5cWpBuQAJ5j4EYQiR9q2ww+9RBpss6HkSHuLNdotQdIQMb2O22BpLGXDrA2v81GtTPLhQoJ52BxeL2FEvq3ru0lcM//tNmjPYgHRQ9LcvnszRrca6c3V5mwLDTX8O4tB6oyuybFg3yh21W5OCUR0PhTWjfbpSZOMZNCMes/HGlw0W8KyEjXP4q86hFP4LF4qES/rZUfhT8XfU8zYtOsfjWcqVkWxogZd2abj7CYMkJn385PpGrRjJuX2b88BkRS4KAdmaQv1wzY=
     # DB_USERNAME
@@ -31,14 +35,7 @@ before_install:
   - npm install -g bower-installer
 
 install:
-  - mvn clean install
-    -DskipTests=true
-    -Dmaven.javadoc.skip=true
-    -Dwlc.database.driver.classname=com.mysql.jdbc.Driver
-    -Dwlc.database.url=$DB_URL
-    -Dwlc.database.username=$DB_USERNAME
-    -Dwlc.database.password=$DB_PASSWORD
-    -Popenshift -B -V
+  - ./release.sh
 
 # http://docs.travis-ci.com/user/notifications/
 notifications:
@@ -48,14 +45,7 @@ notifications:
 # http://stackoverflow.com/questions/24856603/openshift-can-not-deploy-binary-application-on-wildfly
 after_success:
   - if [ "$TRAVIS_BRANCH" != "master" ]; then echo "No deployment because branch is not master."; exit 0; fi
-#  - cp webapps/ROOT.war binary/dependencies/jbossews/webapps/ROOT.war #tomcat
-  - cp webapps/ROOT.war binary/dependencies/jbosseap/deployments/ROOT.war #wildfly
-  - cp webapps/ROOT.war binary/repo/deployments/ROOT.war #wildfly
-  - touch binary/dependencies/jbosseap/deployments/ROOT.war.dodeploy
-  - touch binary/repo/deployments/ROOT.war.dodeploy
-  - cp -r .openshift/* binary/repo/.openshift
-  - cd binary
-  - tar -czvf ../webapps/binary.tar.gz ./
-  - cd ..
-  - gem install rhc
-  - rhc deploy -a playground webapps/binary.tar.gz --no-force-clean-build -l $OPENSHIFT_LOGIN -p $OPENSHIFT_PASSWORD
+  - ZIPFILE=`find target -name 'webapp-*.zip' -exec basename -a -s .zip {} + | head -n 1`;
+  - DATE=`date`;ELASTIC_BEANSTALK_LABEL="${ZIPFILE}_${DATE//[^a-zA-Z0-9]/_}";echo "Version label is '$ELASTIC_BEANSTALK_LABEL'"
+  - gem install dpl
+  - dpl --provider=elasticbeanstalk --app="wlc-webapp" --env="wlcwebapp" --region="eu-central-1" --zip_file="$ZIPFILE"

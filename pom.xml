@@ -127,6 +127,11 @@
     </dependency>
     
     <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+    
+    <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
       <exclusions>
@@ -251,11 +256,6 @@
       <version>3.3.0</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   <build>
     <defaultGoal>spring-boot:run</defaultGoal>
@@ -363,30 +363,36 @@
       </activation>
       
       <dependencies>
-        <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-tomcat</artifactId>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>com.h2database</groupId>
-          <artifactId>h2</artifactId>
-        </dependency>
       </dependencies>
 
       <build>
         <plugins>
           <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.5.201505241946</version>
             <configuration>
-              <addResources>false</addResources>
-              <executable>true</executable>
+              <excludes>
+                <!-- Application starter -->
+                <exclude>com/welovecoding/Application.class</exclude>
+                <!-- Configuration -->
+                <exclude>com/welovecoding//config/**</exclude>
+              </excludes>
             </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>report</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -403,10 +409,6 @@
         <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>com.h2database</groupId>
-          <artifactId>h2</artifactId>
         </dependency>
       </dependencies>
 
@@ -440,9 +442,9 @@
       <id>production</id>
       
       <properties>
-        <wlc.environment.active>prod</wlc.environment.active>
+        <!--<wlc.environment.active>prod</wlc.environment.active>-->
         <!-- Prod properties -->
-        <wlc.security.oauth.clientid></wlc.security.oauth.clientid>
+<!--        <wlc.security.oauth.clientid></wlc.security.oauth.clientid>
         <wlc.security.oauth.secret></wlc.security.oauth.secret>
         <wlc.security.rememberme></wlc.security.rememberme>
         <wlc.mail.host></wlc.mail.host>
@@ -451,7 +453,7 @@
         <wlc.datasource.driver.classname></wlc.datasource.driver.classname>
         <wlc.datasource.url></wlc.datasource.url>
         <wlc.datasource.username></wlc.datasource.username>
-        <wlc.datasource.password></wlc.datasource.password>
+        <wlc.datasource.password></wlc.datasource.password>-->
       </properties>
 
       <dependencies>
@@ -466,10 +468,8 @@
             <version>1.8</version>
             <executions>
               <execution>
+                <id>clean-bower</id>
                 <phase>initialize</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
                 <configuration>
                   <target>
                     <!-- Clean bower components defined in "bower.json" -->
@@ -477,6 +477,23 @@
                     <delete dir="src/main/webapp/WEB-INF/resources/libs" includeemptydirs="true"/>
                   </target>
                 </configuration>
+              </execution>
+              <execution>
+                <!--mvn -Pdev,production,standalone antrun:run@prepare-eb-bundle -DskipTests=true-->
+                <id>prepare-eb-bundle</id>
+                <phase>prepare-package</phase>
+                <configuration>
+                  <target>
+                    <copy todir="target/eb-bundle" verbose="true">
+                      <resources>
+                        <!--<file file="Procfile"/>-->
+                        <file file="Dockerrun.aws.json"/>
+                        <file file="Dockerfile"/>
+                        <file file="target/webapp.war"/>
+                      </resources>
+                    </copy>
+                  </target>
+                </configuration>                       
               </execution>
             </executions>
           </plugin>
@@ -508,6 +525,24 @@
               <warName>ROOT</warName>
               <failOnMissingWebXml>false</failOnMissingWebXml>
             </configuration>
+          </plugin>
+          <plugin>
+            <!--mvn -Pdev,production,standalone assembly:assembly@package-eb-bundle -DskipTests=true--> 
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.6</version>
+            <executions>
+              <execution>
+                <id>package-eb-bundle</id>
+                <phase>package</phase>
+                <configuration>
+                  <descriptors>
+                    <!--expects all neccessary files in target/eb-bundle-->
+                    <descriptor>zip.xml</descriptor>
+                  </descriptors>
+                  <tarLongFileMode>posix</tarLongFileMode>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
