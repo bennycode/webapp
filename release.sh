@@ -6,11 +6,6 @@
 #    -Dwlc.database.username=$DB_USERNAME \
 #    -Dwlc.database.password=$DB_PASSWORD \
 #    -B -V
-mvn -Pdev,production,standalone clean install antrun:run@prepare-eb-bundle assembly:assembly@package-eb-bundle \
-	-DskipTests=true \
-  -Dmaven.javadoc.skip=true \
-	-B -V
-
 mvn -Pdev,production,standalone clean install \
 	-DskipTests=true \
   -Dmaven.javadoc.skip=true \
