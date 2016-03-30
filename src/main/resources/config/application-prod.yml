@@ -7,7 +7,7 @@ spring:
         livereload:
             enabled: false
     datasource:
-        driver-class-name: placeholder
+        driver-class-name: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
         url: placeholder
         username: placeholder
         password: placeholder
