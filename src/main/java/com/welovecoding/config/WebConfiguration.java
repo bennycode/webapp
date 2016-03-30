@@ -17,6 +17,7 @@ import org.springframework.core.env.Environment;
 import java.util.*;
 import javax.inject.Inject;
 import javax.servlet.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -39,12 +40,26 @@ public class WebConfiguration implements ServletContextInitializer, EmbeddedServ
 
   @Inject
   private Environment env;
+  
+  @Value("${spring.datasource.driver-class-name}")
+  private String driver;
+  @Value("${spring.datasource.url}")
+  private String url;
+  @Value("${spring.datasource.username}")
+  private String username;
+  @Value("${spring.datasource.password}")
+  private String token;
 
   @Autowired(required = false)
   private MetricRegistry metricRegistry;
 
   @Override
   public void onStartup(ServletContext servletContext) throws ServletException {
+    log.info("SQL INFO");
+    log.info("driver: {}",driver);
+    log.info("url: {}",url);
+    log.info("username: {}",username);
+    log.info("token: {}*********",token.substring(0, 3));
     log.info("Web application configuration, using profiles: {}", Arrays.toString(env.getActiveProfiles()));
     EnumSet<DispatcherType> disps = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC);
     if (env.acceptsProfiles(Constants.SPRING_PROFILE_PRODUCTION)) {
