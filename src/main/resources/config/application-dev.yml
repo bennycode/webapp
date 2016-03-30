@@ -7,10 +7,10 @@ spring:
         livereload:
             enabled: true
     datasource:
-        driver-class-name: @wlc.datasource.driver.classname@
-        url: @wlc.datasource.url@
-        username: @wlc.datasource.username@
-        password: @wlc.datasource.password@
+        driver-class-name: org.h2.jdbcx.JdbcDataSource
+        url: jdbc:h2:mem:wlc;DB_CLOSE_DELAY=-1
+        username: sa
+        password: a
     jpa:
         database-platform: com.welovecoding.config.persistence.FixedH2Dialect
         database: H2

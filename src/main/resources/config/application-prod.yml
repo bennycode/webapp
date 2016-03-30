@@ -7,18 +7,18 @@ spring:
         livereload:
             enabled: false
     datasource:
-        driver-class-name: @wlc.datasource.driver.classname@
-        url: @wlc.datasource.url@
-        username: @wlc.datasource.username@
-        password: @wlc.datasource.password@
+        driver-class-name: placeholder
+        url: placeholder
+        username: placeholder
+        password: placeholder
     jpa:
         database-platform: org.hibernate.dialect.MySQL5Dialect
         database: MYSQL
-        show_sql: false
+        show_sql: true
         properties:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: false
+            hibernate.generate_statistics: true
     mail:
         host: @wlc.mail.host@
         port: @wlc.mail.port@
@@ -34,7 +34,7 @@ server:
     port: 8080
     compression:
         enabled: true
-        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        mime-types: text/html, text/xml, text/plain, text/css, application/javascript, application/json
 
 # ===================================================================
 # WeLoveCoding specific properties

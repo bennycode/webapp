@@ -27,10 +27,6 @@
     <wlc.mail.host>localhost</wlc.mail.host>
     <wlc.mail.password>password</wlc.mail.password>
     <wlc.mail.port>25</wlc.mail.port>
-    <wlc.datasource.driver.classname>org.h2.jdbcx.JdbcDataSource</wlc.datasource.driver.classname>
-    <wlc.datasource.url>jdbc:h2:mem:wlc;DB_CLOSE_DELAY=-1</wlc.datasource.url>
-    <wlc.datasource.username>sa</wlc.datasource.username>
-    <wlc.datasource.password>a</wlc.datasource.password>
   </properties>
 
   <repositories>
