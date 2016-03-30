@@ -1,4 +1,4 @@
--- used in tests that use HSQL
+-- used in tests that use MySQL
 create table oauth_client_details (
   client_id VARCHAR(256) PRIMARY KEY,
   resource_ids VARCHAR(256),
