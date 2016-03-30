@@ -442,7 +442,7 @@
       <id>production</id>
       
       <properties>
-        <!--<wlc.environment.active>prod</wlc.environment.active>-->
+        <wlc.environment.active>prod</wlc.environment.active>
         <!-- Prod properties -->
 <!--        <wlc.security.oauth.clientid></wlc.security.oauth.clientid>
         <wlc.security.oauth.secret></wlc.security.oauth.secret>
@@ -486,7 +486,6 @@
                   <target>
                     <copy todir="target/eb-bundle" verbose="true">
                       <resources>
-                        <!--<file file="Procfile"/>-->
                         <file file="Dockerrun.aws.json"/>
                         <file file="Dockerfile"/>
                         <file file="target/webapp.war"/>
