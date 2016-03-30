@@ -1,6 +1,6 @@
-The OpenShift `jbossews` cartridge documentation can be found at:
+## Build
 
-- http://openshift.github.io/documentation/oo_cartridge_guide.html#tomcat
+[![Build Status](https://travis-ci.org/welovecoding/webapp.svg?branch=master)](https://travis-ci.org/welovecoding/webapp)
 
 ## Build app
 
@@ -27,8 +27,3 @@ mvn clean package -Pdeployable
 ## Deployment
 
 - http://localhost:8080/
-- http://www.wlc.rocks/
-
-## Environment
-
-- [JBoss EWS 2.1.0](https://access.redhat.com/articles/111723) (Tomcat 7.0.54, OpenJDK 7)
