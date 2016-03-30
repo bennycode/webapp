@@ -12,8 +12,10 @@ RUN chmod +x /data/ROOT.war
 RUN sh -c 'touch /data/ROOT.war'
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar","/data/ROOT.war",\
+ENTRYPOINT ["java",\
+  "-Djava.security.egd=file:/dev/./urandom",\
   "-Dspring.datasource.url=jdbc:mysql://$RDS_HOSTNAME:$RDS_PORT/welovecoding",\
   "-Dspring.datasource.driver-class-name=com.mysql.jdbc.jdbc2.optional.MysqlDataSource",\
   "-Dspring.datasource.username=$RDS_USERNAME",\
-  "-Dspring.datasource.password=$RDS_PASSWORD"]
+  "-Dspring.datasource.password=$RDS_PASSWORD",\
+  "-jar", "/data/ROOT.war"]
