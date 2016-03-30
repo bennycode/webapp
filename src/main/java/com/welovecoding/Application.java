@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.MetricFilterAutoConfiguration;
 import org.springframework.boot.actuate.autoconfigure.MetricRepositoryAutoConfiguration;
@@ -20,6 +21,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
 
 @ComponentScan
+
 @EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class})
 @EnableConfigurationProperties({WLCProperties.class})
 public class Application {
@@ -29,6 +31,15 @@ public class Application {
   @Inject
   private Environment env;
 
+  @Value("${spring.datasource.driver-class-name}")
+  private String driver;
+  @Value("${spring.datasource.url}")
+  private String url;
+  @Value("${spring.datasource.username}")
+  private String username;
+  @Value("${spring.datasource.password}")
+  private String token;
+
   /**
    * <p/>
    * Spring profiles can be configured with a program arguments
@@ -37,6 +48,13 @@ public class Application {
    */
   @PostConstruct
   public void initApplication() {
+    log.info("SQL INFO");
+    log.info("driver: {}",driver);
+    log.info("url: {}",url);
+    log.info("username: {}",username);
+    log.info("token: {}*********",token.substring(0, 3));
+    
+    
     if (env.getActiveProfiles().length == 0) {
       log.warn("No Spring profile configured, running with default configuration");
     } else {
