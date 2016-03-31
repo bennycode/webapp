@@ -45,7 +45,7 @@ server:
 wlc:
   metrics:
     jmx.enabled: true
-    grahite:
+    graphite:
       enabled: false
       host: localhost
       port: 2003
