@@ -1,6 +1,5 @@
 package com.welovecoding.data.user.repository;
 
-
 import com.welovecoding.data.user.entity.User;
 import java.time.ZonedDateTime;
 import org.springframework.data.jpa.repository.JpaRepository;

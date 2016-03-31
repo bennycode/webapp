@@ -1,6 +1,5 @@
 package com.welovecoding.api.v1.user.dto;
 
-
 import com.welovecoding.data.user.entity.Authority;
 import com.welovecoding.data.user.entity.User;
 import org.hibernate.validator.constraints.Email;
@@ -8,6 +7,7 @@ import org.hibernate.validator.constraints.Email;
 import javax.validation.constraints.*;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 /**
  * A DTO representing a user, with his authorities.
  */
@@ -47,13 +47,13 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this(user.getLogin(), null, user.getFirstName(), user.getLastName(),
-            user.getEmail(), user.getActivated(), user.getLangKey(),
-            user.getAuthorities().stream().map(Authority::getName)
+                user.getEmail(), user.getActivated(), user.getLangKey(),
+                user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()));
     }
 
     public UserDTO(String login, String password, String firstName, String lastName,
-        String email, boolean activated, String langKey, Set<String> authorities) {
+            String email, boolean activated, String langKey, Set<String> authorities) {
 
         this.login = login;
         this.password = password;
@@ -99,15 +99,15 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" +
-            "login='" + login + '\'' +
-            ", password='" + password + '\'' +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", activated=" + activated +
-            ", langKey='" + langKey + '\'' +
-            ", authorities=" + authorities +
-            "}";
+        return "UserDTO{"
+                + "login='" + login + '\''
+                + ", password='" + password + '\''
+                + ", firstName='" + firstName + '\''
+                + ", lastName='" + lastName + '\''
+                + ", email='" + email + '\''
+                + ", activated=" + activated
+                + ", langKey='" + langKey + '\''
+                + ", authorities=" + authorities
+                + "}";
     }
 }

@@ -1,6 +1,6 @@
 package com.welovecoding.config;
 
-
+import com.welovecoding.api.v1.base.Logged;
 import com.welovecoding.config.locale.AngularCookieLocaleResolver;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
@@ -19,11 +19,13 @@ public class LocaleConfiguration extends WebMvcConfigurerAdapter implements Envi
 
     private RelaxedPropertyResolver propertyResolver;
 
+    @Logged
     @Override
     public void setEnvironment(Environment environment) {
         this.propertyResolver = new RelaxedPropertyResolver(environment, "spring.messages.");
     }
 
+    @Logged
     @Bean(name = "localeResolver")
     public LocaleResolver localeResolver() {
         AngularCookieLocaleResolver cookieLocaleResolver = new AngularCookieLocaleResolver();
@@ -31,6 +33,7 @@ public class LocaleConfiguration extends WebMvcConfigurerAdapter implements Envi
         return cookieLocaleResolver;
     }
 
+    @Logged
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
@@ -40,6 +43,7 @@ public class LocaleConfiguration extends WebMvcConfigurerAdapter implements Envi
         return messageSource;
     }
 
+    @Logged
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();

@@ -6,6 +6,7 @@ import com.welovecoding.data.post.entity.VideoPostElement;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VideoPostElementRepository extends BaseRepository<VideoPostElement, Long>, PagingAndSortingRepository<VideoPostElement, Long> {
+public interface VideoPostElementRepository extends BaseRepository<VideoPostElement, Long>,
+        PagingAndSortingRepository<VideoPostElement, Long> {
 
 }

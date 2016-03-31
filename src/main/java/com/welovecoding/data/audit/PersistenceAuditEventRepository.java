@@ -1,6 +1,5 @@
 package com.welovecoding.data.audit;
 
-
 import java.time.LocalDateTime;
 import org.springframework.data.jpa.repository.JpaRepository;
 

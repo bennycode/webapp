@@ -1,5 +1,6 @@
 package com.welovecoding.config.metrics;
 
+import com.welovecoding.api.v1.base.Logged;
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +22,7 @@ public class DatabaseHealthIndicator extends AbstractHealthIndicator {
 
     static {
         queries.put("HSQL Database Engine",
-            "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SYSTEM_USERS");
+                "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SYSTEM_USERS");
         queries.put("Oracle", "SELECT 'Hello' from DUAL");
         queries.put("Apache Derby", "SELECT 1 FROM SYSIBM.SYSDUMMY1");
         queries.put("MySQL", "SELECT 1");
@@ -37,6 +38,7 @@ public class DatabaseHealthIndicator extends AbstractHealthIndicator {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    @Logged
     @Override
     protected void doHealthCheck(Health.Builder builder) throws Exception {
         String product = getProduct();
@@ -45,7 +47,7 @@ public class DatabaseHealthIndicator extends AbstractHealthIndicator {
         if (StringUtils.hasText(query)) {
             try {
                 builder.withDetail("hello",
-                    this.jdbcTemplate.queryForObject(query, Object.class));
+                        this.jdbcTemplate.queryForObject(query, Object.class));
             } catch (Exception ex) {
                 builder.down(ex);
             }

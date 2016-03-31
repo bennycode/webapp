@@ -11,143 +11,144 @@ import static org.junit.Assert.assertThat;
 
 public class SystemOutTableTest {
 
-  @Rule
-  public TestName name = new TestName();
+    @Rule
+    public TestName name = new TestName();
 
-  @Before
-  public void setUp() {
-  }
+    @Before
+    public void setUp() {
+    }
 
-  @After
-  public void tearDown() {
-  }
+    @After
+    public void tearDown() {
+    }
 
-  @Test
-  public void shouldAutomaticallyAddANewRow() {
-    System.out.println(name.getMethodName());
+    @Test
+    public void shouldAutomaticallyAddANewRow() {
+        System.out.println(name.getMethodName());
 
-    SystemOutTable table = new SystemOutTable();
-    table.putInLastRow("test");
-    table.putInLastRow("testtest");
-    table.putInLastRow("testtesttest");
+        SystemOutTable table = new SystemOutTable();
+        table.putInLastRow("test");
+        table.putInLastRow("testtest");
+        table.putInLastRow("testtesttest");
 
-    String tableString = table.toString();
-    System.out.println(table);
+        String tableString = table.toString();
+        System.out.println(table);
 
-    assertThat(tableString, equalTo("test testtest testtesttest \n"));
-  }
+        assertThat(tableString, equalTo("test testtest testtesttest \n"));
+    }
 
-  @Test
-  public void shouldFillWithSpaces() {
-    System.out.println(name.getMethodName());
+    @Test
+    public void shouldFillWithSpaces() {
+        System.out.println(name.getMethodName());
 
-    SystemOutTable table = new SystemOutTable();
-    table.putInLastRow("test");
-    table.putInLastRow("testtest");
-    table.putInLastRow("testtesttest");
+        SystemOutTable table = new SystemOutTable();
+        table.putInLastRow("test");
+        table.putInLastRow("testtest");
+        table.putInLastRow("testtesttest");
 
-    table.addRow();
-    table.putInLastRow("testtesttest");
-    table.putInLastRow("testtest");
-    table.putInLastRow("test");
+        table.addRow();
+        table.putInLastRow("testtesttest");
+        table.putInLastRow("testtest");
+        table.putInLastRow("test");
 
-    String tableString = table.toString();
-    System.out.println(table);
+        String tableString = table.toString();
+        System.out.println(table);
 
-    assertThat(tableString, equalTo("test         testtest testtesttest \ntesttesttest testtest test         \n"));
-  }
+        assertThat(tableString, equalTo("test         testtest testtesttest \ntesttesttest testtest test         \n"));
+    }
 
-  @Test
-  public void shouldPrintEmptyTable() {
-    System.out.println(name.getMethodName());
+    @Test
+    public void shouldPrintEmptyTable() {
+        System.out.println(name.getMethodName());
 
-    SystemOutTable table = new SystemOutTable();
+        SystemOutTable table = new SystemOutTable();
 
-    String tableString = table.toString();
-    System.out.println(table);
+        String tableString = table.toString();
+        System.out.println(table);
 
-    assertThat(tableString, equalTo(""));
-  }
+        assertThat(tableString, equalTo(""));
+    }
 
-  @Test
-  public void shouldPrintEmptyLines() {
-    System.out.println(name.getMethodName());
+    @Test
+    public void shouldPrintEmptyLines() {
+        System.out.println(name.getMethodName());
 
-    SystemOutTable table = new SystemOutTable();
-    table.putInLastRow(null);
-    table.addRow();
-    table.addRow();
+        SystemOutTable table = new SystemOutTable();
+        table.putInLastRow(null);
+        table.addRow();
+        table.addRow();
 
-    String tableString = table.toString();
-    System.out.println(table);
+        String tableString = table.toString();
+        System.out.println(table);
 
-    assertThat(tableString, equalTo(" \n \n \n"));
-  }
+        assertThat(tableString, equalTo(" \n \n \n"));
+    }
 
-  @Test
-  public void shouldFillEmptyRows() {
-    System.out.println(name.getMethodName());
+    @Test
+    public void shouldFillEmptyRows() {
+        System.out.println(name.getMethodName());
 
-    SystemOutTable table = new SystemOutTable();
-    table.putInLastRow(null);
-    table.addRow();
-    table.addRow();
-    table.putInLastRow("testtesttest");
-    table.putInLastRow("testtest");
-    table.putInLastRow("test");
+        SystemOutTable table = new SystemOutTable();
+        table.putInLastRow(null);
+        table.addRow();
+        table.addRow();
+        table.putInLastRow("testtesttest");
+        table.putInLastRow("testtest");
+        table.putInLastRow("test");
 
-    String tableString = table.toString();
-    System.out.println(table);
+        String tableString = table.toString();
+        System.out.println(table);
 
-    assertThat(tableString, equalTo("                           \n                           \ntesttesttest testtest test \n"));
-  }
+        assertThat(tableString, equalTo(
+                "                           \n                           \ntesttesttest testtest test \n"));
+    }
 
-  @Test
-  public void shouldReplaceNewLines() {
-    System.out.println(name.getMethodName());
+    @Test
+    public void shouldReplaceNewLines() {
+        System.out.println(name.getMethodName());
 
-    SystemOutTable table = new SystemOutTable();
-    table.putInLastRow(null);
-    table.addRow();
-    table.putInLastRow("test\ntesttest");
-    table.putInLastRow("testtest");
-    table.putInLastRow("test");
+        SystemOutTable table = new SystemOutTable();
+        table.putInLastRow(null);
+        table.addRow();
+        table.putInLastRow("test\ntesttest");
+        table.putInLastRow("testtest");
+        table.putInLastRow("test");
 
-    String tableString = table.toString();
-    System.out.println(table);
+        String tableString = table.toString();
+        System.out.println(table);
 
-    assertThat(tableString, equalTo("                           \ntesttesttest testtest test \n"));
-  }
+        assertThat(tableString, equalTo("                           \ntesttesttest testtest test \n"));
+    }
 
-  @Test
-  public void shouldReplaceTabsWithFourSpaces() {
-    System.out.println(name.getMethodName());
+    @Test
+    public void shouldReplaceTabsWithFourSpaces() {
+        System.out.println(name.getMethodName());
 
-    SystemOutTable table = new SystemOutTable();
-    table.putInLastRow(null);
-    table.addRow();
-    table.putInLastRow("test\ttesttest");
-    table.putInLastRow("testtest");
-    table.putInLastRow("test");
+        SystemOutTable table = new SystemOutTable();
+        table.putInLastRow(null);
+        table.addRow();
+        table.putInLastRow("test\ttesttest");
+        table.putInLastRow("testtest");
+        table.putInLastRow("test");
 
-    String tableString = table.toString();
-    System.out.println(table);
+        String tableString = table.toString();
+        System.out.println(table);
 
-    assertThat(tableString, equalTo("                               \ntest    testtest testtest test \n"));
-  }
+        assertThat(tableString, equalTo("                               \ntest    testtest testtest test \n"));
+    }
 
-  @Test
-  public void shouldParseTheSame() {
-    System.out.println(name.getMethodName());
+    @Test
+    public void shouldParseTheSame() {
+        System.out.println(name.getMethodName());
 
-    SystemOutTable table = new SystemOutTable();
-    String tableToParse = "test         testtest testtesttest \ntesttesttest testtest test         ";
-    table.parseBy(tableToParse, "\n", " ");
+        SystemOutTable table = new SystemOutTable();
+        String tableToParse = "test         testtest testtesttest \ntesttesttest testtest test         ";
+        table.parseBy(tableToParse, "\n", " ");
 
-    String tableString = table.toString();
-    System.out.println(table);
+        String tableString = table.toString();
+        System.out.println(table);
 
-    assertThat(tableString, equalTo("test         testtest testtesttest \ntesttesttest testtest test         \n"));
-  }
+        assertThat(tableString, equalTo("test         testtest testtesttest \ntesttesttest testtest test         \n"));
+    }
 
 }

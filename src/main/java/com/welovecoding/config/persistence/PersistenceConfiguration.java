@@ -1,6 +1,7 @@
 package com.welovecoding.config.persistence;
 
 import com.codahale.metrics.MetricRegistry;
+import com.welovecoding.api.v1.base.Logged;
 import com.welovecoding.config.Constants;
 import com.welovecoding.config.WLCProperties;
 import com.zaxxer.hikari.HikariConfig;
@@ -26,66 +27,68 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EntityScan(basePackages = {
-	"com.welovecoding.data.*"
+    "com.welovecoding.data.*"
 })
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {
-	"com.welovecoding.data.*"
+    "com.welovecoding.data.*"
 })
 @EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
 public class PersistenceConfiguration {
 
-	private final Logger log = LoggerFactory.getLogger(PersistenceConfiguration.class);
+    private final Logger log = LoggerFactory.getLogger(PersistenceConfiguration.class);
 
-	@Inject
-	private Environment env;
+    @Inject
+    private Environment env;
 
-	@Autowired(required = false)
-	private MetricRegistry metricRegistry;
+    @Autowired(required = false)
+    private MetricRegistry metricRegistry;
 
-	@Bean(destroyMethod = "close")
-	public DataSource dataSource(DataSourceProperties dataSourceProperties, WLCProperties wlcProperties) {
-		log.debug("Configuring Datasource");
-		if (dataSourceProperties.getUrl() == null) {
-			log.error("Your database connection pool configuration is incorrect! The application"
-				+ " cannot start. Please check your Spring profile, current profiles are: {}",
-				Arrays.toString(env.getActiveProfiles()));
+    @Logged
+    @Bean(destroyMethod = "close")
+    public DataSource dataSource(DataSourceProperties dataSourceProperties, WLCProperties wlcProperties) {
+        log.debug("Configuring Datasource");
+        if (dataSourceProperties.getUrl() == null) {
+            log.error("Your database connection pool configuration is incorrect! The application"
+                    + " cannot start. Please check your Spring profile, current profiles are: {}",
+                    Arrays.toString(env.getActiveProfiles()));
 
-			throw new ApplicationContextException("Database connection pool is not configured correctly");
-		}
-		HikariConfig config = new HikariConfig();
-		config.setDataSourceClassName(dataSourceProperties.getDriverClassName());
-		config.addDataSourceProperty("url", dataSourceProperties.getUrl());
-		if (dataSourceProperties.getUsername() != null) {
-			config.addDataSourceProperty("user", dataSourceProperties.getUsername());
-		} else {
-			config.addDataSourceProperty("user", ""); // HikariCP doesn't allow null user
-		}
-		if (dataSourceProperties.getPassword() != null) {
-			config.addDataSourceProperty("password", dataSourceProperties.getPassword());
-		} else {
-			config.addDataSourceProperty("password", ""); // HikariCP doesn't allow null password
-		}
+            throw new ApplicationContextException("Database connection pool is not configured correctly");
+        }
+        HikariConfig config = new HikariConfig();
+        config.setDataSourceClassName(dataSourceProperties.getDriverClassName());
+        config.addDataSourceProperty("url", dataSourceProperties.getUrl());
+        if (dataSourceProperties.getUsername() != null) {
+            config.addDataSourceProperty("user", dataSourceProperties.getUsername());
+        } else {
+            config.addDataSourceProperty("user", ""); // HikariCP doesn't allow null user
+        }
+        if (dataSourceProperties.getPassword() != null) {
+            config.addDataSourceProperty("password", dataSourceProperties.getPassword());
+        } else {
+            config.addDataSourceProperty("password", ""); // HikariCP doesn't allow null password
+        }
 
-		//MySQL optimizations, see https://github.com/brettwooldridge/HikariCP/wiki/MySQL-Configuration
-		if ("com.mysql.jdbc.jdbc2.optional.MysqlDataSource".equals(dataSourceProperties.getDriverClassName())) {
-			config.addDataSourceProperty("cachePrepStmts", wlcProperties.getDatasource().isCachePrepStmts());
-			config.addDataSourceProperty("prepStmtCacheSize", wlcProperties.getDatasource().getPrepStmtCacheSize());
-			config.addDataSourceProperty("prepStmtCacheSqlLimit", wlcProperties.getDatasource().getPrepStmtCacheSqlLimit());
-		}
-		if (metricRegistry != null) {
-			config.setMetricRegistry(metricRegistry);
-		}
-		return new HikariDataSource(config);
-	}
+        //MySQL optimizations, see https://github.com/brettwooldridge/HikariCP/wiki/MySQL-Configuration
+        if ("com.mysql.jdbc.jdbc2.optional.MysqlDataSource".equals(dataSourceProperties.getDriverClassName())) {
+            config.addDataSourceProperty("cachePrepStmts", wlcProperties.getDatasource().isCachePrepStmts());
+            config.addDataSourceProperty("prepStmtCacheSize", wlcProperties.getDatasource().getPrepStmtCacheSize());
+            config.addDataSourceProperty("prepStmtCacheSqlLimit", wlcProperties.getDatasource().getPrepStmtCacheSqlLimit());
+        }
+        if (metricRegistry != null) {
+            config.setMetricRegistry(metricRegistry);
+        }
+        return new HikariDataSource(config);
+    }
 
-	/**
-	 * Open the TCP port for the H2 database, so it is available remotely.
-	 */
-	@Profile(Constants.SPRING_PROFILE_DEVELOPMENT)
-	@Bean(initMethod = "start", destroyMethod = "stop")
-	public Server h2TCPServer() throws SQLException {
-		return Server.createTcpServer("-tcp", "-tcpAllowOthers");
-	}
+    /**
+     * Open the TCP port for the H2 database, so it is available remotely.
+     */
+    @Logged
+    @Profile(Constants.SPRING_PROFILE_DEVELOPMENT)
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    public Server h2TCPServer() throws SQLException {
+        return Server.createTcpServer("-tcp", "-tcpAllowOthers");
+    }
 
 }

@@ -8,44 +8,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryMapper {
-  
-  public static Category dtoToEntity(CategoryDTO dto) {
-    Category entity = new Category();
-    
-    entity.setColor(dto.getColor());
-    entity.setSlug(Slugify.slugify(dto.getTitle()));
-    entity.setTitle(dto.getTitle());
-    
-    return entity;
-  }
-  
-  public static CategoryDTO entityToDto(Category entity, int dept) {
-    if (entity == null || dept == 0) {
-      return null;
+
+    public static Category dtoToEntity(CategoryDTO dto) {
+        Category entity = new Category();
+
+        entity.setColor(dto.getColor());
+        entity.setSlug(Slugify.slugify(dto.getTitle()));
+        entity.setTitle(dto.getTitle());
+
+        return entity;
     }
-    if (dept < 0) {
-      throw new IllegalArgumentException("Depts smaller than 0 are not allowed!");
+
+    public static CategoryDTO entityToDto(Category entity, int dept) {
+        if (entity == null || dept == 0) {
+            return null;
+        }
+        if (dept < 0) {
+            throw new IllegalArgumentException("Depts smaller than 0 are not allowed!");
+        }
+        CategoryDTO dto = new CategoryDTO(
+                entity.getId(),
+                entity.getCreated(),
+                entity.getLastModified(),
+                entity.getSlug(),
+                entity.getTitle(),
+                entity.getColor(),
+                TutorialMapper.entityListToDtoList(entity.getTutorials(), dept)
+        );
+        return dto;
     }
-    CategoryDTO dto = new CategoryDTO(
-      entity.getId(),
-      entity.getCreated(),
-      entity.getLastModified(),
-      entity.getSlug(),
-      entity.getTitle(),
-      entity.getColor(),
-      TutorialMapper.entityListToDtoList(entity.getTutorials(), dept)
-    );
-    return dto;
-  }
-  
-  public static List<CategoryDTO> entityListToDtoList(List<Category> entityList, int dept) {
-    List<CategoryDTO> dtoList = new ArrayList<>();
-    if (dept > 0 && entityList != null) {
-      for (Category entity : entityList) {
-        dtoList.add(entityToDto(entity, dept));
-      }
+
+    public static List<CategoryDTO> entityListToDtoList(List<Category> entityList, int dept) {
+        List<CategoryDTO> dtoList = new ArrayList<>();
+        if (dept > 0 && entityList != null) {
+            for (Category entity : entityList) {
+                dtoList.add(entityToDto(entity, dept));
+            }
+        }
+        return dtoList;
     }
-    return dtoList;
-  }
-  
+
 }

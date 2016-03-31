@@ -1,6 +1,5 @@
 package com.welovecoding.data.audit;
 
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
@@ -38,7 +37,7 @@ public class AuditEventConverter {
     public AuditEvent convertToAuditEvent(PersistentAuditEvent persistentAuditEvent) {
         Instant instant = persistentAuditEvent.getAuditEventDate().atZone(ZoneId.systemDefault()).toInstant();
         return new AuditEvent(Date.from(instant), persistentAuditEvent.getPrincipal(),
-            persistentAuditEvent.getAuditEventType(), convertDataToObjects(persistentAuditEvent.getData()));
+                persistentAuditEvent.getAuditEventType(), convertDataToObjects(persistentAuditEvent.getData()));
     }
 
     /**
@@ -59,8 +58,7 @@ public class AuditEventConverter {
     }
 
     /**
-     * Internal conversion. This method will allow to save additional data.
-     * By default, it will save the object as string
+     * Internal conversion. This method will allow to save additional data. By default, it will save the object as string
      *
      * @param data the data to convert
      * @return a map of String, String

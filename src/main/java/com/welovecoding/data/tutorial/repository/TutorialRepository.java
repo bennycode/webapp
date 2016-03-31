@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TutorialRepository extends BaseRepository<Tutorial, Long>, PagingAndSortingRepository<Tutorial, Long> {
 
-
-  @Query("SELECT p FROM Tutorial p WHERE p.slug = :tutorialslug")
-  Tutorial findBySlug(@Param("tutorialslug") String slug);
+    @Query("SELECT p FROM Tutorial p WHERE p.slug = :tutorialslug")
+    Tutorial findBySlug(@Param("tutorialslug") String slug);
 
 }

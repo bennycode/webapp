@@ -1,6 +1,5 @@
 package com.welovecoding.data.audit;
 
-
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.context.annotation.Bean;
@@ -43,8 +42,9 @@ public class CustomAuditEventRepository {
                 } else if (after == null) {
                     persistentAuditEvents = persistenceAuditEventRepository.findByPrincipal(principal);
                 } else {
-                    persistentAuditEvents =
-                        persistenceAuditEventRepository.findByPrincipalAndAuditEventDateAfter(principal, LocalDateTime.from(after.toInstant()));
+                    persistentAuditEvents
+                            = persistenceAuditEventRepository.findByPrincipalAndAuditEventDateAfter(principal, LocalDateTime.
+                                    from(after.toInstant()));
                 }
                 return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
             }
@@ -52,8 +52,8 @@ public class CustomAuditEventRepository {
             @Override
             @Transactional(propagation = Propagation.REQUIRES_NEW)
             public void add(AuditEvent event) {
-                if (!AUTHORIZATION_FAILURE.equals(event.getType()) &&
-                    !ANONYMOUS_USER.equals(event.getPrincipal().toString())) {
+                if (!AUTHORIZATION_FAILURE.equals(event.getType())
+                        && !ANONYMOUS_USER.equals(event.getPrincipal().toString())) {
 
                     PersistentAuditEvent persistentAuditEvent = new PersistentAuditEvent();
                     persistentAuditEvent.setPrincipal(event.getPrincipal());

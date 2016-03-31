@@ -8,77 +8,77 @@ import com.welovecoding.data.tutorial.entity.LanguageCode;
 import java.util.Date;
 import java.util.List;
 
-@JsonPropertyOrder({
-
-})
+@JsonPropertyOrder({})
 public class TutorialDTO extends SlugBaseDTO<Long> {
-  private String title;
 
-  private String description;
+    private String title;
 
-  private boolean enabled;
+    private String description;
 
-  private List<AuthorDTO> authors;
+    private boolean enabled;
 
-  private LanguageCode languageCode;
+    private List<AuthorDTO> authors;
 
-  private Difficulty difficulty;
+    private LanguageCode languageCode;
 
-  public TutorialDTO(Long identifier, Date created, Date lastModified, String slug, String title, String description, boolean enabled, List<AuthorDTO> authors, LanguageCode languageCode, Difficulty difficulty) {
-    super(identifier, created, lastModified, slug);
-    this.title = title;
-    this.description = description;
-    this.enabled = enabled;
-    this.authors = authors;
-    this.languageCode = languageCode;
-    this.difficulty = difficulty;
-  }
+    private Difficulty difficulty;
 
-  public String getTitle() {
-    return title;
-  }
+    public TutorialDTO(Long identifier, Date created, Date lastModified, String slug, String title, String description,
+            boolean enabled, List<AuthorDTO> authors, LanguageCode languageCode, Difficulty difficulty) {
+        super(identifier, created, lastModified, slug);
+        this.title = title;
+        this.description = description;
+        this.enabled = enabled;
+        this.authors = authors;
+        this.languageCode = languageCode;
+        this.difficulty = difficulty;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public boolean isEnabled() {
-    return enabled;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-  public List<AuthorDTO> getAuthors() {
-    return authors;
-  }
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-  public void setAuthors(List<AuthorDTO> authors) {
-    this.authors = authors;
-  }
+    public List<AuthorDTO> getAuthors() {
+        return authors;
+    }
 
-  public LanguageCode getLanguageCode() {
-    return languageCode;
-  }
+    public void setAuthors(List<AuthorDTO> authors) {
+        this.authors = authors;
+    }
 
-  public void setLanguageCode(LanguageCode languageCode) {
-    this.languageCode = languageCode;
-  }
+    public LanguageCode getLanguageCode() {
+        return languageCode;
+    }
 
-  public Difficulty getDifficulty() {
-    return difficulty;
-  }
+    public void setLanguageCode(LanguageCode languageCode) {
+        this.languageCode = languageCode;
+    }
 
-  public void setDifficulty(Difficulty difficulty) {
-    this.difficulty = difficulty;
-  }
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
 }

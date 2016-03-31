@@ -1,39 +1,38 @@
-
 spring:
-    profiles:
-        active: @wlc.environment.active@
-    jpa:
-        open-in-view: false
-        hibernate:
+  profiles:
+    active: @wlc.environment.active@
+  jpa:
+    open-in-view: false
+    hibernate:
 # update, none
-            ddl-auto: update
-            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
-    messages:
-        basename: classpath:/i18n/messages
-    mvc:
-        favicon:
-            enabled: false
-    thymeleaf:
-        mode: XHTML
+      ddl-auto: update
+      naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+  messages:
+    basename: classpath:/i18n/messages
+  mvc:
+    favicon:
+      enabled: false
+  thymeleaf:
+    mode: XHTML
 
 security:
-    basic:
-        enabled: false
+  basic:
+    enabled: false
         
 # ===================================================================
 # WeLoveCoding specific properties
 # ===================================================================
 
 wlc:
-    mail:
-        from: noreply@welovecoding.com
-    security:
-        authentication:
-            oauth:
-                clientid: @wlc.security.oauth.clientid@
-                secret: @wlc.security.oauth.secret@
-                # Token is valid 30 minutes
-                tokenValidityInSeconds: 1800
-        rememberme:
-            # security key (this key should be unique for your application, and kept secret)
-            key: @wlc.security.rememberme@
+  mail:
+    from: noreply@welovecoding.com
+  security:
+    authentication:
+      oauth:
+        clientid: @wlc.security.oauth.clientid@
+        secret: @wlc.security.oauth.secret@
+        # Token is valid 30 minutes
+        tokenValidityInSeconds: 1800
+    rememberme:
+      # security key (this key should be unique for your application, and kept secret)
+      key: @wlc.security.rememberme@

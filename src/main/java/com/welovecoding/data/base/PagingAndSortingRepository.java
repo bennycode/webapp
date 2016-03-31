@@ -17,20 +17,19 @@ import java.util.LinkedList;
 @NoRepositoryBean
 public interface PagingAndSortingRepository<E, PK extends Serializable> extends Repository<E, PK> {
 
-  /**
-   * Returns all entities sorted by the given options.
-   *
-   * @param sort
-   * @return all entities sorted by the given options
-   */
-  LinkedList<E> findAll(Sort sort);
+    /**
+     * Returns all entities sorted by the given options.
+     *
+     * @param sort
+     * @return all entities sorted by the given options
+     */
+    LinkedList<E> findAll(Sort sort);
 
-  /**
-   * Returns a {@link Page} of entities meeting the paging restriction
-   * provided in the {@code Pageable} object.
-   *
-   * @param pageable
-   * @return a page of entities
-   */
-  Page<E> findAll(Pageable pageable);
+    /**
+     * Returns a {@link Page} of entities meeting the paging restriction provided in the {@code Pageable} object.
+     *
+     * @param pageable
+     * @return a page of entities
+     */
+    Page<E> findAll(Pageable pageable);
 }

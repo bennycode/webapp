@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Properties specific to wlc.
  *
  * <p>
- *     Properties are configured in the application.yml file.
+ * Properties are configured in the application.yml file.
  * </p>
  */
 @ConfigurationProperties(prefix = "wlc", ignoreUnknownFields = false)
@@ -27,8 +27,6 @@ public class WLCProperties {
     private final Swagger swagger = new Swagger();
 
     private final Metrics metrics = new Metrics();
-
-
 
     public Http getHttp() {
         return http;
@@ -57,7 +55,6 @@ public class WLCProperties {
     public Metrics getMetrics() {
         return metrics;
     }
-
 
     public static class Http {
 
@@ -139,7 +136,7 @@ public class WLCProperties {
 
     public static class Mail {
 
-      private String from = "wlc@welovecoding.com";
+        private String from = "wlc@welovecoding.com";
 
         public String getFrom() {
             return from;
@@ -205,6 +202,7 @@ public class WLCProperties {
                 }
             }
         }
+
         public static class Rememberme {
 
             @NotNull
@@ -222,9 +220,9 @@ public class WLCProperties {
 
     public static class Swagger {
 
-      private String title = "We Love Coding API";
+        private String title = "We Love Coding API";
 
-      private String description = "We Love Coding API documentation";
+        private String description = "We Love Coding API documentation";
 
         private String version = "0.0.1";
 
@@ -367,7 +365,7 @@ public class WLCProperties {
 
             private int port = 2003;
 
-          private String prefix = "wlc";
+            private String prefix = "wlc";
 
             public boolean isEnabled() {
                 return enabled;

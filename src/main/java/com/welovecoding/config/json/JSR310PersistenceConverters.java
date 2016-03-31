@@ -1,6 +1,5 @@
 package com.welovecoding.config.json;
 
-
 import com.welovecoding.config.json.JSR310DateConverters.DateToLocalDateTimeConverter;
 import com.welovecoding.config.json.JSR310DateConverters.DateToZonedDateTimeConverter;
 import com.welovecoding.config.json.JSR310DateConverters.LocalDateTimeToDateConverter;
@@ -13,7 +12,8 @@ import javax.persistence.Converter;
 
 public final class JSR310PersistenceConverters {
 
-    private JSR310PersistenceConverters() {}
+    private JSR310PersistenceConverters() {
+    }
 
     @Converter(autoApply = true)
     public static class LocalDateConverter implements AttributeConverter<LocalDate, java.sql.Date> {

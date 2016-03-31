@@ -9,35 +9,35 @@ import javax.validation.constraints.Size;
 @Entity
 public class TextPostElement extends PostElement {
 
-  @NotNull
-  @Size(min = 1, max = 255)
-  @Basic(optional = false)
-  private String title;
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Basic(optional = false)
+    private String title;
 
-  @Lob
-  private String text;
+    @Lob
+    private String text;
 
-  public TextPostElement() {
-  }
+    public TextPostElement() {
+    }
 
-  @Override
-  public Comparable comparableAttribute() {
-    return getTitle();
-  }
+    @Override
+    public Comparable comparableAttribute() {
+        return getTitle();
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-  public String getText() {
-    return text;
-  }
+    public String getText() {
+        return text;
+    }
 
-  public void setText(String text) {
-    this.text = text;
-  }
+    public void setText(String text) {
+        this.text = text;
+    }
 }

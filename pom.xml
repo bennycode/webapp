@@ -20,6 +20,7 @@
     <!--<tomcat.version>7.0.61</tomcat.version>-->
     
     <wlc.environment.active>dev</wlc.environment.active>
+    <wlc.excludeDevtools>false</wlc.excludeDevtools>
     <!-- Dev properties -->
     <wlc.security.oauth.clientid>wlcClient</wlc.security.oauth.clientid>
     <wlc.security.oauth.secret>wlcSecret</wlc.security.oauth.secret>
@@ -59,6 +60,12 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -232,7 +239,14 @@
       <artifactId>metrics-spark-reporter</artifactId>
       <version>1.2</version>
     </dependency>
-
+    
+    <!--https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html-->
+    <!--automatically disabled when running with 'java -jar' or spacial classloader-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <optional>true</optional>
+    </dependency>
 
     <!-- TESTING -->
     <dependency>
@@ -397,6 +411,9 @@
     
     <profile>
       <id>standalone</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       
       <dependencies>
         <dependency>
@@ -417,6 +434,8 @@
             <configuration>
               <addResources>false</addResources>
               <executable>true</executable>
+              <fork>true</fork>
+              <excludeDevtools>${wlc.excludeDevtools}</excludeDevtools>
             </configuration>
           </plugin>
         </plugins>
@@ -427,11 +446,7 @@
       <id>deployable</id>
       
       <dependencies>
-        <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-tomcat</artifactId>
-          <scope>provided</scope>
-        </dependency>
+        <!--use default provided tomcat starter dependency-->
       </dependencies>
     </profile>
 
@@ -441,7 +456,7 @@
       <properties>
         <wlc.environment.active>prod</wlc.environment.active>
         <!-- Prod properties -->
-<!--        <wlc.security.oauth.clientid></wlc.security.oauth.clientid>
+        <!--        <wlc.security.oauth.clientid></wlc.security.oauth.clientid>
         <wlc.security.oauth.secret></wlc.security.oauth.secret>
         <wlc.security.rememberme></wlc.security.rememberme>
         <wlc.mail.host></wlc.mail.host>
@@ -491,7 +506,7 @@
                   </target>
                 </configuration>
                 <goals>
-                    <goal>run</goal>
+                  <goal>run</goal>
                 </goals>
               </execution>
             </executions>
@@ -541,7 +556,7 @@
                   <tarLongFileMode>posix</tarLongFileMode>
                 </configuration>
                 <goals>
-                    <goal>single</goal>
+                  <goal>single</goal>
                 </goals>
               </execution>
             </executions>

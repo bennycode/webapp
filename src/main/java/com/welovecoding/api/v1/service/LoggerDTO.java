@@ -36,9 +36,9 @@ public class LoggerDTO {
 
     @Override
     public String toString() {
-        return "LoggerDTO{" +
-            "name='" + name + '\'' +
-            ", level='" + level + '\'' +
-            '}';
+        return "LoggerDTO{"
+                + "name='" + name + '\''
+                + ", level='" + level + '\''
+                + '}';
     }
 }

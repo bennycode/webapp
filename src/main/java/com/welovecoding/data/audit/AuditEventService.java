@@ -1,5 +1,6 @@
 package com.welovecoding.data.audit;
 
+import com.welovecoding.api.v1.base.Logged;
 import java.time.LocalDateTime;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.stereotype.Service;
@@ -26,26 +27,28 @@ public class AuditEventService {
 
     @Inject
     public AuditEventService(
-        PersistenceAuditEventRepository persistenceAuditEventRepository,
-        AuditEventConverter auditEventConverter) {
+            PersistenceAuditEventRepository persistenceAuditEventRepository,
+            AuditEventConverter auditEventConverter) {
 
         this.persistenceAuditEventRepository = persistenceAuditEventRepository;
         this.auditEventConverter = auditEventConverter;
     }
 
+    @Logged
     public List<AuditEvent> findAll() {
         return auditEventConverter.convertToAuditEvent(persistenceAuditEventRepository.findAll());
     }
 
+    @Logged
     public List<AuditEvent> findByDates(LocalDateTime fromDate, LocalDateTime toDate) {
-        List<PersistentAuditEvent> persistentAuditEvents =
-            persistenceAuditEventRepository.findAllByAuditEventDateBetween(fromDate, toDate);
+        List<PersistentAuditEvent> persistentAuditEvents
+                = persistenceAuditEventRepository.findAllByAuditEventDateBetween(fromDate, toDate);
 
         return auditEventConverter.convertToAuditEvent(persistentAuditEvents);
     }
 
+    @Logged
     public Optional<AuditEvent> find(Long id) {
-        return Optional.ofNullable(persistenceAuditEventRepository.findOne(id)).map
-            (auditEventConverter::convertToAuditEvent);
+        return Optional.ofNullable(persistenceAuditEventRepository.findOne(id)).map(auditEventConverter::convertToAuditEvent);
     }
 }

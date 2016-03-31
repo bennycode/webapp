@@ -1,5 +1,6 @@
 package com.welovecoding.config.locale;
 
+import com.welovecoding.api.v1.base.Logged;
 import org.springframework.context.i18n.LocaleContext;
 import org.springframework.context.i18n.TimeZoneAwareLocaleContext;
 import org.springframework.util.StringUtils;
@@ -12,9 +13,8 @@ import java.util.TimeZone;
 import javax.servlet.http.*;
 
 /**
- * Angular cookie saved the locale with a double quote (%22en%22).
- * So the default CookieLocaleResolver#StringUtils.parseLocaleString(localePart)
- * is not able to parse the locale.
+ * Angular cookie saved the locale with a double quote (%22en%22). So the default
+ * CookieLocaleResolver#StringUtils.parseLocaleString(localePart) is not able to parse the locale.
  *
  * This class will check if a double quote has been added, if so it will remove it.
  */
@@ -26,6 +26,7 @@ public class AngularCookieLocaleResolver extends CookieLocaleResolver {
         return (Locale) request.getAttribute(LOCALE_REQUEST_ATTRIBUTE_NAME);
     }
 
+    @Logged
     @Override
     public LocaleContext resolveLocaleContext(final HttpServletRequest request) {
         parseLocaleCookieIfNecessary(request);
@@ -42,6 +43,7 @@ public class AngularCookieLocaleResolver extends CookieLocaleResolver {
         };
     }
 
+    @Logged
     @Override
     public void addCookie(HttpServletResponse response, String cookieValue) {
         // Mandatory cookie modification for angular to support the locale switching on the server side.
@@ -73,15 +75,15 @@ public class AngularCookieLocaleResolver extends CookieLocaleResolver {
                     timeZone = StringUtils.parseTimeZoneString(timeZonePart);
                 }
                 if (logger.isTraceEnabled()) {
-                    logger.trace("Parsed cookie value [" + cookie.getValue() + "] into locale '" + locale +
-                        "'" + (timeZone != null ? " and time zone '" + timeZone.getID() + "'" : ""));
+                    logger.trace("Parsed cookie value [" + cookie.getValue() + "] into locale '" + locale
+                            + "'" + (timeZone != null ? " and time zone '" + timeZone.getID() + "'" : ""));
                 }
             }
             request.setAttribute(LOCALE_REQUEST_ATTRIBUTE_NAME,
-                (locale != null ? locale: determineDefaultLocale(request)));
+                    (locale != null ? locale : determineDefaultLocale(request)));
 
             request.setAttribute(TIME_ZONE_REQUEST_ATTRIBUTE_NAME,
-                (timeZone != null ? timeZone : determineDefaultTimeZone(request)));
+                    (timeZone != null ? timeZone : determineDefaultTimeZone(request)));
         }
     }
 }

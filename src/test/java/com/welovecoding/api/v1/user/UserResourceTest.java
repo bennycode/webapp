@@ -1,6 +1,7 @@
 package com.welovecoding.api.v1.user;
 
 import com.welovecoding.Application;
+import com.welovecoding.data.user.entity.Password;
 import com.welovecoding.data.user.entity.User;
 import com.welovecoding.data.user.repository.UserRepository;
 import com.welovecoding.data.user.service.UserService;
@@ -36,43 +37,44 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 public class UserResourceTest {
 
-	private static final Logger log = LoggerFactory.getLogger(AccountResourceTest.class.getName());
+    private static final Logger log = LoggerFactory.getLogger(AccountResourceTest.class.getName());
 
-	@Rule
-	public TestName name = new TestName();
+    @Rule
+    public TestName name = new TestName();
 
-	@Inject
-	private UserRepository userRepository;
+    @Inject
+    private UserRepository userRepository;
 
-	@Inject
-	private UserService userService;
+    @Inject
+    private UserService userService;
 
-	private MockMvc restUserMockMvc;
+    private MockMvc restUserMockMvc;
 
-	@Before
-	public void setup() {
-		UserResource userResource = new UserResource();
-		ReflectionTestUtils.setField(userResource, "userRepository", userRepository);
-		ReflectionTestUtils.setField(userResource, "userService", userService);
-		this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource).build();
-	}
+    @Before
+    public void setup() {
+        UserResource userResource = new UserResource();
+        ReflectionTestUtils.setField(userResource, "userRepository", userRepository);
+        ReflectionTestUtils.setField(userResource, "userService", userService);
+        this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource).build();
+    }
 
-	@Test
-	public void testGetExistingUser() throws Exception {
-		log.debug(name.getMethodName());
-		User admin = userService.createUserInformation("admin", "password", "Administrator", "Administrator", "admin@wlc.com", "de");
-		userService.activateRegistration(admin.getActivationKey());
+    @Test
+    public void testGetExistingUser() throws Exception {
+        log.debug(name.getMethodName());
+        User admin = userService.createUserInformation("admin", new Password("password"), "Administrator", "Administrator", "admin@wlc.com",
+                "de");
+        userService.activateRegistration(admin.getActivationKey());
 
-		restUserMockMvc.perform(get("/api/v1/users/admin").accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isOk())
-			.andExpect(content().contentType("application/json"))
-			.andExpect(jsonPath("$.lastName").value("Administrator"));
-	}
+        restUserMockMvc.perform(get("/api/v1/users/admin").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.lastName").value("Administrator"));
+    }
 
-	@Test
-	public void testGetUnknownUser() throws Exception {
-		log.debug(name.getMethodName());
-		restUserMockMvc.perform(get("/api/v1/users/unknown").accept(MediaType.APPLICATION_JSON))
-			.andExpect(status().isNotFound());
-	}
+    @Test
+    public void testGetUnknownUser() throws Exception {
+        log.debug(name.getMethodName());
+        restUserMockMvc.perform(get("/api/v1/users/unknown").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
 }

@@ -56,7 +56,7 @@ public final class SecurityUtils {
 
     /**
      * Return the current user id, or throws an exception, if the user is not authenticated yet.
-     * 
+     *
      * @return the current user id
      */
     public static Long getCurrentUserId() {
@@ -64,9 +64,8 @@ public final class SecurityUtils {
     }
 
     /**
-     * Return the current user, or throws an exception, if the user is not
-     * authenticated yet.
-     * 
+     * Return the current user, or throws an exception, if the user is not authenticated yet.
+     *
      * @return the current user
      */
     public static CustomUserDetails getCurrentUser() {
@@ -83,7 +82,8 @@ public final class SecurityUtils {
     /**
      * If the current user has a specific authority (security role).
      *
-     * <p> The name of this method comes from the isUserInRole() method in the Servlet API</p>
+     * <p>
+     * The name of this method comes from the isUserInRole() method in the Servlet API</p>
      */
     public static boolean isUserInRole(String authority) {
         SecurityContext securityContext = SecurityContextHolder.getContext();

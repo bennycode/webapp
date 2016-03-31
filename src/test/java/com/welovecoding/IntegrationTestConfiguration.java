@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 @Configuration
 public class IntegrationTestConfiguration {
 
-	private static final Logger LOG = LoggerFactory.getLogger(IntegrationTestConfiguration.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(IntegrationTestConfiguration.class.getName());
 
 //	@Inject
 //	private DataSource datasource;

@@ -1,5 +1,6 @@
 package com.welovecoding.config.security;
 
+import com.welovecoding.api.v1.base.Logged;
 import com.welovecoding.config.WLCProperties;
 import com.welovecoding.config.security.util.AjaxLogoutSuccessHandler;
 import com.welovecoding.config.security.util.AuthoritiesConstants;
@@ -26,99 +27,99 @@ import javax.sql.DataSource;
 @Configuration
 public class OAuth2ServerConfiguration {
 
-	@Configuration
-	@EnableResourceServer
-	protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+    @Configuration
+    @EnableResourceServer
+    protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
-		@Inject
-		private Http401UnauthorizedEntryPoint authenticationEntryPoint;
+        @Inject
+        private Http401UnauthorizedEntryPoint authenticationEntryPoint;
 
-		@Inject
-		private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
+        @Inject
+        private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
 
-		@Override
-		public void configure(HttpSecurity http) throws Exception {
-			http
-				.exceptionHandling()
-				.authenticationEntryPoint(authenticationEntryPoint)
-				.and()
-				.logout()
-				.logoutUrl("/api/v1/logout")
-				.logoutSuccessHandler(ajaxLogoutSuccessHandler)
-				.and()
-				.csrf()
-				.requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
-				.disable()
-				.headers()
-				.frameOptions().disable()
-				.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-				.authorizeRequests()
-				.antMatchers("/api/v1/account/authenticate").permitAll()
-				.antMatchers("/api/v1/account/register").permitAll()
-				.antMatchers("/api/v1/account/activate").permitAll()
-				.antMatchers("/api/v1/ping").permitAll()
-        .antMatchers("/health/**").permitAll()
-        .antMatchers("/health/**").permitAll()
-        .antMatchers("/info/**").permitAll()
-				.antMatchers("/api/v1/**").authenticated()
-				.antMatchers("/logs/**").hasAnyAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/metrics/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/dump/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/shutdown/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/beans/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/configprops/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/autoconfig/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/env/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/trace/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/liquibase/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)
-				.antMatchers("/protected/**").authenticated();
+        @Logged
+        @Override
+        public void configure(HttpSecurity http) throws Exception {
+            http
+                    .exceptionHandling()
+                    .authenticationEntryPoint(authenticationEntryPoint)
+                    .and()
+                    .logout()
+                    .logoutUrl("/api/v1/logout")
+                    .logoutSuccessHandler(ajaxLogoutSuccessHandler)
+                    .and()
+                    .csrf()
+                    .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
+                    .disable()
+                    .headers()
+                    .frameOptions().disable()
+                    .and()
+                    .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers("/api/v1/account/authenticate").permitAll()
+                    .antMatchers("/api/v1/account/register").permitAll()
+                    .antMatchers("/api/v1/account/activate").permitAll()
+                    .antMatchers("/api/v1/ping").permitAll()
+                    .antMatchers("/health/**").permitAll()
+                    .antMatchers("/info/**").permitAll()
+                    .antMatchers("/api/v1/**").authenticated()
+                    .antMatchers("/logs/**").hasAnyAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/metrics/**").permitAll()
+                    .antMatchers("/trace/**").permitAll()
+                    .antMatchers("/dump/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/shutdown/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/beans/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/configprops/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/autoconfig/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/env/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/liquibase/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/api-docs/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                    .antMatchers("/protected/**").authenticated();
 
-		}
-	}
+        }
+    }
 
-	@Configuration
-	@EnableAuthorizationServer
-	protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+    @Configuration
+    @EnableAuthorizationServer
+    protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-		@Inject
-		private DataSource dataSource;
+        @Inject
+        private DataSource dataSource;
 
-		@Inject
-		private WLCProperties wlcProperties;
+        @Inject
+        private WLCProperties wlcProperties;
 
-		@Bean
-		public TokenStore tokenStore() {
-			return new JdbcTokenStore(dataSource);
-		}
+        @Bean
+        public TokenStore tokenStore() {
+            return new JdbcTokenStore(dataSource);
+        }
 
-		@Inject
-		@Qualifier("authenticationManagerBean")
-		private AuthenticationManager authenticationManager;
+        @Inject
+        @Qualifier("authenticationManagerBean")
+        private AuthenticationManager authenticationManager;
 
-		@Override
-		public void configure(AuthorizationServerEndpointsConfigurer endpoints)
-			throws Exception {
+        @Logged
+        @Override
+        public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+            endpoints
+                    .tokenStore(tokenStore())
+                    .authenticationManager(authenticationManager);
+        }
 
-			endpoints
-				.tokenStore(tokenStore())
-				.authenticationManager(authenticationManager);
-		}
-
-		@Override
-		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-			clients
-				.inMemory()
-				.withClient(wlcProperties.getSecurity().getAuthentication().getOauth().getClientid())
-				.scopes("read", "write")
-				.authorities(AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER)
-				.authorizedGrantTypes("password", "refresh_token")
-				.secret(wlcProperties.getSecurity().getAuthentication().getOauth().getSecret())
-				.accessTokenValiditySeconds(wlcProperties.getSecurity().getAuthentication().getOauth().getTokenValidityInSeconds());
-		}
-	}
+        @Logged
+        @Override
+        public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+            clients
+                    .inMemory()
+                    .withClient(wlcProperties.getSecurity().getAuthentication().getOauth().getClientid())
+                    .scopes("read", "write")
+                    .authorities(AuthoritiesConstants.ADMIN, AuthoritiesConstants.USER)
+                    .authorizedGrantTypes("password", "refresh_token")
+                    .secret(wlcProperties.getSecurity().getAuthentication().getOauth().getSecret())
+                    .accessTokenValiditySeconds(wlcProperties.getSecurity().getAuthentication().getOauth().
+                            getTokenValidityInSeconds());
+        }
+    }
 }

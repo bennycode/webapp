@@ -8,6 +8,7 @@ import com.codahale.metrics.health.HealthCheckRegistry;
 import com.codahale.metrics.jvm.*;
 import com.ryantenney.metrics.spring.config.annotation.EnableMetrics;
 import com.ryantenney.metrics.spring.config.annotation.MetricsConfigurerAdapter;
+import com.welovecoding.api.v1.base.Logged;
 import fr.ippon.spark.metrics.SparkReporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,102 +25,106 @@ import java.util.concurrent.TimeUnit;
 @EnableMetrics(proxyTargetClass = true)
 public class MetricsConfiguration extends MetricsConfigurerAdapter {
 
-  private static final String PROP_METRIC_REG_JVM_MEMORY = "jvm.memory";
-  private static final String PROP_METRIC_REG_JVM_GARBAGE = "jvm.garbage";
-  private static final String PROP_METRIC_REG_JVM_THREADS = "jvm.threads";
-  private static final String PROP_METRIC_REG_JVM_FILES = "jvm.files";
-  private static final String PROP_METRIC_REG_JVM_BUFFERS = "jvm.buffers";
+    private static final String PROP_METRIC_REG_JVM_MEMORY = "jvm.memory";
+    private static final String PROP_METRIC_REG_JVM_GARBAGE = "jvm.garbage";
+    private static final String PROP_METRIC_REG_JVM_THREADS = "jvm.threads";
+    private static final String PROP_METRIC_REG_JVM_FILES = "jvm.files";
+    private static final String PROP_METRIC_REG_JVM_BUFFERS = "jvm.buffers";
 
-  private final Logger log = LoggerFactory.getLogger(MetricsConfiguration.class);
+    private final Logger log = LoggerFactory.getLogger(MetricsConfiguration.class);
 
-  private MetricRegistry metricRegistry = new MetricRegistry();
+    private MetricRegistry metricRegistry = new MetricRegistry();
 
-  private HealthCheckRegistry healthCheckRegistry = new HealthCheckRegistry();
-
-  @Inject
-  private WLCProperties wlcProperties;
-
-  @Override
-  @Bean
-  public MetricRegistry getMetricRegistry() {
-    return metricRegistry;
-  }
-
-  @Override
-  @Bean
-  public HealthCheckRegistry getHealthCheckRegistry() {
-    return healthCheckRegistry;
-  }
-
-  @PostConstruct
-  public void init() {
-    log.debug("Registering JVM gauges");
-    metricRegistry.register(PROP_METRIC_REG_JVM_MEMORY, new MemoryUsageGaugeSet());
-    metricRegistry.register(PROP_METRIC_REG_JVM_GARBAGE, new GarbageCollectorMetricSet());
-    metricRegistry.register(PROP_METRIC_REG_JVM_THREADS, new ThreadStatesGaugeSet());
-    metricRegistry.register(PROP_METRIC_REG_JVM_FILES, new FileDescriptorRatioGauge());
-    metricRegistry.register(PROP_METRIC_REG_JVM_BUFFERS, new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
-    if (wlcProperties.getMetrics().getJmx().isEnabled()) {
-      log.debug("Initializing Metrics JMX reporting");
-      JmxReporter jmxReporter = JmxReporter.forRegistry(metricRegistry).build();
-      jmxReporter.start();
-    }
-  }
-
-  @Configuration
-  @ConditionalOnClass(Graphite.class)
-  public static class GraphiteRegistry {
-
-    private final Logger log = LoggerFactory.getLogger(GraphiteRegistry.class);
-
-    @Inject
-    private MetricRegistry metricRegistry;
+    private HealthCheckRegistry healthCheckRegistry = new HealthCheckRegistry();
 
     @Inject
     private WLCProperties wlcProperties;
 
-    @PostConstruct
-    private void init() {
-      if (wlcProperties.getMetrics().getGraphite().isEnabled()) {
-        log.info("Initializing Metrics Graphite reporting");
-        String graphiteHost = wlcProperties.getMetrics().getGraphite().getHost();
-        Integer graphitePort = wlcProperties.getMetrics().getGraphite().getPort();
-        String graphitePrefix = wlcProperties.getMetrics().getGraphite().getPrefix();
-        Graphite graphite = new Graphite(new InetSocketAddress(graphiteHost, graphitePort));
-        GraphiteReporter graphiteReporter = GraphiteReporter.forRegistry(metricRegistry)
-          .convertRatesTo(TimeUnit.SECONDS)
-          .convertDurationsTo(TimeUnit.MILLISECONDS)
-          .prefixedWith(graphitePrefix)
-          .build(graphite);
-        graphiteReporter.start(1, TimeUnit.MINUTES);
-      }
+    @Override
+    @Bean
+    public MetricRegistry getMetricRegistry() {
+        return metricRegistry;
     }
-  }
 
-  @Configuration
-  @ConditionalOnClass(SparkReporter.class)
-  public static class SparkRegistry {
-
-    private final Logger log = LoggerFactory.getLogger(SparkRegistry.class);
-
-    @Inject
-    private MetricRegistry metricRegistry;
-
-    @Inject
-    private WLCProperties wlcProperties;
-
-    @PostConstruct
-    private void init() {
-      if (wlcProperties.getMetrics().getSpark().isEnabled()) {
-        log.info("Initializing Metrics Spark reporting");
-        String sparkHost = wlcProperties.getMetrics().getSpark().getHost();
-        Integer sparkPort = wlcProperties.getMetrics().getSpark().getPort();
-        SparkReporter sparkReporter = SparkReporter.forRegistry(metricRegistry)
-          .convertRatesTo(TimeUnit.SECONDS)
-          .convertDurationsTo(TimeUnit.MILLISECONDS)
-          .build(sparkHost, sparkPort);
-        sparkReporter.start(1, TimeUnit.MINUTES);
-      }
+    @Override
+    @Bean
+    public HealthCheckRegistry getHealthCheckRegistry() {
+        return healthCheckRegistry;
     }
-  }
+
+    @Logged
+    @PostConstruct
+    public void init() {
+        log.debug("Registering JVM gauges");
+        metricRegistry.register(PROP_METRIC_REG_JVM_MEMORY, new MemoryUsageGaugeSet());
+        metricRegistry.register(PROP_METRIC_REG_JVM_GARBAGE, new GarbageCollectorMetricSet());
+        metricRegistry.register(PROP_METRIC_REG_JVM_THREADS, new ThreadStatesGaugeSet());
+        metricRegistry.register(PROP_METRIC_REG_JVM_FILES, new FileDescriptorRatioGauge());
+        metricRegistry.
+                register(PROP_METRIC_REG_JVM_BUFFERS, new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
+        if (wlcProperties.getMetrics().getJmx().isEnabled()) {
+            log.debug("Initializing Metrics JMX reporting");
+            JmxReporter jmxReporter = JmxReporter.forRegistry(metricRegistry).build();
+            jmxReporter.start();
+        }
+    }
+
+    @Configuration
+    @ConditionalOnClass(Graphite.class)
+    public static class GraphiteRegistry {
+
+        private final Logger log = LoggerFactory.getLogger(GraphiteRegistry.class);
+
+        @Inject
+        private MetricRegistry metricRegistry;
+
+        @Inject
+        private WLCProperties wlcProperties;
+
+        @Logged
+        @PostConstruct
+        private void init() {
+            if (wlcProperties.getMetrics().getGraphite().isEnabled()) {
+                log.info("Initializing Metrics Graphite reporting");
+                String graphiteHost = wlcProperties.getMetrics().getGraphite().getHost();
+                Integer graphitePort = wlcProperties.getMetrics().getGraphite().getPort();
+                String graphitePrefix = wlcProperties.getMetrics().getGraphite().getPrefix();
+                Graphite graphite = new Graphite(new InetSocketAddress(graphiteHost, graphitePort));
+                GraphiteReporter graphiteReporter = GraphiteReporter.forRegistry(metricRegistry)
+                        .convertRatesTo(TimeUnit.SECONDS)
+                        .convertDurationsTo(TimeUnit.MILLISECONDS)
+                        .prefixedWith(graphitePrefix)
+                        .build(graphite);
+                graphiteReporter.start(1, TimeUnit.MINUTES);
+            }
+        }
+    }
+
+    @Configuration
+    @ConditionalOnClass(SparkReporter.class)
+    public static class SparkRegistry {
+
+        private final Logger log = LoggerFactory.getLogger(SparkRegistry.class);
+
+        @Inject
+        private MetricRegistry metricRegistry;
+
+        @Inject
+        private WLCProperties wlcProperties;
+
+        @Logged
+        @PostConstruct
+        private void init() {
+            if (wlcProperties.getMetrics().getSpark().isEnabled()) {
+                log.info("Initializing Metrics Spark reporting");
+                String sparkHost = wlcProperties.getMetrics().getSpark().getHost();
+                Integer sparkPort = wlcProperties.getMetrics().getSpark().getPort();
+                SparkReporter sparkReporter = SparkReporter.forRegistry(metricRegistry)
+                        .convertRatesTo(TimeUnit.SECONDS)
+                        .convertDurationsTo(TimeUnit.MILLISECONDS)
+                        .build(sparkHost, sparkPort);
+                sparkReporter.start(1, TimeUnit.MINUTES);
+            }
+        }
+    }
 }

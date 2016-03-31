@@ -29,16 +29,16 @@ public class AuditResource {
     }
 
     @RequestMapping(method = RequestMethod.GET,
-        params = {"fromDate", "toDate"})
+            params = {"fromDate", "toDate"})
     public List<AuditEvent> getByDates(
-        @RequestParam(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
-        @RequestParam(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) {
+            @RequestParam(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+            @RequestParam(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate) {
 
         return auditEventService.findByDates(fromDate.atTime(0, 0), toDate.atTime(23, 59));
     }
 
     @RequestMapping(value = "/{id:.+}",
-        method = RequestMethod.GET)
+            method = RequestMethod.GET)
     public ResponseEntity<AuditEvent> get(@PathVariable Long id) {
         return auditEventService.find(id)
                 .map((entity) -> new ResponseEntity<>(entity, HttpStatus.OK))

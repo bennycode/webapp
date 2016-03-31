@@ -1,5 +1,6 @@
 package com.welovecoding.data.user.service;
 
+import com.welovecoding.api.v1.base.Logged;
 import com.welovecoding.data.user.repository.UserRepository;
 import com.welovecoding.data.user.entity.User;
 import com.welovecoding.data.user.entity.CustomUserDetails;
@@ -23,28 +24,29 @@ import java.util.stream.Collectors;
 @Component("userDetailsService")
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
-  private final Logger log = LoggerFactory.getLogger(UserDetailsService.class);
+    private final Logger log = LoggerFactory.getLogger(UserDetailsService.class);
 
-  @Inject
-  private UserRepository userRepository;
+    @Inject
+    private UserRepository userRepository;
 
-  @Override
-  @Transactional
-  public UserDetails loadUserByUsername(final String login) {
-    log.debug("Authenticating {}", login);
-    String lowercaseLogin = login.toLowerCase();
-    Optional<User> userFromDatabase = userRepository.findOneByLogin(lowercaseLogin);
-    return userFromDatabase.map(user -> {
-      if (!user.getActivated()) {
-        throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
-      }
-      Set<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
-        .map(authority -> new SimpleGrantedAuthority(authority.getName()))
-        .collect(Collectors.toSet());
-      return new CustomUserDetails(user.getId(), lowercaseLogin,
-        user.getPassword(),
-        grantedAuthorities, true, true, true, true);
-    }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the "
-      + "database"));
-  }
+    @Logged
+    @Override
+    @Transactional
+    public UserDetails loadUserByUsername(final String login) {
+        log.debug("Authenticating {}", login);
+        String lowercaseLogin = login.toLowerCase();
+        Optional<User> userFromDatabase = userRepository.findOneByLogin(lowercaseLogin);
+        return userFromDatabase.map(user -> {
+            if (!user.getActivated()) {
+                throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
+            }
+            Set<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
+                    .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+                    .collect(Collectors.toSet());
+            return new CustomUserDetails(user.getId(), lowercaseLogin,
+                    user.getPassword().get(),
+                    grantedAuthorities, true, true, true, true);
+        }).orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found in the "
+                + "database"));
+    }
 }

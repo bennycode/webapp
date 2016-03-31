@@ -61,11 +61,11 @@ public class ManagedUserDTO extends UserDTO {
 
     @Override
     public String toString() {
-        return "ManagedUserDTO{" +
-            "id=" + id +
-            ", createdDate=" + createdDate +
-            ", lastModifiedBy='" + lastModifiedBy + '\'' +
-            ", lastModifiedDate=" + lastModifiedDate +
-            "} " + super.toString();
+        return "ManagedUserDTO{"
+                + "id=" + id
+                + ", createdDate=" + createdDate
+                + ", lastModifiedBy='" + lastModifiedBy + '\''
+                + ", lastModifiedDate=" + lastModifiedDate
+                + "} " + super.toString();
     }
 }

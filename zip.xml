@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <assembly>
-	<id>${version}</id>
-	<formats>
-		<format>zip</format>
-	</formats>
-	<includeBaseDirectory>false</includeBaseDirectory>
-	<fileSets>
-		<fileSet>
-			<directory>target/eb-bundle</directory>
-			<outputDirectory>/</outputDirectory>
-		</fileSet>
-	</fileSets>
+  <id>${version}</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>target/eb-bundle</directory>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+  </fileSets>
 </assembly>

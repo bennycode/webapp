@@ -1,5 +1,6 @@
 package com.welovecoding.config.security;
 
+import com.welovecoding.api.v1.base.Logged;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,45 +21,49 @@ import javax.inject.Inject;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Inject
-	private UserDetailsService userDetailsService;
+    @Inject
+    private UserDetailsService userDetailsService;
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Inject
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.userDetailsService(userDetailsService)
-			.passwordEncoder(passwordEncoder());
-	}
+    @Logged
+    @Inject
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring()
-			.antMatchers("/scripts/**/*.{js,html}")
-			.antMatchers("/bower_components/**")
-			.antMatchers("/i18n/**")
-			.antMatchers("/assets/**")
-			.antMatchers("/swagger-ui/index.html")
-			.antMatchers("/api/register")
-			.antMatchers("/api/activate")
-			.antMatchers("/api/account/reset_password/init")
-			.antMatchers("/api/account/reset_password/finish")
-			.antMatchers("/test/**")
-			.antMatchers("/h2-console/**");
-	}
+    @Logged
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers("/scripts/**/*.{js,html}")
+                .antMatchers("/bower_components/**")
+                .antMatchers("/i18n/**")
+                .antMatchers("/assets/**")
+                .antMatchers("/swagger-ui/index.html")
+                .antMatchers("/api/register")
+                .antMatchers("/api/activate")
+                .antMatchers("/api/account/reset_password/init")
+                .antMatchers("/api/account/reset_password/finish")
+                .antMatchers("/test/**")
+                .antMatchers("/h2-console/**");
+    }
 
-	@Override
-	@Bean
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+    @Logged
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
-	@Bean
-	public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
-		return new SecurityEvaluationContextExtension();
-	}
+    @Logged
+    @Bean
+    public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
+        return new SecurityEvaluationContextExtension();
+    }
 }

@@ -18,7 +18,7 @@
       <div data-ng-show="vm.message">
         {{::vm.message}}
       </div>
-      
+
       <table
         class="table table-striped"
         data-ng-show="service.getAll().length > 0"
@@ -32,8 +32,10 @@
         </tr>
 
         <tr
-          data-ng-repeat="category in service.getAll()| orderBy:vm.sortColumn:vm.sortDirection"
-          data-ng-class="{ info: category.title === vm.selectedCategory.title }"
+          data-ng-repeat="category in service.getAll() | orderBy:vm.sortColumn:vm.sortDirection"
+          data-ng-class="{
+                info: category.title === vm.selectedCategory.title
+              }"
           >
           <td>{{ category.id|toDecimal}}</td>
           <td>{{ category.title}}</td>

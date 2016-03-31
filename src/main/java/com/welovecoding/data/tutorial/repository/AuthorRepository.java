@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AuthorRepository extends BaseRepository<Author, Long>, PagingAndSortingRepository<Author, Long> {
 
-  @Query("SELECT p FROM Author p WHERE p.slug = :authorslug")
-  Author findBySlug(@Param("authorslug") String slug);
+    @Query("SELECT p FROM Author p WHERE p.slug = :authorslug")
+    Author findBySlug(@Param("authorslug") String slug);
 }

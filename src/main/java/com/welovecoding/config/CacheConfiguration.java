@@ -1,5 +1,6 @@
 package com.welovecoding.config;
 
+import com.welovecoding.api.v1.base.Logged;
 import com.welovecoding.config.persistence.PersistenceConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +8,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
-import org.springframework.cache.support.NoOpCacheManager; 
+import org.springframework.cache.support.NoOpCacheManager;
 
 import javax.annotation.PreDestroy;
 
@@ -20,11 +21,13 @@ public class CacheConfiguration {
 
     private CacheManager cacheManager;
 
+    @Logged
     @PreDestroy
     public void destroy() {
         log.info("Closing Cache Manager");
     }
 
+    @Logged
     @Bean
     public CacheManager cacheManager() {
         log.debug("No cache");

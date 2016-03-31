@@ -1,53 +1,55 @@
 spring:
-    profiles:
-        active: dev
-    devtools:
-        restart:
-            enabled: true
-        livereload:
-            enabled: true
-    datasource:
-        driver-class-name: org.h2.jdbcx.JdbcDataSource
-        url: jdbc:h2:mem:wlc;DB_CLOSE_DELAY=-1
-        username: sa
-        password: a
-    jpa:
-        database-platform: com.welovecoding.config.persistence.FixedH2Dialect
-        database: H2
-        show_sql: true
-        properties:
-            hibernate.cache.use_second_level_cache: false
-            hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
-            hibernate.globally_quoted_identifiers: true
-    mail:
-        host: @wlc.mail.host@
-        port: @wlc.mail.port@
-        user: noreply@welovecoding.com
-        password: @wlc.mail.password@
-        protocol: smtp
-        tls: false
-        auth: true
-    messages:
-        cache-seconds: 1
-    thymeleaf:
-        cache: false
+  profiles:
+      active: dev
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: false
+  datasource:
+    driver-class-name: org.h2.jdbcx.JdbcDataSource
+    url: jdbc:h2:mem:wlc;DB_CLOSE_DELAY=-1
+    username: sa
+    password: a
+  jpa:
+    database-platform: com.welovecoding.config.persistence.FixedH2Dialect
+    database: H2
+    show_sql: false
+    properties:
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+      hibernate.globally_quoted_identifiers: true
+  mail:
+    host: @wlc.mail.host@
+    port: @wlc.mail.port@
+    user: noreply@welovecoding.com
+    password: @wlc.mail.password@
+    protocol: smtp
+    tls: false
+    auth: true
+  messages:
+    cache-seconds: 1
+  thymeleaf:
+    cache: false
 
 server:
-    port: 8080
+  http.cache:
+    ttl: -1 # days; custom value used in CachingHttpHeadersFilter
+  port: 8080
     
 logging:
-    file: webapp.log
+  file: webapp.log
     
 # ===================================================================
 # WeLoveCoding specific properties
 # ===================================================================
 
 wlc:
-    metrics:
-        jmx.enabled: true
-        graphite:
-            enabled: false
-            host: localhost
-            port: 2003
-            prefix: wlc
+  metrics:
+    jmx.enabled: true
+    graphite:
+      enabled: false
+      host: localhost
+      port: 2003
+      prefix: wlc

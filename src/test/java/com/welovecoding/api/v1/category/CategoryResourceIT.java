@@ -29,51 +29,51 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class CategoryResourceIT {
 
-	private static final Logger LOG = LoggerFactory.getLogger(CategoryResourceIT.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(CategoryResourceIT.class.getName());
 
-	@Rule
-	public TestName name = new TestName();
+    @Rule
+    public TestName name = new TestName();
 
-	private MockMvc mockMvc;
+    private MockMvc mockMvc;
 
-	@Autowired
-	private WebApplicationContext webApplicationContext;
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
-	@Before
-	public void setUp() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-	}
+    @Before
+    public void setUp() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
 
-	@After
-	public void tearDown() {
-	}
+    @After
+    public void tearDown() {
+    }
 
-	@Ignore//TODO insert data before
-	@Test
-	public void testFindAllCategories() throws Exception {
-		System.out.println(name.getMethodName());
-		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
-			.andDo(print())
-			.andExpect(status().isOk())
-			.andExpect(content().contentType("application/json;charset=UTF-8"))
-			.andExpect(jsonPath("$", hasSize(5)))
-			.andReturn();
+    @Ignore//TODO insert data before
+    @Test
+    public void testFindAllCategories() throws Exception {
+        System.out.println(name.getMethodName());
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$", hasSize(5)))
+                .andReturn();
 
-		String content = result.getResponse().getContentAsString();
-	}
+        String content = result.getResponse().getContentAsString();
+    }
 
-	@Ignore//TODO insert data before
-	@Test
-	public void testFindAllCategoriesSorted() throws Exception {
-		System.out.println(name.getMethodName());
-		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories?direction=DESC&attribute=title"))
-			.andDo(print())
-			.andExpect(status().isOk())
-			.andExpect(content().contentType("application/json;charset=UTF-8"))
-			.andExpect(jsonPath("$", hasSize(5)))
-			.andReturn();
+    @Ignore//TODO insert data before
+    @Test
+    public void testFindAllCategoriesSorted() throws Exception {
+        System.out.println(name.getMethodName());
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories?direction=DESC&attribute=title"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$", hasSize(5)))
+                .andReturn();
 
-		String content = result.getResponse().getContentAsString();
-	}
+        String content = result.getResponse().getContentAsString();
+    }
 
 }

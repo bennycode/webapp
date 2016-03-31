@@ -10,18 +10,18 @@ import static org.junit.Assert.fail;
 
 public class EntityValidatorTest {
 
-  @Rule
-  public TestName name = new TestName();
+    @Rule
+    public TestName name = new TestName();
 
-  @Before
-  public void setUp() {
-  }
+    @Before
+    public void setUp() {
+    }
 
-  @Test
-  @Ignore
-  public void testValidateEntity() {
-    System.out.println(name.getMethodName());
-    fail("Not tested yet!");
-  }
+    @Test
+    @Ignore
+    public void testValidateEntity() {
+        System.out.println(name.getMethodName());
+        fail("Not tested yet!");
+    }
 
 }

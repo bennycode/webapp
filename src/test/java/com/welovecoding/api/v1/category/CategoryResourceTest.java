@@ -45,89 +45,87 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class CategoryResourceTest {
 
-  @Configuration
-  @EnableWebMvc
-  @ComponentScan(value = "com.welovecoding.api.v1.category",
-    excludeFilters = @Filter(type = FilterType.ANNOTATION, value = {Configuration.class}))
-  @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
-  static class CategoryResourceTestConfig extends WebMvcConfigurerAdapter {
+    @Configuration
+    @EnableWebMvc
+    @ComponentScan(value = "com.welovecoding.api.v1.category",
+            excludeFilters = @Filter(type = FilterType.ANNOTATION, value = {Configuration.class}))
+    @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
+    static class CategoryResourceTestConfig extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public CategoryService categoryService() {
-      return Mockito.mock(CategoryService.class);
+        @Bean
+        public CategoryService categoryService() {
+            return Mockito.mock(CategoryService.class);
+        }
     }
-  }
 
-  @Rule
-  public TestName name = new TestName();
+    @Rule
+    public TestName name = new TestName();
 
-  private MockMvc mockMvc;
+    private MockMvc mockMvc;
 
+    @Autowired
+    private CategoryService categoryService;
 
-  @Autowired
-  private CategoryService categoryService;
+    @Autowired
+    private WebApplicationContext webApplicationContext;
 
-  @Autowired
-  private WebApplicationContext webApplicationContext;
+    @Before
+    public void setUp() {
+        Mockito.reset(categoryService);
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
 
-  @Before
-  public void setUp() {
-    Mockito.reset(categoryService);
-    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-  }
+    @After
+    public void tearDown() {
+        validateMockitoUsage();
+    }
 
-  @After
-  public void tearDown() {
-    validateMockitoUsage();
-  }
+    @Test
+    public void testFindAllCategories() throws Exception {
+        System.out.println(name.getMethodName());
+        Page<Category> pageMock = Mockito.mock(Page.class);
+        when(pageMock.getContent()).thenReturn(CategoryFactory.constructList(10, 1, 1));
+        when(categoryService.findAllAndSortBy(Sort.Direction.ASC, "id")).thenReturn(pageMock);
 
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$", hasSize(10)))
+                .andReturn();
 
-  @Test
-  public void testFindAllCategories() throws Exception {
-    System.out.println(name.getMethodName());
-    Page<Category> pageMock = Mockito.mock(Page.class);
-    when(pageMock.getContent()).thenReturn(CategoryFactory.constructList(10, 1, 1));
-    when(categoryService.findAllAndSortBy(Sort.Direction.ASC, "id")).thenReturn(pageMock);
+        String content = result.getResponse().getContentAsString();
 
-    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories"))
-      .andDo(print())
-      .andExpect(status().isOk())
-      .andExpect(content().contentType("application/json;charset=UTF-8"))
-      .andExpect(jsonPath("$", hasSize(10)))
-      .andReturn();
+        verify(categoryService, times(1)).findAllAndSortBy(Sort.Direction.ASC, "id");
+        verifyNoMoreInteractions(categoryService);
+    }
 
-    String content = result.getResponse().getContentAsString();
+    @Test
+    public void testFindAllCategoriesSorted() throws Exception {
+        System.out.println(name.getMethodName());
+        Page<Category> pageMock = Mockito.mock(Page.class);
 
-    verify(categoryService, times(1)).findAllAndSortBy(Sort.Direction.ASC, "id");
-    verifyNoMoreInteractions(categoryService);
-  }
+        LinkedList<Category> categories = new LinkedList<>(CategoryFactory.constructList(10, 1, 1));
+        Collections.sort(categories);
+        Collections.sort(categories, new Comparator<Category>() {
+            @Override
+            public int compare(Category o1, Category o2) {
+                return o2.compareTo(o1);
+            }
+        });
+        when(pageMock.getContent()).thenReturn(categories);
+        when(categoryService.findAllAndSortBy(Sort.Direction.DESC, "title")).thenReturn(pageMock);
 
-  @Test
-  public void testFindAllCategoriesSorted() throws Exception {
-    System.out.println(name.getMethodName());
-    Page<Category> pageMock = Mockito.mock(Page.class);
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories?direction=DESC&attribute=title"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$", hasSize(10)))
+                .andReturn();
 
-    LinkedList<Category> categories = new LinkedList<>(CategoryFactory.constructList(10, 1, 1));
-    Collections.sort(categories);
-    Collections.sort(categories, new Comparator<Category>() {
-      @Override
-      public int compare(Category o1, Category o2) {
-        return o2.compareTo(o1);
-      }
-    });
-    when(pageMock.getContent()).thenReturn(categories);
-    when(categoryService.findAllAndSortBy(Sort.Direction.DESC, "title")).thenReturn(pageMock);
+        String content = result.getResponse().getContentAsString();
 
-    MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/categories?direction=DESC&attribute=title"))
-      .andDo(print())
-      .andExpect(status().isOk())
-      .andExpect(content().contentType("application/json;charset=UTF-8"))
-      .andExpect(jsonPath("$", hasSize(10)))
-      .andReturn();
-
-    String content = result.getResponse().getContentAsString();
-
-    verify(categoryService, times(1)).findAllAndSortBy(Sort.Direction.DESC, "title");
-    verifyNoMoreInteractions(categoryService);
-  }
+        verify(categoryService, times(1)).findAllAndSortBy(Sort.Direction.DESC, "title");
+        verifyNoMoreInteractions(categoryService);
+    }
 }
