@@ -27,8 +27,7 @@ notifications:
 # http://docs.travis-ci.com/user/build-lifecycle/
 before_install:
   - openssl aes-256-cbc -K $encrypted_b48b31fc6699_key -iv $encrypted_b48b31fc6699_iv
-    -in id_rsa.enc -out id_rsa -d
-  - mv id_rsa ~/.ssh/id_rsa
+    -in deploy/id_rsa.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
   
 install:
@@ -39,7 +38,7 @@ script:
 
 before_deploy:
   - if [ "$TRAVIS_BRANCH" != "master" ]; then echo "No deployment because branch is not master."; exit 0; fi
-  - ./release.sh
+  - deploy/release.sh
   - ZIPFILE=`find target -name 'webapp-*.zip' -exec basename {} + | head -n 1`;
   - DATE=`date`;export ELASTIC_BEANSTALK_LABEL="${ZIPFILE//.zip/}_${DATE//[^a-zA-Z0-9]/_}";
   - echo "Version label is '$ELASTIC_BEANSTALK_LABEL'"

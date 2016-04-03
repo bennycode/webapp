@@ -8,7 +8,7 @@
   <fileSets>
     <fileSet>
       <directory>target/eb-bundle</directory>
-      <outputDirectory>/</outputDirectory>
+      <outputDirectory></outputDirectory>
     </fileSet>
   </fileSets>
 </assembly>

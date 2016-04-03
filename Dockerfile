@@ -1,8 +1,6 @@
 # https://spring.io/guides/gs/spring-boot-docker/
 FROM frolvlad/alpine-oraclejdk8:slim
 
-#VOLUME /tmp
-
 ADD webapp.war /data/ROOT.war
 RUN chmod +x /data/ROOT.war
 

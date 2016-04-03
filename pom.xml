@@ -21,6 +21,7 @@
     
     <wlc.environment.active>dev</wlc.environment.active>
     <wlc.excludeDevtools>false</wlc.excludeDevtools>
+    <wlc.ignoreTestFailures>true</wlc.ignoreTestFailures>
     <!-- Dev properties -->
     <wlc.security.oauth.clientid>wlcClient</wlc.security.oauth.clientid>
     <wlc.security.oauth.secret>wlcSecret</wlc.security.oauth.secret>
@@ -283,10 +284,28 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.19.1</version>
         <configuration>
-          <testFailureIgnore>true</testFailureIgnore>
+          <testFailureIgnore>${wlc.ignoreTestFailures}</testFailureIgnore>
           <parallel>classes</parallel>
           <useUnlimitedThreads>true</useUnlimitedThreads>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.19.1</version>
+        <configuration>
+          <testFailureIgnore>${wlc.ignoreTestFailures}</testFailureIgnore>
+          <!--<parallel>classes</parallel>-->
+          <!--<useUnlimitedThreads>true</useUnlimitedThreads>-->
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -297,7 +316,7 @@
             <!-- Application starter -->
             <exclude>com/welovecoding/Application.class</exclude>
             <!-- Configuration -->
-            <exclude>com/welovecoding//config/**</exclude>
+            <exclude>com/welovecoding/config/**</exclude>
           </excludes>
         </configuration>
         <executions>
@@ -311,24 +330,6 @@
             <phase>prepare-package</phase>
             <goals>
               <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.19.1</version>
-        <configuration>
-          <testFailureIgnore>true</testFailureIgnore>
-          <!--<parallel>classes</parallel>-->
-          <!--<useUnlimitedThreads>true</useUnlimitedThreads>-->
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
             </goals>
           </execution>
         </executions>
@@ -510,7 +511,7 @@
                   <target>
                     <copy todir="target/eb-bundle" verbose="true">
                       <resources>
-                        <file file="Dockerrun.aws.json"/>
+                        <file file="deploy/Dockerrun.aws.json"/>
                         <file file="Dockerfile"/>
                         <file file="target/webapp.war"/>
                       </resources>
@@ -563,7 +564,7 @@
                 <configuration>
                   <descriptors>
                     <!--expects all neccessary files in target/eb-bundle-->
-                    <descriptor>zip.xml</descriptor>
+                    <descriptor>deploy/zip.xml</descriptor>
                   </descriptors>
                   <tarLongFileMode>posix</tarLongFileMode>
                 </configuration>
