@@ -513,6 +513,11 @@
                       <resources>
                         <file file="deploy/Dockerrun.aws.json"/>
                         <file file="Dockerfile"/>
+                        <file file="run.sh"/>
+                      </resources>
+                    </copy>
+                    <copy todir="target/eb-bundle/target" verbose="true">
+                      <resources>
                         <file file="target/webapp.war"/>
                       </resources>
                     </copy>

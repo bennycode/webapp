@@ -47,7 +47,7 @@ public class PersistenceConfiguration {
     @Logged
     @Bean(destroyMethod = "close")
     public DataSource dataSource(DataSourceProperties dataSourceProperties, WLCProperties wlcProperties) {
-        log.debug("Configuring Datasource");
+        log.info("Configuring Datasource");
         if (dataSourceProperties.getUrl() == null) {
             log.error("Your database connection pool configuration is incorrect! The application"
                     + " cannot start. Please check your Spring profile, current profiles are: {}",
