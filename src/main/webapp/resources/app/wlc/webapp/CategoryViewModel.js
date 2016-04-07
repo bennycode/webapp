@@ -1,7 +1,7 @@
 var wlc = window.wlc || {};
 wlc.webapp = wlc.webapp || {};
 wlc.webapp.CategoryViewModel = function () {
-  this.message = "Hello Earth";
+  this.message = "Hello World";
 
   // Selection
   this.categories = [];
