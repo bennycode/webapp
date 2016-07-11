@@ -64,7 +64,7 @@ public class OAuth2ServerConfiguration {
                     .antMatchers("/api/v1/ping").permitAll()
                     .antMatchers("/health/**").permitAll()
                     .antMatchers("/info/**").permitAll()
-                    .antMatchers("/api/v1/**").authenticated()
+                    .antMatchers("/api/v1/**").permitAll()
                     .antMatchers("/logs/**").hasAnyAuthority(AuthoritiesConstants.ADMIN)
                     .antMatchers("/metrics/**").permitAll()
                     .antMatchers("/trace/**").permitAll()
