@@ -36,7 +36,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
 public class PersistenceConfiguration {
 
-    private final Logger log = LoggerFactory.getLogger(PersistenceConfiguration.class);
+    private final Logger LOG = LoggerFactory.getLogger(PersistenceConfiguration.class);
 
     @Inject
     private Environment env;
@@ -47,9 +47,9 @@ public class PersistenceConfiguration {
     @Logged
     @Bean(destroyMethod = "close")
     public DataSource dataSource(DataSourceProperties dataSourceProperties, WLCProperties wlcProperties) {
-        log.info("Configuring Datasource");
+        LOG.info("Configuring Datasource");
         if (dataSourceProperties.getUrl() == null) {
-            log.error("Your database connection pool configuration is incorrect! The application"
+            LOG.error("Your database connection pool configuration is incorrect! The application"
                     + " cannot start. Please check your Spring profile, current profiles are: {}",
                     Arrays.toString(env.getActiveProfiles()));
 
