@@ -22,6 +22,7 @@ var paths = {
 };
 
 gulp.task('dev', ['default'], function() {
+  gulp.watch(paths.src_main_sass + '/**/*.scss', ['sass']);
   gulp.watch(paths.src_main_webapp + '/**/*.*')
     .on('change', browserSync.reload);
 
