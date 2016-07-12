@@ -113,4 +113,10 @@ public class GoogleConnector {
         return client.people().get("me").execute();
     }
 
+    public String getRedirectUri() {
+        return GOOGLE_REDIRECT_URI;
+    }
+    
+    
+
 }

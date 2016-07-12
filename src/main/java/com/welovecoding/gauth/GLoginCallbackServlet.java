@@ -7,24 +7,28 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-@WebServlet(urlPatterns = {GLoginCallbackServlet.GOOGLE_PLUS_LOGIN_CALLBACK})
 public class GLoginCallbackServlet extends HttpServlet {
 
     private static final Logger LOG = Logger.getLogger(GLoginCallbackServlet.class.getName());
-
-    public static final String GOOGLE_PLUS_LOGIN_CALLBACK = "/google-plus-login-callback";
 
     @Inject
     private GoogleConnector googleConnector;
     private Plus plusClient;
     private Person user;
     private String accessToken;
+    
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+    }
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)

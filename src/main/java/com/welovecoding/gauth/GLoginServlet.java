@@ -3,16 +3,21 @@ package com.welovecoding.gauth;
 import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
 import com.google.api.client.extensions.servlet.auth.oauth2.AbstractAuthorizationCodeServlet;
 import javax.inject.Inject;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-@WebServlet(urlPatterns = {GLoginServlet.GOOGLE_PLUS_LOGIN})
 public class GLoginServlet extends AbstractAuthorizationCodeServlet {
-    
-    public static final String GOOGLE_PLUS_LOGIN = "/google-plus-login";
 
     @Inject
     private GoogleConnector googleConnector;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+    }
 
     public static String getBaseUrl(HttpServletRequest request) {
         String scheme = request.getScheme() + "://";
@@ -24,7 +29,7 @@ public class GLoginServlet extends AbstractAuthorizationCodeServlet {
 
     @Override
     protected String getRedirectUri(HttpServletRequest request) {
-        return getBaseUrl(request) + GLoginCallbackServlet.GOOGLE_PLUS_LOGIN_CALLBACK;
+        return googleConnector.getRedirectUri();
     }
 
     @Override
