@@ -26,6 +26,6 @@ build.properties
 
 ### Secrets ###
 id_rsa
-/nbactions-dev.xml
-/nbactions.xml
+nbactions-dev.xml
+nbactions.xml
 /src/main/resources/.h2.server.properties
