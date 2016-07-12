@@ -18,7 +18,7 @@
     <!-- Global settings -->
     <java.version>1.8</java.version>
     <!--<tomcat.version>7.0.61</tomcat.version>-->
-    
+
     <wlc.environment.active>dev</wlc.environment.active>
     <wlc.excludeDevtools>false</wlc.excludeDevtools>
     <wlc.ignoreTestFailures>true</wlc.ignoreTestFailures>
@@ -62,7 +62,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -93,32 +93,32 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.springframework.security.oauth</groupId>
       <artifactId>spring-security-oauth2</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-data</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
@@ -130,12 +130,12 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.38</version>
     </dependency>
-    
+
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
@@ -146,12 +146,12 @@
         </exclusion>
       </exclusions>
     </dependency>
-    
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-envers</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
@@ -172,7 +172,7 @@
       <artifactId>woodstox-core-asl</artifactId>
       <version>4.4.1</version>
     </dependency>
-    
+
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-core</artifactId>
@@ -240,7 +240,7 @@
       <artifactId>metrics-spark-reporter</artifactId>
       <version>1.2</version>
     </dependency>
-    
+
     <!--https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html-->
     <!--automatically disabled when running with 'java -jar' or spacial classloader-->
     <dependency>
@@ -269,7 +269,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  
+
   <build>
     <defaultGoal>spring-boot:run</defaultGoal>
 
@@ -280,22 +280,13 @@
         <version>1.0</version>
         <executions>
           <execution>
-            <id>npm install</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-            <configuration>
-              <arguments>install</arguments>
-            </configuration>
-          </execution>
-          <execution>
             <id>gulp build</id>
             <goals>
               <goal>gulp</goal>
             </goals>
           </execution>
         </executions>
-      </plugin>      
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-helper-plugin</artifactId>
@@ -428,7 +419,7 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      
+
       <dependencies>
         <dependency>
           <groupId>org.springframework.boot</groupId>
@@ -454,42 +445,42 @@
           </plugin>
         </plugins>
       </build>
-    </profile>    
+    </profile>
 
     <profile>
       <id>deployable</id>
       <properties>
         <deployable>true</deployable>
       </properties>
-      
+
       <dependencies>
         <!--use default provided tomcat starter dependency-->
       </dependencies>
     </profile>
-    
+
     <profile>
       <id>dev</id>
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      
+
       <properties>
         <wlc.environment.active>dev</wlc.environment.active>
       </properties>
-      
+
       <dependencies>
       </dependencies>
 
       <build>
         <plugins>
-          
+
         </plugins>
       </build>
     </profile>
-    
+
     <profile>
       <id>production</id>
-      
+
       <properties>
         <production>true</production>
         <wlc.environment.active>prod</wlc.environment.active>
@@ -565,7 +556,7 @@
               </execution>
             </executions>
             <configuration>
-               https://github.com/blittle/bower-installer 
+               https://github.com/blittle/bower-installer
               <executable>bower-installer</executable>
               <workingDirectory>${basedir}</workingDirectory>
             </configuration>
@@ -581,7 +572,7 @@
             </configuration>
           </plugin>
           <plugin>
-            <!--mvn -Pdev,production,standalone assembly:assembly@package-eb-bundle -DskipTests=true--> 
+            <!--mvn -Pdev,production,standalone assembly:assembly@package-eb-bundle -DskipTests=true-->
             <artifactId>maven-assembly-plugin</artifactId>
             <version>2.6</version>
             <executions>
