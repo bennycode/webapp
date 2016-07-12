@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html data-ng-app="wlc.webapp">
   <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <link rel="stylesheet" href="resources/libs/bootstrap/css/bootstrap.css"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="stylesheet" href="style/main.css" />
     <title>We Love Coding</title>
     <!-- Dependencies -->
     <script src="resources/libs/es5-shim/es5-shim.js"></script>
@@ -18,11 +18,11 @@
       <div data-ng-show="vm.message">
         {{::vm.message}}
       </div>
-      
+
       <table
         class="table table-striped"
         data-ng-show="service.getAll().length > 0"
-        >
+      >
         <tr>
           <th><a data-ng-click="vm.setSortDirection('id')">ID</a></th>
           <th><a data-ng-click="vm.setSortDirection('title')">Name</a></th>
@@ -33,10 +33,8 @@
 
         <tr
           data-ng-repeat="category in service.getAll() | orderBy:vm.sortColumn:vm.sortDirection"
-          data-ng-class="{
-                info: category.title === vm.selectedCategory.title
-              }"
-          >
+          data-ng-class="{info: category.title === vm.selectedCategory.title}"
+        >
           <td>{{ category.id|toDecimal}}</td>
           <td>{{ category.title}}</td>
           <td>{{ category.slug}}</td>
@@ -47,11 +45,11 @@
 
       <form>
         <div><label for="categoryTitle">Title</label></div>
-        <div><input data-ng-model="vm.selectedCategory.title" name="categoryTitle"/></div>
+        <div><input data-ng-model="vm.selectedCategory.title" id="categoryTitle" /></div>
         <div><label for="categorySlug">Slug</label></div>
-        <div><input data-ng-model="vm.selectedCategory.slug" name="categorySlug"/></div>
+        <div><input data-ng-model="vm.selectedCategory.slug" id="categorySlug" /></div>
         <div><label for="categoryColor">Color</label></div>
-        <div><input data-ng-model="vm.selectedCategory.color" name="categoryColor"/></div>
+        <div><input data-ng-model="vm.selectedCategory.color" id="categoryColor" /></div>
         <div>
           <button data-ng-click="service.save(vm.selectedCategory)">Save</button>
         </div>
