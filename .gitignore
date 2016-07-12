@@ -24,7 +24,8 @@ build.properties
 !.idea/codeStyleSettings.xml
 .idea/*/*
 
-### Secrests ###
+### Secrets ###
 id_rsa
 /nbactions-dev.xml
+/nbactions.xml
 /src/main/resources/.h2.server.properties
