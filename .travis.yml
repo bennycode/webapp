@@ -16,6 +16,9 @@ jdk:
 
 cache:
   directories:
+  - bower_components
+  - node_modules
+  - typings
   - $HOME/.m2
   - $HOME/.npm
 

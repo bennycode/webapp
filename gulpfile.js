@@ -21,7 +21,7 @@ var paths = {
   src_main_webapp_style: 'src/main/webapp/style'
 };
 
-gulp.task('build', ['sass'], function() {
+gulp.task('default', ['sass'], function() {
   gutil.log('Finished build process');
 });
 

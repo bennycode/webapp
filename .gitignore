@@ -2,6 +2,7 @@
 .dpl
 /bower_components
 /coverage
+/node/node_modules
 /node_modules
 /npm-debug.log
 /out
