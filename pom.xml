@@ -284,6 +284,7 @@
             <goals>
               <goal>install-node-and-npm</goal>
             </goals>
+            <phase>generate-resources</phase>
             <configuration>
               <nodeVersion>v5.3.0</nodeVersion>
               <npmVersion>3.10.5</npmVersion>
