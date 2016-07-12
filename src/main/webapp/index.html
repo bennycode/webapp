@@ -11,6 +11,44 @@
     <title>We Love Coding</title>
   </head>
   <body>
+
+    <div class="mdl-layout mdl-js-layout
+      mdl-layout--fixed-header
+      mdl-layout--no-desktop-drawer-button">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+
+          <span class="mdl-layout-title">We Love Coding</span>
+
+          <div class="mdl-layout-spacer"></div>
+          <nav class="mdl-navigation mdl-cell--hide-phone">
+            <a class="mdl-navigation__link" href="#">Team</a>
+            <a class="mdl-navigation__link" href="#">Login</a>
+          </nav>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-cell--hide-phone">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search-expandable">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search-expandable" />
+              <label class="mdl-textfield__label" for="search-expandable">Search text</label>
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">WLC</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="#">Team</a>
+          <a class="mdl-navigation__link" href="#">Login</a>
+        </nav>
+      </div>
+    </div>
+
+    <!--
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--6-col">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -25,5 +63,6 @@
       <div class="mdl-cell mdl-cell--3-col">
       </div>
     </div>
+    -->
   </body>
 </html>
