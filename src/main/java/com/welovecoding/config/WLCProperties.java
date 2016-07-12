@@ -21,6 +21,8 @@ public class WLCProperties {
     private final Cache cache = new Cache();
 
     private final Mail mail = new Mail();
+    
+    private final Google google = new Google();
 
     private final Security security = new Security();
 
@@ -44,6 +46,10 @@ public class WLCProperties {
         return mail;
     }
 
+    public Google getGoogle() {
+        return google;
+    }
+    
     public Security getSecurity() {
         return security;
     }
@@ -144,6 +150,47 @@ public class WLCProperties {
 
         public void setFrom(String from) {
             this.from = from;
+        }
+    }
+    
+    public static class Google {
+
+        private String clientid;
+        private String clientsecret;
+        private String projectid;
+        private String redirecturi;
+
+        public String getClientid() {
+            return clientid;
+        }
+
+        public void setClientid(
+                String clientid) {
+            this.clientid = clientid;
+        }
+
+        public String getClientsecret() {
+            return clientsecret;
+        }
+        
+        public void setClientsecret(String clientsecret) {
+            this.clientsecret = clientsecret;
+        }
+
+        public String getProjectid() {
+            return projectid;
+        }
+
+        public void setProjectid(String projectid) {
+            this.projectid = projectid;
+        }
+
+        public String getRedirecturi() {
+            return redirecturi;
+        }
+
+        public void setRedirecturi(String redirecturi) {
+            this.redirecturi = redirecturi;
         }
     }
 

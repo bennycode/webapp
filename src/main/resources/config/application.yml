@@ -26,6 +26,8 @@ security:
 wlc:
   mail:
     from: noreply@welovecoding.com
+  google:
+    projectId: we-love-coding
   security:
     authentication:
       oauth:

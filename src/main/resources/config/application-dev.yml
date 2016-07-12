@@ -46,6 +46,9 @@ logging:
 # ===================================================================
 
 wlc:
+  google:
+    projectId: we-love-coding
+    redirectUri: http://localhost:8080/google-plus-login-callback
   metrics:
     jmx.enabled: true
     graphite:

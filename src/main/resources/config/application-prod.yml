@@ -43,6 +43,8 @@ server:
 # ===================================================================
 
 wlc:
+  google:
+    projectId: we-love-coding
   metrics:
     jmx.enabled: true
     graphite:
