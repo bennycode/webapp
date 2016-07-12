@@ -21,6 +21,17 @@ var paths = {
   src_main_webapp_style: 'src/main/webapp/style'
 };
 
+gulp.task('dev', ['default'], function() {
+  gulp.watch(paths.src_main_webapp + '/**/*.*')
+    .on('change', browserSync.reload);
+
+  browserSync.init({
+    port: 3636,
+    server: {baseDir: './'},
+    startPath: '/' + paths.src_main_webapp
+  });
+});
+
 gulp.task('default', ['sass'], function() {
   gutil.log('Finished build process');
 });
