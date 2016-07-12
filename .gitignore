@@ -1,28 +1,33 @@
 ### Builds ###
-target/
-out/
+.dpl
+/bower_components
+/coverage
+/node
+/node_modules
+/npm-debug.log
+/out
+/public/lib
+/src/main/typings
+/target
+/typings
+debug.log
 deployments/**/*.*
-.dpl/
 webapp.log
 
-### Bower ###
-bower_components/
-src/main/resources/public/resources/libs/**/*
-
 ### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-build.xml
 build.properties
+build.xml
+build/
+dist/
+nbbuild/
+nbdist/
+nbproject/private/
 
-### IntelliJ ###
+# IntelliJ
 # http://devnet.jetbrains.com/docs/DOC-1186
-.idea/*.xml
-!.idea/codeStyleSettings.xml
-.idea/*/*
+/.idea/**/*.xml
+!/.idea/codeStyleSettings.xml
+!/.idea/modules.xml
 
 ### Secrets ###
 id_rsa
