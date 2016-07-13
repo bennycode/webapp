@@ -27,3 +27,14 @@ mvn clean package -Pdeployable
 ## Deployment
 
 - http://localhost:8080/
+
+## Getting Started
+
+### Frontend
+
+```bash
+npm install
+bower install
+gulp dev
+```
+

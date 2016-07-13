@@ -248,19 +248,19 @@
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
     </dependency>
-    
+
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-plus</artifactId>
       <version>v1-rev408-1.22.0</version>
     </dependency>
-    
+
     <dependency>
       <groupId>com.google.apis</groupId>
       <artifactId>google-api-services-youtube</artifactId>
       <version>v3-rev176-1.22.0</version>
     </dependency>
-    
+
     <dependency>
       <groupId>com.google.oauth-client</groupId>
       <artifactId>google-oauth-client-servlet</artifactId>
@@ -308,6 +308,7 @@
               <npmVersion>3.10.5</npmVersion>
             </configuration>
           </execution>
+          <!-- npm install -->
           <execution>
             <id>npm install</id>
             <goals>
@@ -317,6 +318,17 @@
               <arguments>install</arguments>
             </configuration>
           </execution>
+          <!-- bower install -->
+          <execution>
+            <id>bower install</id>
+            <goals>
+              <goal>bower</goal>
+            </goals>
+            <configuration>
+              <arguments>install</arguments>
+            </configuration>
+          </execution>
+          <!-- gulp default -->
           <execution>
             <id>gulp build</id>
             <goals>
