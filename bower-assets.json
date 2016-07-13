@@ -6,5 +6,10 @@
     "material-design-lite@copy": [
       "material-design-lite/material.min.js"
     ]
+  },
+  "common": {
+    "jquery@copy": [
+      "jquery/dist/jquery.min.js"
+    ]
   }
 }

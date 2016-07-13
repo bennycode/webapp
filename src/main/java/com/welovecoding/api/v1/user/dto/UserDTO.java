@@ -64,7 +64,7 @@ public class UserDTO {
         this.langKey = langKey;
         this.authorities = authorities;
     }
-
+    
     public String getPassword() {
         return password;
     }
@@ -93,6 +93,23 @@ public class UserDTO {
         return langKey;
     }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setLangKey(
+            String langKey) {
+        this.langKey = langKey;
+    }
+    
     public Set<String> getAuthorities() {
         return authorities;
     }

@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.*;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 @RestController
 @RequestMapping("/api/v1/account")
@@ -43,7 +46,8 @@ public class AccountResource {
             produces = MediaType.TEXT_PLAIN_VALUE,
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @Timed
-    public ResponseEntity<?> registerAccount(@Valid @RequestBody UserDTO userDTO, HttpServletRequest request) {
+    public ResponseEntity<?> registerAccount(@Valid UserDTO userDTO, HttpServletRequest request) {
+        log.info("UserDTO: " + userDTO);
         return userRepository.findOneByLogin(userDTO.getLogin())
                 .map(user -> new ResponseEntity<>("login already in use", HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> userRepository.findOneByEmail(userDTO.getEmail())
@@ -155,5 +159,24 @@ public class AccountResource {
         return (!StringUtils.isEmpty(password)
                 && password.length() >= UserDTO.PASSWORD_MIN_LENGTH
                 && password.length() <= UserDTO.PASSWORD_MAX_LENGTH);
+    }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public String handleException(Exception e) {
+        StringBuilder builder = new StringBuilder();
+        log.error(e.getMessage(), e);
+        if (e instanceof MethodArgumentNotValidException) {
+            MethodArgumentNotValidException methodException = (MethodArgumentNotValidException) e;
+            BindingResult bindingResult = methodException.getBindingResult();
+            if (bindingResult != null && bindingResult.hasErrors()) {
+                List<FieldError> fieldErrorList = bindingResult.getFieldErrors();
+                for (FieldError fieldError : fieldErrorList) {
+                    builder.append(fieldError.getDefaultMessage()).append("\n");
+                }
+            }
+        }
+        return builder.toString();
     }
 }
