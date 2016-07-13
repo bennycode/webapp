@@ -35,7 +35,7 @@ gulp.task('dev', ['default'], function() {
   });
 });
 
-gulp.task('default', ['sass'], function() {
+gulp.task('default', ['bower', 'sass'], function() {
   gutil.log('Finished build process');
 });
 
@@ -55,7 +55,7 @@ gulp.task('bower_install', function() {
   return bower({cmd: 'install'});
 });
 
-gulp.task('bower', function() {
+gulp.task('bower', ['bower_install'], function() {
   return gulp.src('bower-assets.json')
     .pipe(assets({prefix: false}))
     .pipe(gulp.dest(paths.src_main_webapp_style_lib));
