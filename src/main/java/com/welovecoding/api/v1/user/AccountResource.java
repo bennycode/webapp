@@ -1,7 +1,6 @@
 package com.welovecoding.api.v1.user;
 
 import com.codahale.metrics.annotation.Timed;
-import com.welovecoding.api.v1.base.Tracked;
 import com.welovecoding.api.v1.user.dto.KeyAndPasswordDTO;
 import com.welovecoding.api.v1.user.dto.UserDTO;
 import com.welovecoding.config.security.util.SecurityUtils;
@@ -41,7 +40,8 @@ public class AccountResource {
 
     @RequestMapping(value = "/register",
             method = RequestMethod.POST,
-            produces = MediaType.TEXT_PLAIN_VALUE)
+            produces = MediaType.TEXT_PLAIN_VALUE,
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @Timed
     public ResponseEntity<?> registerAccount(@Valid @RequestBody UserDTO userDTO, HttpServletRequest request) {
         return userRepository.findOneByLogin(userDTO.getLogin())
