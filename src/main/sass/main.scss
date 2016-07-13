@@ -1,3 +1,13 @@
-.content-grid {
-  max-width: 960px;
+$namespace: "wlc-cell";
+
+##{$namespace}-left {
+  background-color: #00897b;
+}
+
+##{$namespace}-center {
+  background-color: #800b41;
+}
+
+##{$namespace}-right {
+  background-color: #813c00;
 }
