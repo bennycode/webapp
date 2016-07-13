@@ -567,6 +567,11 @@
                         <file file="run.sh"/>
                       </resources>
                     </copy>
+                    <copy todir="target/eb-bundle/.ebextensions" verbose="true">
+                      <resources>
+                        <file file="deploy/.ebextensions/nginx.conf"/>
+                      </resources>
+                    </copy>
                     <copy todir="target/eb-bundle/target" verbose="true">
                       <resources>
                         <file file="target/webapp.war"/>

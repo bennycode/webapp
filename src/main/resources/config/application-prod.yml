@@ -32,6 +32,9 @@ spring:
 
 server:
   port: 8080
+  use-forward-headers: true
+  tomcat:
+    accesslog.enabled: true
   http.cache: 
     ttl: 1 # days; custom value used in CachingHttpHeadersFilter
   compression:
