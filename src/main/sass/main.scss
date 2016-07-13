@@ -1,11 +1,13 @@
-#left {
+$namespace: "wlc-cell";
+
+##{$namespace}-left {
   background-color: #00897b;
 }
 
-#center {
+##{$namespace}-center {
   background-color: #800b41;
 }
 
-#right {
+##{$namespace}-right {
   background-color: #813c00;
 }
