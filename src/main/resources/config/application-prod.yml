@@ -43,6 +43,11 @@ server:
 # ===================================================================
 
 wlc:
+  google:
+    projectId: we-love-coding
+    redirectUri: http://localhost:8080/google-plus-login-callback
+    clientId: welovecoding
+    clientSecret: welovecoding
   metrics:
     jmx.enabled: true
     graphite:
