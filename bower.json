@@ -1,0 +1,17 @@
+{
+  "name": "webapp",
+  "description": "",
+  "homepage": "https://github.com/welovecoding/webapp",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "material-design-icons": "^2.2.3",
+    "material-design-lite": "^1.1.3"
+  }
+}

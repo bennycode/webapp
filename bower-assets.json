@@ -1,0 +1,10 @@
+{
+  "material-design": {
+    "material-design-icons@copy": [
+      "material-design-icons/iconfont/*"
+    ],
+    "material-design-lite@copy": [
+      "material-design-lite/material.min.js"
+    ]
+  }
+}
