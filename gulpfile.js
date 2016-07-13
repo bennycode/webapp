@@ -1,6 +1,6 @@
 var assets = require('gulp-bower-assets');
 var bower = require('gulp-bower');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
 var gulp = require('gulp');
 var gulpTypings = require('gulp-typings');
 var gutil = require('gulp-util');
