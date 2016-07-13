@@ -1,2 +1,8 @@
-.content-grid {
-  max-width: 960px; }
+#wlc-cell-left {
+  background-color: #00897b; }
+
+#wlc-cell-center {
+  background-color: #800b41; }
+
+#wlc-cell-right {
+  background-color: #813c00; }
